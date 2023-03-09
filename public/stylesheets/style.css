@@ -4,10 +4,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
 .warning {
   color: darkred;
   font-size: larger;
@@ -26,6 +22,7 @@ header a{
   
   text-decoration: none;
 }
+
 
 a{
   color: black;
@@ -63,7 +60,7 @@ header a + .button{
 }
 
 
-.center {
+.center{
   text-align: center;
 }
 
