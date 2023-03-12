@@ -33,7 +33,6 @@ header a{
   margin-left: 40px;
 }
 
-
 a{
   color: black;
 }/* mouse over link */
@@ -42,14 +41,20 @@ a:hover {
 }
 
 section{
-  padding-top: 440px;
+  padding-top: 400px;
+  padding-bottom: 50px;
 }
 
+hr{
+  margin-top: 15px;
+  border: 1px solid ;
+  width: 20%;
+}
 
 
 /*buttons*/
 header a + .button{
-  float:right;
+  
   margin-right: 20px;
   background-color: rgb(237, 232, 232);
   color: rgb(0, 0, 0);
@@ -78,6 +83,18 @@ font-size: xx-large;
   margin:auto;
   width:fit-content ;
   text-align: center;
+}
+
+.seperator {
+  
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+.right {
+float: right;
 }
 
 
