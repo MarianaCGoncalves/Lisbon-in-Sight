@@ -10,24 +10,27 @@ body {
 main {
   background-color: rgb(229, 199, 89);
 }
+
 header{
   position:relative;
+
   background-image: url("../images/Home1.jfif");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+  display: flex;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
   color: rgb(245, 245, 245);
-  
-  
-  
-  background-size: cover;
 }
 header ul{
+ 
  padding-top: 30px;
 }
 header a{
+  
   color: rgb(245, 245, 245);
   text-decoration: none;
   margin-left: 40px;
@@ -40,17 +43,13 @@ a:hover {
   color: rgb(247, 202, 0);
 }
 
-section{
+header section{
   position:absolute;
   bottom: 20px;
   width:100%;
 }
 
-hr{
-  margin-top: 15px;
-  border: 1px solid ;
-  width: 20%;
-}
+
 
 
 /*buttons*/
@@ -59,12 +58,29 @@ header a + .button{
   margin-right: 20px;
   background-color: rgb(237, 232, 232);
   color: rgb(0, 0, 0);
-  padding: 15px 50px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
+}
+
+footer {
+  
+  display: flex;
+  flex-direction: column;
+  padding-top: 1%;
+  align-self: center;
+  margin: auto;
+}
+
+footer > section {
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+hr{
+  margin: 90px;
+  margin-top: 15px;
+  border: 1px solid ;
+  width: 25%;
 }
 
 .button{
@@ -73,30 +89,22 @@ header a + .button{
   padding: 15px 50px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 30px;
+  max-width: 50px;
+  max-height: 40px;
   cursor: pointer;
 }
 
-.center{
-font-size: xx-large;
+
+.title{
+  font-size: xx-large;
   margin:auto;
   width:fit-content ;
-  text-align: center;
-}
-
-.seperator {
   
-  display: inline-block;
 }
 
-.left {
-  float: left;
-}
-.right {
-float: right;
-}
+
 
 
 
