@@ -61,7 +61,6 @@ header a + .button{
 }
 
 footer {
-  
   display: flex;
   flex-direction: column;
   padding-top: 1%;
@@ -75,6 +74,25 @@ footer > section {
   align-items: flex-start;
   justify-content: center;
 }
+
+footer > article {
+  position: relative;
+  
+  background-image: url("./images/lisnoite.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 100%;
+  height: 400px;
+
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
 
 hr{
   margin: 90px;
@@ -103,10 +121,5 @@ hr{
   width:fit-content ;
   
 }
-
-
-
-
-
 
 
