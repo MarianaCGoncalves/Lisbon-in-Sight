@@ -1,11 +1,7 @@
 header{
     position:relative;
   
-    background-image: url("../images/Home1.jfif");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-  
+    
     display: flex;
     align-items: flex-start;
     width: 100%;
@@ -16,18 +12,20 @@ header{
   
   header > nav {
     
-    min-width: 65%;
-    width: 80%;
+    
+    width: 60%;
     display: flex;
     justify-content: space-around;
-    padding-top: 6px;
+    padding-top: 1%;
   
   }
 
   header ul{
+    width: 15%;
    
-   padding-top: 30px;
+   padding-top: 2.5%;
   }
+ 
   
   header section{
     position:absolute;
