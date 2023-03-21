@@ -1,18 +1,17 @@
 <html>
 
 <head>
-  <title>Lisbon in Sight | Register</title>
+  <title>Lisbon in Sight | Login</title>
   <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/lr.css">
-
+  <script src="./javascripts/utils/verifications.js"></script>
+  <script src="./javascripts/requests/matchesRequests.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
-  <script src="./javascripts/register.js"></script>
+  <script src="./javascripts/login.js"></script>
 </head>
-
 
 <body>
   <header>
-
     <!--<h2 class="test"><span id="user">Hello ______</span></p>--> 
       <ul class="headerleft">
         <a href="register.html">Travel</a>
@@ -32,28 +31,24 @@
     
     
       <section>
-        <h1 class="title">Register now!</h1></p>
+        <h1 class="title">Log in!</h1></p>
       </section>
-
   </header>
-
   <main>
-    <form action="javascript:register()">
-      <table>
+    <form action="javascript:login()">
+      <table >
         <tr>
           <td>Name:</td>
           <td><input type="text" autocomplete="username" id="name"></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="password" autocomplete="new-password"  id="password"></td>
+          <td><input type="password" autocomplete="current-password" id="password"></td>
         </tr>
       </table>
       <p id="msg" class="warning"></p>
-      <p><input type="submit" value="Register"></p>
-      <section>
-        <a href="index.html">Have a account? Log in!</a> 
-      </section>
+      <p><input type="submit" value="Login"></p>
+      <p><a href="register.html">Create a new account</a></p>
     </form>
   </main>
 </body>

@@ -1,7 +1,5 @@
 header{
     position:relative;
-  
-    
     display: flex;
     align-items: flex-start;
     width: 100%;
@@ -22,8 +20,7 @@ header{
 
   header ul{
     width: 15%;
-   
-   padding-top: 2.5%;
+    padding-top: 2.5%;
   }
  
   
@@ -31,6 +28,12 @@ header{
     position:absolute;
     bottom: 20px;
     width:100%;
+  }
+
+  ul{
+    display: flex;
+    justify-content: space-around;
+    
   }
   
   
@@ -45,7 +48,7 @@ header{
   }
 
   .button{
-    background-color: rgb(142, 135, 135);
+    
     color: white;
     padding: 15px 50px;
     text-align: center;
@@ -73,3 +76,22 @@ header{
     font-size: 120%;
   
   }
+
+  .title{
+    font-size: 180%;
+    margin:auto;
+    width:fit-content ; 
+  }
+
+  a{
+    
+    color: rgb(245, 245, 245);
+    text-decoration: none;
+    
+    
+  }
+  
+  a:hover {
+    color: rgb(247, 202, 0);
+  }
+  
