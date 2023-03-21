@@ -9,9 +9,9 @@ body {
 header {
   background-image: url("../images/Home1.jfif");
     background-repeat: no-repeat;
-    background-position: center center;
+    
     background-size: cover;
-  
+  background-position: center center;
 }
 
 ul{

@@ -1,9 +1,9 @@
 <html>
 
 <head>
-  <title>Login</title>
+  <title>Lisbon in Sight | Login</title>
   <link rel="stylesheet" href="/stylesheets/header.css">
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/lr.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/matchesRequests.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
@@ -12,14 +12,31 @@
 
 <body>
   <header>
-    <h1>Login</h1>
+    <!--<h2 class="test"><span id="user">Hello ______</span></p>--> 
+      <ul class="headerleft">
+        <a href="register.html">Travel</a>
+        <a href="register.html">Routes</a>
+          
+        </ul>
+        
+      <nav>
+        
+        <a href= "profile.html" class="title">Lisbon In Sight</b>
+        
+      </nav>
+    
+      <ul>
+        <a href= "register.html" class="button">Register</a>
+      </ul>
+    
+    
+      <section>
+        <h1 class="title">Log in!</h1></p>
+      </section>
   </header>
   <main>
-    <p> If you have a match running you will enter that match.
-      Otherwise it will go to the match making page.
-    </p>
     <form action="javascript:login()">
-      <table>
+      <table >
         <tr>
           <td>Name:</td>
           <td><input type="text" autocomplete="username" id="name"></td>
