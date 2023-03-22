@@ -12,7 +12,7 @@ create table appuser (
 create table route(
     rou_id serial,
     rou_use_id int not null,
-    rot_name varchar(60),
+    rou_name varchar(60),
     primary key (rou_id)
 );
 
