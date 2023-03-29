@@ -18,8 +18,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const usersRouter = require("./routes/usersRoutes");
+const routesRouter = require("./routes/routesRoutes");
 
 app.use("/api/users",usersRouter);
+app.use("/api/routes",routesRouter);
 
 // when we don't find anything
 app.use((req, res, next) => {

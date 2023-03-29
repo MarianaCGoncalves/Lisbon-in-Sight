@@ -10,9 +10,9 @@ function dbRoutetoRoute(dbRoute)  {
     return route;
 }
 
-function dbRoutestoRoutes(dbRoutes)  {
-    return new Route(route.rou_id,route.rou_use_id,
-        route.rou_name);
+function dbRoutestoRoutes(dbr)  {
+    return new Route(dbr.rou_id,dbr.rou_use_id,
+        dbr.rou_name);
 }
 
 class Route {
@@ -46,12 +46,9 @@ class Route {
         try {
             let dbResult = await pool.query("Select * from route where rou_use_id = $1", [usr_id]);
             let dbRoutes = dbResult.rows;
-            let size = dbRoutes.length;
             let routes = [];
-            for (let i =0 ; i<= size; i++) {
-                routes = 
-                routes.push(new Route(route.rou_id,route.rou_use_id,
-                    route.rou_name));
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
             }
             return { status: 200, result: routes}  
         } catch (err) {
@@ -64,12 +61,9 @@ class Route {
         try {
             let dbResult = await pool.query("Select * from route where rou_name LIKE $1 ", ["%"+name+"%"]);
             let dbRoutes = dbResult.rows;
-            let size = dbRoutes.length;
             let routes = [];
-            for (let i =0 ; i<= size; i++) {
-                routes = 
-                routes.push(new Route(route.rou_id,route.rou_use_id,
-                    route.rou_name));
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
             }
             return { status: 200, result: routes}          
         } catch (err) {
