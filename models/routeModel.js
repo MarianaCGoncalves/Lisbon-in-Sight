@@ -10,6 +10,11 @@ function dbRoutetoRoute(dbRoute)  {
     return route;
 }
 
+function dbRoutestoRoutes(dbRoutes)  {
+    return new Route(route.rou_id,route.rou_use_id,
+        route.rou_name);
+}
+
 class Route {
     constructor(id, name, usr_id) {
         this.id = id;
@@ -36,4 +41,42 @@ class Route {
             return { status: 500, result: err };
         }  
     }
+
+    static async getUserRoutes(usr_id) {
+        try {
+            let dbResult = await pool.query("Select * from route where rou_use_id = $1", [usr_id]);
+            let dbRoutes = dbResult.rows;
+            let routes = [];
+            for (let dbsl of dbRoutes) {
+                routes = 
+                routes.push(new Route(route.rou_id,route.rou_use_id,
+                    route.rou_name));
+            }
+            return { status: 200, result: routes}  
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "Something went wrong."}};
+        }
+    }
+
+    static async getByName(name) {
+        try {
+            let dbResult = await pool.query("Select * from route where rou_name LIKE $1 ", ["%"+name+"%"]);
+            let dbRoutes = dbResult.rows;
+            let routes = [];
+            for (let dbsl of dbRoutes) {
+                routes = 
+                routes.push(new Route(route.rou_id,route.rou_use_id,
+                    route.rou_name));
+            }
+            return { status: 200, result: routes}          
+        } catch (err) {
+            console.log(err);
+            return { status: 500, result: err };
+        }  
+    }
+
+
 }
+
+module.exports = Route;

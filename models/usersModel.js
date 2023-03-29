@@ -96,8 +96,7 @@ class User {
 
     static async getUserByToken(token) {
         try {
-            let dbResult =
-                await pool.query(`Select * from appuser where usr_token = $1`,[token]);
+            let dbResult = await pool.query(`Select * from appuser where usr_token = $1`,[token]);
             let dbUsers = dbResult.rows;
             if (!dbUsers.length)
                 return { status: 403, result: {msg:"Invalid authentication!"}} ;
