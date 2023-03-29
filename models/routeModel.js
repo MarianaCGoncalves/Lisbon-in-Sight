@@ -22,9 +22,9 @@ class Route {
         this.usr_id = usr_id;
     }
     export() {
-        let route=new Route();
-        route.name = this.name;
-        return route; 
+        let rt=new Route();
+        rt.name = this.name;
+        return rt; 
     }
 
     static async getById(id) {
