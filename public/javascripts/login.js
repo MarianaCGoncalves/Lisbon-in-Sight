@@ -11,7 +11,7 @@ async function login() {
             msgDOM.textContent = "Wrong username or password";    
         } else {
             msgDOM.textContent = "Login successful!";    
-            window.location.pathname = "/profile.html"
+            window.location.pathname = "/home.html"
         }
     } catch (err) {
         console.log(err);
