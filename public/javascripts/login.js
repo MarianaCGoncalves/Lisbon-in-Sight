@@ -1,6 +1,7 @@
 async function login() {
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
+    console.log(window.location);
     try {
         let name = document.getElementById("name").value;
         let pass = document.getElementById("password").value;
@@ -11,6 +12,7 @@ async function login() {
             msgDOM.textContent = "Wrong username or password";    
         } else {
             msgDOM.textContent = "Login successful!";    
+            setTimeout(10000)
             window.location.pathname = "/home.html"
         }
     } catch (err) {
