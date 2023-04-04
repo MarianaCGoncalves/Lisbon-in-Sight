@@ -1,0 +1,44 @@
+
+main {
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    list-style-type: none;
+    
+  }
+
+  main > li {
+    width: 35%;
+    height: 25%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  main > li > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 1%;
+    
+    background-color: rgb(233, 238, 238);
+  }
+
+  .routeleft{
+    background-image: url("../images/Home1.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+    width: 35%;
+  }
+
+  .routeright{
+    width: 65%;
+  }
+
