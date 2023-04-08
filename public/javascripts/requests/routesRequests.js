@@ -19,7 +19,7 @@ async function requestRouteByName(name) {
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,
-                 shoplist: result};
+                 routes: result};
     } catch (err) {
         // Treat 500 errors here
         console.log(err);
