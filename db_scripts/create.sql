@@ -5,7 +5,7 @@ create table appuser (
     usr_id serial,
     usr_name varchar(60) not null,
     usr_pass varchar(200) not null, 
-    --adicionar email.
+    usr_type int not null, --tipo de user: 1- user normal | 2-admin.
     usr_token varchar(200),
     primary key (usr_id));
 
@@ -28,7 +28,11 @@ create table rating(
 create table local(
     loc_id serial,
     loc_name varchar(60),
-    /*loc_coordinates */
+    loc_desc varchar(120),
+    loc_x int not null,
+    loc_y int not null,
+    --loc_type in the future.
+    primary key (loc_id)
 );
 
 create table routelocal(
@@ -53,7 +57,7 @@ create table localmedia(
 
 create table status(
     st_id serial,
-    st_name varchar(60),
+    st_name varchar(60), -- Pessoal | Aprovado | A espera | Rejeitado |.
     primary key (st_id)
 );
 
@@ -61,7 +65,7 @@ create table routestatus(
     rs_id serial,
     rs_rou_id int not null,
     rs_st_id int not null,
-
+    primary key (rs_id)
 );
 
 alter table rating
