@@ -4,6 +4,7 @@ main {
   height: 30%;
 }
 main > hr{
+  width: 100%;
   border: 1.2px solid ;
 }
 footer {
