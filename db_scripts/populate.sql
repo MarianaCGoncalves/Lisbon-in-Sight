@@ -1,8 +1,8 @@
 -- None at the moment,users must be created using the API because of the bcrypt
 
-insert into route (rou_name, rou_use_id) values('Lisboeta', 1);
-insert into route (rou_name, rou_use_id) values('Rústica', 2);
-insert into route (rou_name, rou_use_id) values ('Artistica', 1);
+insert into route (rou_name, rou_use_id) values('Lisboeta', 2);
+insert into route (rou_name, rou_use_id) values('Rústica', 3);
+insert into route (rou_name, rou_use_id) values ('Artistica', 2);
 
 
 insert into status (st_name) values('Pessoal');
@@ -42,9 +42,9 @@ insert table routestatus(rs_rou_id, rs_st_id) values(1,2);
 insert table routestatus(rs_rou_id, rs_st_id) values(2,2);
 insert table routestatus(rs_rou_id, rs_st_id) values(3,2);
 
-insert table media(med_url) values(https://offloadmedia.feverup.com/lisboasecreta.co/wp-content/uploads/2021/03/20043602/Jardim-da-Tapada-das-Necessidades-%40capilopes-1024x756.jpg);
-insert table media(med_url) values(https://www.jf-estrela.pt/images/freguesia/patrimonio/1/imagem_1.png);
-insert table media(med_url) values(https://www.transportal.com.br/noticias/wp-content/uploads/2022/08/jardim-botanico-de-curitiba-area-externa.jpg);
+insert table media(med_url) values("https://offloadmedia.feverup.com/lisboasecreta.co/wp-content/uploads/2021/03/20043602/Jardim-da-Tapada-das-Necessidades-%40capilopes-1024x756.jpg");
+insert table media(med_url) values("https://www.jf-estrela.pt/images/freguesia/patrimonio/1/imagem_1.png");
+insert table media(med_url) values("https://www.transportal.com.br/noticias/wp-content/uploads/2022/08/jardim-botanico-de-curitiba-area-externa.jpg");
 
 insert table localmedia(lm_med_id, lm_loc_id) values (1,1);
 insert table localmedia(lm_med_id, lm_loc_id) values (2,2);
