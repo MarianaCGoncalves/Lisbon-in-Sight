@@ -14,12 +14,12 @@ header{
     width: 60%;
     display: flex;
     justify-content: space-around;
-    padding-top: 1%;
+    padding-top: 2.5%;
   
   }
 
   header ul{
-    width: 15%;
+    width: 20%;
     padding-top: 2.5%;
     display: flex;
     justify-content: space-around;
@@ -93,12 +93,13 @@ header{
   
 .dropdown {
   position: relative;
+
   display: inline-block;
 }
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  position: relative;
   background-color: #f1f1f1;
   min-width: 160px;
   overflow: auto;

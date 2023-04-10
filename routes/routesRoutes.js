@@ -16,6 +16,7 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
         else {
             let routes = result.result.map((rt)=> rt.export());
             res.status(200).send(routes);
+            console.log(routes);
         }
     } catch (err) {
         console.log(err);

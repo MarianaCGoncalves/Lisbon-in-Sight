@@ -11,8 +11,8 @@ function dbRoutetoRoute(dbRoute)  {
 }
 
 function dbRoutestoRoutes(dbr)  {
-    return new Route(dbr.rou_id,dbr.rou_use_id,
-        dbr.rou_name);
+    return new Route(dbr.rou_id,
+        dbr.rou_name,dbr.rou_use_id);
 }
 
 class Route {
@@ -23,6 +23,7 @@ class Route {
     }
     export() {
         let rt=new Route();
+        rt.id = this.id;
         rt.name = this.name;
         return rt; 
     }
@@ -59,6 +60,7 @@ class Route {
 
     static async getByName(name) {
         try {
+            
             let dbResult = await pool.query("Select * from route where rou_name LIKE $1 ", ["%"+name+"%"]);
             let dbRoutes = dbResult.rows;
             let routes = [];
