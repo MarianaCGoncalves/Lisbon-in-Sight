@@ -13,9 +13,9 @@ async function requestUserRoutes() {
 }
 
 
-async function requestRouteByName(name) {
+async function requestRouteByName(name, personal_search) {
     try {
-        const response = await fetch(`/api/routes/search_by/name/${name}/${bool}`);
+        const response = await fetch(`/api/routes/search_by/name/${name}/${personal_search}`);
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,

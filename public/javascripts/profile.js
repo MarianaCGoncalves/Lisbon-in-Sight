@@ -7,7 +7,6 @@ window.onload = async function () {
         let routeRes = await requestUserRoutes();
         if (!routeRes.successful) throw { msg: "Something went wrong" };
         populateRoutes(routeRes.routes);
-        console.log(routeRes.routes);
      } catch (err) {
         console.log(err);
        // alert("Something went wrong!")
@@ -94,7 +93,20 @@ async function logout() {
 }
 
 
-
+async function searchRoute() {
+  try {
+      let string = "lisb";
+      let routeRes = await requestRouteByName( string, true);
+      console.log(routeRes.routes);
+      if (!result.successful || result.err)
+          throw result.err || { err: "Not successfull" }
+      populateRoutes(routeRes.routes);
+      
+  } catch (err) {
+      console.log(err);
+     // alert("Something is not working");
+  }
+}
 
 
 

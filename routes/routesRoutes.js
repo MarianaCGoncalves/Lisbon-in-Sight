@@ -24,10 +24,10 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     }
 });
 
-router.get('/search_by/name/:name', async function (req, res, next) {
+router.get('/search_by/name/:name/:personal_search', async function (req, res, next) {
     try {
         console.log("Get routes that contain a certains word in their name");
-        let result = await Route.getByName(req.route.name);
+        let result = await Route.getByName(req.params.name, req.user.id, req.params.personal_search);
         if (result.status != 200)
             res.status(result.status).send(result.result);
         else {

@@ -60,13 +60,13 @@ class Route {
 
     static async getByName(name, usr_id, personal_search) {
         try {
+            let dbResult;
             if(personal_search){
-        
-                let dbResult = await pool.query("Select * from route where rou_name LIKE $1 and rou_use_id = $2",
+                dbResult = await pool.query("Select * from route where rou_name ILIKE $1 and rou_use_id = $2",
                 ["%"+name+"%", usr_id]);
             }
             else{
-                let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name LIKE $1 ", ["%"+name+"%"]);
+                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
             }
             let dbRoutes = dbResult.rows;
             let routes = [];
