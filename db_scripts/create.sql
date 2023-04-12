@@ -12,7 +12,7 @@ create table appuser (
 create table route(
     rou_id serial,
     rou_use_id int not null,
-    rou_name varchar(60),
+    rou_name varchar(120),
     primary key (rou_id)
 );
 
@@ -44,7 +44,7 @@ create table routelocal(
 
 create table media(
     med_id serial,
-    med_url varchar(120),
+    med_url varchar(255),
     primary key (med_id)
 );
 

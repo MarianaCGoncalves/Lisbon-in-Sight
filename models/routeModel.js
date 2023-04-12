@@ -11,8 +11,8 @@ function dbRoutetoRoute(dbRoute)  {
 }
 
 function dbRoutestoRoutes(dbr)  {
-    return new Route(dbr.rou_id,dbr.rou_use_id,
-        dbr.rou_name);
+    return new Route(dbr.rou_id,
+        dbr.rou_name,dbr.rou_use_id);
 }
 
 class Route {
@@ -23,6 +23,7 @@ class Route {
     }
     export() {
         let rt=new Route();
+        rt.id = this.id;
         rt.name = this.name;
         return rt; 
     }
@@ -57,9 +58,16 @@ class Route {
         }
     }
 
-    static async getByName(name) {
+    static async getByName(name, usr_id, personal_search) {
         try {
-            let dbResult = await pool.query("Select * from route where rou_name LIKE $1 ", ["%"+name+"%"]);
+            let dbResult;
+            if(personal_search){
+                dbResult = await pool.query("Select * from route where rou_name ILIKE $1 and rou_use_id = $2",
+                ["%"+name+"%", usr_id]);
+            }
+            else{
+                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
+            }
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {

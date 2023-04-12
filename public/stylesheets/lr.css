@@ -9,6 +9,7 @@ header{
     background-image: url("../images/Home1.jfif");
     background-size: cover;
     height: 40%;
+    height: 100%;
     
   }
 main{
@@ -67,3 +68,11 @@ main>form>table>tbody>td>input[type=text]{
   
   
 }
+
+a{
+    
+    color: rgb(245, 245, 245);
+    text-decoration: none;
+    
+    
+  }

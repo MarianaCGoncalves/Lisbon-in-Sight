@@ -1,5 +1,13 @@
-
+body{margin:0px;
+;}
 main {
+  height: 30%;
+}
+main > hr{
+  width: 100%;
+  border: 1.2px solid ;
+}
+footer {
     
     width: 100%;
     height: 100%;
@@ -11,27 +19,25 @@ main {
     
   }
 
-  main > li {
-    width: 35%;
-    height: 25%;
-    background-color: rgb(233, 238, 238);
+  footer > li {
+    width: 21%;
+    height: 15%; 
+    background-color: rgb(249, 242, 52);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  main > li > section {
+  footer > li > section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     
     margin: 1%;
-  
+    font-size: 40%;
   }
 
-  main > li > section > p{
-    margin: 1%;
-  }
+
 
   .routeleft{
     background-image: url("../images/Home1.jfif");
@@ -53,5 +59,13 @@ main {
 
   .cardtext{
     font-size: 125%;
+  }
+
+  a,h3,h4,h2,h1{
+    
+    color: rgba(27, 188, 233, 0.849);
+    text-decoration: none;
+    
+    
   }
 
