@@ -1,3 +1,27 @@
+async function createRoute() {
+  try {
+    let result = await checkAuthenticated(true);
+    if (result.err) {  throw result.err; }
+    window.user = user;
+    let msgDOM = document.getElementById("msg");
+    msgDOM.textContent = "";
+        let name = document.getElementById("name").value;
+        let res = await requestCreate(name);
+        if (res.successful) {
+            msgDOM.textContent = "Account created. Go to login page";
+        } else {
+            msgDOM.textContent = "Was not able to register";
+        }  
+ } catch (err) {
+    console.log(err);
+   // alert("Something went wrong!")
+}
+}
+
+
+
+
+
 async function logout() {
     try {
         let result = await requestLogout();

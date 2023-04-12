@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require('body-parser')
 const router = express.Router();
 const Route = require("../models/routeModel");
 const utils = require("../config/utils");
@@ -6,16 +7,18 @@ const auth = require("../middleware/auth");
 const tokenSize = 64;
 
 
-router.post('/create/auth', async function (req, res, next) {
+router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
         let route = new Route();
-        route.usr_id = req.body.id;
-        route.name = req.body.routename;
-        console.log(req.body);
+        route.usr_id = req.body[0].id;
+        route.name = req.body[0].routename;
+        console.log(req.body[0]);
+        console.log(req.body[0].id);
+        console.log(req.body[0].routename);
         console.log(route.usr_id);
         console.log(route.name);
-        let result = await Route.CreateRoute(route);
+        let result = await Route.CreateRoute(req.body[0].id, req.body[0].routename);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
@@ -25,7 +28,7 @@ router.post('/create/auth', async function (req, res, next) {
 
 
 // Get routes of the authenticated user
-router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
+router.get('/user/auth',auth.verifyAuth,  async function (req, res, next) {
     try {
         console.log("Get routes of the authenticated user");
         let result = await Route.getUserRoutes(req.user.id);

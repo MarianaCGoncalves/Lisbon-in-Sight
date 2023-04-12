@@ -1,6 +1,6 @@
 async function requestCreate(userid, name) {
     try {
-        const response = await fetch(`/api/routes/create/auth`, 
+        const response = await fetch(`/api/routes/auth`, 
         {
             headers: {
                 'Accept': 'application/json',
@@ -25,7 +25,7 @@ async function requestCreate(userid, name) {
 
 async function requestUserRoutes() {
     try {
-        const response = await fetch(`/api/routes/auth`);
+        const response = await fetch(`/api/routes/user/auth`);
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,

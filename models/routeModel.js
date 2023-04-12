@@ -58,7 +58,7 @@ class Route {
         }
     }
 
-    static async CreateRoute(route) {
+    static async CreateRoute(userid , routename) {
         try {
            /* let dbResult =
                 await pool.query("Select * from appuser where usr_name=$1", [user.name]);
@@ -71,8 +71,8 @@ class Route {
                     }]
                 };
                 */
-            dbResult = await pool.query(`Insert into route (rou_use_id, rou_name)
-                       values ($1,$2)`, [route.usr_id, route.name]);
+            let dbResult = await pool.query(`Insert into route (rou_use_id, rou_name)
+                       values ($1,$2)`, [userid, routename]);
             return { status: 200, result: {msg:"Registered! You can now log in."}} ;
         } catch (err) {
             console.log(err);
