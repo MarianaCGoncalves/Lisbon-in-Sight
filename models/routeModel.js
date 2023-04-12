@@ -58,6 +58,21 @@ class Route {
         }
     }
 
+    static async getGeneraloutes() {
+        try {
+            dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rs_st_id= 2 ");
+            let dbRoutes = dbResult.rows;
+            let routes = [];
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+            return { status: 200, result: routes}  
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "OH NO THE HUMANITY"}};
+        }
+    }
+
     static async getByName(name, usr_id, personal_search) {
         try {
             let dbResult;

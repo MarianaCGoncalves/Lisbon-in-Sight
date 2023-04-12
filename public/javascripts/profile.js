@@ -97,11 +97,13 @@ async function searchRoute() {
   try {
       console.log("bacon");
       let string = "lisb";
-      let routeRes = await requestRouteByName( string, true);
-      console.log(routeRes.routes);
+      let result = await requestRouteByName( string, true);
+      console.log(result.routes);
       if (!result.successful || result.err)
           throw result.err || { err: "Not successfull" }
-      populateRoutes(routeRes.routes);
+      let container = document.getElementById("routecard");
+      container.innerHTML = "";
+      populateRoutes(result.routes);
       
   } catch (err) {
       console.log(err);
