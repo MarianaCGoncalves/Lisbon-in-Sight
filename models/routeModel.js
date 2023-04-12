@@ -57,10 +57,10 @@ class Route {
             return {status: 500, result: {msg: "Something went wrong."}};
         }
     }
-
-    static async getGeneraloutes() {
+        // gets community routes
+    static async getGeneralRoutes() {
         try {
-            dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rs_st_id= 2 ");
+            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 ");
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {
@@ -76,13 +76,15 @@ class Route {
     static async getByName(name, usr_id, personal_search) {
         try {
             let dbResult;
+            if(personal_search == false){
+                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
+            }
+
             if(personal_search){
                 dbResult = await pool.query("Select * from route where rou_name ILIKE $1 and rou_use_id = $2",
                 ["%"+name+"%", usr_id]);
             }
-            else{
-                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
-            }
+            
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {

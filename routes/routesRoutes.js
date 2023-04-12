@@ -24,11 +24,31 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     }
 });
 
+// Get routes of the authenticated user
+router.get('/general',  async function (req, res, next) {
+    try {
+        console.log("Get community routes");
+        let result = await Route.getGeneralRoutes();
+        if (result.status != 200)
+            res.status(result.status).send(result.result);
+        else {
+            let routes = result.result.map((rt)=> rt.export());
+            res.status(200).send(routes);
+            console.log(routes);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+//search routes by name (general or the user's)
 router.get('/search_by/name/:name/:personal_search',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Get routes that contain a certains word in their name");
         let result = await Route.getByName(req.params.name, req.user.id, req.params.personal_search);
         console.log("Get routes thrtains word in their name");
+        console.log(result.routes);
         if (result.status != 200)
             res.status(result.status).send(result.result);
         else {
