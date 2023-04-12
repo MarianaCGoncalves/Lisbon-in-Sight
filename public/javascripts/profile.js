@@ -95,6 +95,7 @@ async function logout() {
 
 async function searchRoute() {
   try {
+      console.log("bacon");
       let string = "lisb";
       let routeRes = await requestRouteByName( string, true);
       console.log(routeRes.routes);
