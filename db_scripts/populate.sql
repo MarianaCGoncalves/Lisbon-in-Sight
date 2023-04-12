@@ -21,9 +21,37 @@ insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Biblioteca Palácio
 insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Museu Caloste Gulbenkian ', 'Museu ', 38.737712, -9.153481);
 insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Jardim amnistia ', 'Jardim ', 38.736707, -9.164851);
 
+<<<<<<< HEAD
 insert into route (rou_name, rou_use_id) values('Lisboeta', 3);
 insert into route (rou_name, rou_use_id) values('Rústica', 2);
 insert into route (rou_name, rou_use_id) values ('Artistica', 3);
+=======
+
+insert table routelocal(rl_rou_id, rl_loc_id) values (1,1);
+insert table routelocal(rl_rou_id, rl_loc_id) values (1,2);
+insert table routelocal(rl_rou_id, rl_loc_id) values (1,3);
+
+insert table routelocal(rl_rou_id, rl_loc_id) values (2,4);
+insert table routelocal(rl_rou_id, rl_loc_id) values (2,5);
+insert table routelocal(rl_rou_id, rl_loc_id) values (2,6);
+insert table routelocal(rl_rou_id, rl_loc_id) values (2,7);
+
+insert table routelocal(rl_rou_id, rl_loc_id) values (3,8);
+insert table routelocal(rl_rou_id, rl_loc_id) values (3,9);
+insert table routelocal(rl_rou_id, rl_loc_id) values (3,10);
+
+insert table routestatus(rs_rou_id, rs_st_id) values(1,2);
+insert table routestatus(rs_rou_id, rs_st_id) values(2,2);
+insert table routestatus(rs_rou_id, rs_st_id) values(3,2);
+
+insert table media(med_url) values('https://offloadmedia.feverup.com/lisboasecreta.co/wp-content/uploads/2021/03/20043602/Jardim-da-Tapada-das-Necessidades-%40capilopes-1024x756.jpg');
+insert table media(med_url) values('https://www.jf-estrela.pt/images/freguesia/patrimonio/1/imagem_1.png');
+insert table media(med_url) values('https://www.transportal.com.br/noticias/wp-content/uploads/2022/08/jardim-botanico-de-curitiba-area-externa.jpg');
+
+insert table localmedia(lm_med_id, lm_loc_id) values (1,1);
+insert table localmedia(lm_med_id, lm_loc_id) values (2,2);
+insert table localmedia(lm_med_id, lm_loc_id) values (3,3);
+>>>>>>> mariana
 
 
 
