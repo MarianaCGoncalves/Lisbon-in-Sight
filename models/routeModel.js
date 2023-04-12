@@ -57,6 +57,29 @@ class Route {
             return {status: 500, result: {msg: "Something went wrong."}};
         }
     }
+
+    static async CreateRoute(route) {
+        try {
+           /* let dbResult =
+                await pool.query("Select * from appuser where usr_name=$1", [user.name]);
+            let dbUsers = dbResult.rows;
+            if (dbUsers.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "name",
+                        msg: "That name already exists"
+                    }]
+                };
+                */
+            dbResult = await pool.query(`Insert into route (rou_use_id, rou_name)
+                       values ($1,$2)`, [route.usr_id, route.name]);
+            return { status: 200, result: {msg:"Registered! You can now log in."}} ;
+        } catch (err) {
+            console.log(err);
+            return { status: 500, result: err };
+        }
+    }
+
         // gets community routes
     static async getGeneralRoutes() {
         try {
