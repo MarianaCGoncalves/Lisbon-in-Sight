@@ -11,14 +11,14 @@ router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
         let route = new Route();
-        route.usr_id = req.body[0].id;
-        route.name = req.body[0].routename;
-        console.log(req.body[0]);
-        console.log(req.body[0].id);
-        console.log(req.body[0].routename);
+        route.usr_id = req.user.id;
+        route.name = req.body.routename;
+        console.log(req.body);
+        console.log(req.body.id);
+        console.log(req.body.routename);
         console.log(route.usr_id);
         console.log(route.name);
-        let result = await Route.CreateRoute(req.body[0].id, req.body[0].routename);
+        let result = await Route.CreateRoute(req.user.id, req.body.routename);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);

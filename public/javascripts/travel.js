@@ -1,12 +1,22 @@
+window.onload = async function () {
+  try {
+      let result = await checkAuthenticated(true);
+      if (result.err) {  throw result.err; }
+   } catch (err) {
+      console.log(err);
+     // alert("Something went wrong!")
+  }
+}
+
 async function createRoute() {
   try {
-    let result = await checkAuthenticated(true);
-    if (result.err) {  throw result.err; }
+   
     window.user = user;
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
         let res = await requestCreate(name);
+        console.log(res);
         if (res.successful) {
             msgDOM.textContent = "Account created. Go to login page";
         } else {
@@ -14,7 +24,7 @@ async function createRoute() {
         }  
  } catch (err) {
     console.log(err);
-   // alert("Something went wrong!")
+   alert("Something went wrong!")
 }
 }
 

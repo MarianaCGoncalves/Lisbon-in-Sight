@@ -1,4 +1,4 @@
-async function requestCreate(userid, name) {
+async function requestCreate(name) {
     try {
         const response = await fetch(`/api/routes/auth`, 
         {
@@ -8,7 +8,6 @@ async function requestCreate(userid, name) {
             },
           method: "POST",
           body: JSON.stringify({
-              userid: userid,
               routename: name,
           })
         });
