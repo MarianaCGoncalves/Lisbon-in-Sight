@@ -95,12 +95,19 @@ async function logout() {
 
 async function searchRoute() {
   try {
+    debugger;
+      window.user = user;
+       let msgDOM = document.getElementById("msg");
+       msgDOM.textContent = "";
+      let name = document.getElementById("name").value;
       console.log("bacon");
-      let string = "lisb";
-      let result = await requestRouteByName( string, true);
+      let result = await requestRouteByName( name, true);
       console.log(result.routes);
-      if (!result.successful || result.err)
-          throw result.err || { err: "Not successfull" }
+      if (result.successful) {
+        msgDOM.textContent = "Route Created";
+    } else {
+        msgDOM.textContent = "Was not able to register";
+    } 
       let container = document.getElementById("routecard");
       container.innerHTML = "";
       populateRoutes(result.routes);

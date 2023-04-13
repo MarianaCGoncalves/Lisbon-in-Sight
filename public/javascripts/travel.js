@@ -18,7 +18,7 @@ async function createRoute() {
         let res = await requestCreate(name);
         console.log(res);
         if (res.successful) {
-            msgDOM.textContent = "Account created. Go to login page";
+            msgDOM.textContent = "Route Created";
         } else {
             msgDOM.textContent = "Was not able to register";
         }  
