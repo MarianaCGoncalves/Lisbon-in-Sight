@@ -1,12 +1,10 @@
 body{margin:0px;
 ;}
-main {
-  height: 5%;
-}
 main > hr{
   width: 100%;
   border: 1.2px solid ;
 }
+
 footer {
     
     width: 100%;

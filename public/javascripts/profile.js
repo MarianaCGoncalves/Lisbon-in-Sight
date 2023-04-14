@@ -95,12 +95,10 @@ async function logout() {
 
 async function searchRoute() {
   try {
-    debugger;
       window.user = user;
        let msgDOM = document.getElementById("msg");
        msgDOM.textContent = "";
       let name = document.getElementById("name").value;
-      console.log("bacon");
       let result = await requestRouteByName( name, true);
       console.log(result.routes);
       if (result.successful) {
