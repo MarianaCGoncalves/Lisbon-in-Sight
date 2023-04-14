@@ -1,0 +1,38 @@
+.routecontainer{
+    width: 21%;
+    height: 15%; 
+    background-color: rgb(249, 242, 52);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.routehalves{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1%;
+    font-size: 40%;
+}
+
+.routeleft{
+    background-image: url("../images/Home1.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+    width: 35%;
+  }
+
+  .routeright{
+    width: 65%;
+  }
+
+  .cardtitle{
+    margin-top: -15%;
+    font-size: 150%;
+  }
+
+  .cardtext{
+    font-size: 125%;
+  }

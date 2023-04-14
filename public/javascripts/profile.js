@@ -16,17 +16,19 @@ window.onload = async function () {
 
 
 function populateRoutes(routes) {
+  
   let container = document.getElementById("routecard");
   for (let route of routes) {
     console.log(route);
       let li = document.createElement("li");
+      li.setAttribute("class","routecontainer");
 
       let sec = document.createElement("section");
-      sec.setAttribute("class", "routeleft");
+      sec.setAttribute("class", "routehalves routeleft");
       li.appendChild(sec);
 
       sec = document.createElement("section");
-      sec.setAttribute("class", "routeright");
+      sec.setAttribute("class", "routehalves routeright");
 
       let h3 = document.createElement("h3");
       h3.setAttribute("class", "title");
@@ -95,6 +97,7 @@ async function logout() {
 
 async function searchRoute() {
   try {
+      
       window.user = user;
        let msgDOM = document.getElementById("msg");
        msgDOM.textContent = "";
