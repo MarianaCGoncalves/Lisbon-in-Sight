@@ -21,11 +21,6 @@ insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Biblioteca Palácio
 insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Museu Caloste Gulbenkian ', 'Museu ', 38.737712, -9.153481);
 insert into local(loc_name, loc_desc, loc_x, loc_y) values ('Jardim amnistia ', 'Jardim ', 38.736707, -9.164851);
 
-<<<<<<< HEAD
-insert into route (rou_name, rou_use_id) values('Lisboeta', 3);
-insert into route (rou_name, rou_use_id) values('Rústica', 2);
-insert into route (rou_name, rou_use_id) values ('Artistica', 3);
-=======
 
 insert table routelocal(rl_rou_id, rl_loc_id) values (1,1);
 insert table routelocal(rl_rou_id, rl_loc_id) values (1,2);
@@ -51,7 +46,6 @@ insert table media(med_url) values('https://www.transportal.com.br/noticias/wp-c
 insert table localmedia(lm_med_id, lm_loc_id) values (1,1);
 insert table localmedia(lm_med_id, lm_loc_id) values (2,2);
 insert table localmedia(lm_med_id, lm_loc_id) values (3,3);
->>>>>>>>> Temporary merge branch 2
 
 
 
