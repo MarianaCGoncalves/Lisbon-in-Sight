@@ -1,6 +1,12 @@
 -- Create the database with the name: lisDB
--- Then run the create table bellow
 
+-- Enable PostGIS (as of 3.0 contains just geometry/geography)
+-- Enable Topology
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+
+
+-- Then run the create table bellow
 create table appuser (
     usr_id serial,
     usr_name varchar(60) not null,
@@ -13,6 +19,7 @@ create table route(
     rou_id serial,
     rou_use_id int not null,
     rou_name varchar(120),
+    rou_desc varchar(300),
     primary key (rou_id)
 );
 
@@ -28,10 +35,8 @@ create table rating(
 create table local(
     loc_id serial,
     loc_name varchar(60),
-    loc_desc varchar(120),
-    loc_x int not null,
-    loc_y int not null,
-    --loc_type in the future.
+    loc_desc varchar(1200),
+    loc_coordinates point not null,
     primary key (loc_id)
 );
 

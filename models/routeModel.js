@@ -7,12 +7,13 @@ function dbRoutetoRoute(dbRoute)  {
     route.id = dbRoute.rou_id;
     route.name = dbRoute.rou_name;
     route.usr_id = dbRoute.rou_use_id;
+    route.desc = dbRoute.rou_desc;
     return route;
 }
 
 function dbRoutestoRoutes(dbr)  {
     return new Route(dbr.rou_id,
-        dbr.rou_name,dbr.rou_use_id);
+        dbr.rou_name,dbr.rou_use_id, dbr.rou_desc);
 }
 
 class Route {
@@ -20,11 +21,13 @@ class Route {
         this.id = id;
         this.name = name;
         this.usr_id = usr_id;
+        this.desc = desc;
     }
     export() {
         let rt=new Route();
         rt.id = this.id;
         rt.name = this.name;
+        rt.desc = this.desc;
         return rt; 
     }
 
