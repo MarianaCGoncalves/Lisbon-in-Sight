@@ -24,11 +24,11 @@ function populateRoutes(routes) {
       li.setAttribute("class","routecontainer");
 
       let sec = document.createElement("section");
-      sec.setAttribute("class", "routehalves routeleft");
+      sec.setAttribute("class", "routeparts routeleft");
       li.appendChild(sec);
 
       sec = document.createElement("section");
-      sec.setAttribute("class", "routehalves routeright");
+      sec.setAttribute("class", "routeparts routemiddle");
 
       let h3 = document.createElement("h3");
       h3.setAttribute("class", "title");
@@ -39,6 +39,21 @@ function populateRoutes(routes) {
       h4.setAttribute("class", "title");
       h4.textContent = "Check out our curated routes";
       sec.appendChild(h4);
+
+      li.appendChild(sec);
+
+      sec = document.createElement("section");
+      sec.setAttribute("class", "routehalves routeright");
+
+      let check1 = document.createElement("h3");
+      check1.setAttribute("class", "title");
+      check1.textContent = "accept";
+      sec.appendChild(check1);
+
+      let check2 = document.createElement("h4");
+      check2.setAttribute("class", "title");
+      check2.textContent = "decline";
+      sec.appendChild(check2);
 
       li.appendChild(sec);
       
@@ -147,4 +162,4 @@ function myFunction() {
         }
       }
     }
-  }
+}
