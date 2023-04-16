@@ -5,11 +5,10 @@
   <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/profile.css">
   <link rel="stylesheet" href="/stylesheets/routecard.css">
-  <link rel="stylesheet" href="/stylesheets/main.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
-  <script src="./javascripts/profile.js"></script>
+  <script src="./javascripts/route.js"></script>
   
 </head>  
 <body>
@@ -34,24 +33,20 @@
       </ul>           
         
     </header>
-    <nav>
+
+
+    <main>
         <section>   
             <h2 class="test"><span id="user">Hello ______</span></p>
 
         </section>
+        
         <p>Find a route</p>
           <tr>
             <td><input type="text" autocomplete="username" id="name"></td>
           </tr>
-
         <p id="msg" class="warning"></p>
-        <p><input type="submit" value="Search" onclick="searchRoute()"></p>        
-
-    </nav>
-
-
-    <main>
-        
+        <p><input type="submit" value="Search" onclick="searchRoute()"></p>       
         <hr>
     </main>
     

@@ -58,16 +58,55 @@ class Route {
         }
     }
 
+    static async CreateRoute(userid , routename) {
+        try {
+           /* let dbResult =
+                await pool.query("Select * from appuser where usr_name=$1", [user.name]);
+            let dbUsers = dbResult.rows;
+            if (dbUsers.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "name",
+                        msg: "That name already exists"
+                    }]
+                };
+                */
+            let dbResult = await pool.query(`Insert into route (rou_use_id, rou_name)
+                       values ($1,$2)`, [userid, routename]);
+            return { status: 200, result: {msg:"Registered! You can now log in."}} ;
+        } catch (err) {
+            console.log(err);
+            return { status: 500, result: err };
+        }
+    }
+
+        // gets community routes
+    static async getGeneralRoutes() {
+        try {
+            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 ");
+            let dbRoutes = dbResult.rows;
+            let routes = [];
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+            return { status: 200, result: routes}  
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "OH NO THE HUMANITY"}};
+        }
+    }
+
     static async getByName(name, usr_id, personal_search) {
         try {
             let dbResult;
-            if(personal_search){
+            if(personal_search == 'false'){
+                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
+            }
+            else{
                 dbResult = await pool.query("Select * from route where rou_name ILIKE $1 and rou_use_id = $2",
                 ["%"+name+"%", usr_id]);
             }
-            else{
-                dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 and rou_name ILIKE $1 ", ["%"+name+"%"]);
-            }
+            
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {

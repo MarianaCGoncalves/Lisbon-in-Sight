@@ -4,7 +4,7 @@ window.onload = async function () {
         if (result.err) {  throw result.err; }
         window.user = user;
         document.getElementById('user').textContent = "Hello "+window.user.name;
-        let routeRes = await requestUserRoutes();
+        let routeRes = await requestGeneralRoutes();
         if (!routeRes.successful) throw { msg: "Something went wrong" };
         populateRoutes(routeRes.routes);
      } catch (err) {
@@ -102,12 +102,12 @@ async function searchRoute() {
        let msgDOM = document.getElementById("msg");
        msgDOM.textContent = "";
       let name = document.getElementById("name").value;
-      let result = await requestRouteByName( name, true);
+      let result = await requestRouteByName( name, false);
       console.log(result.routes);
       if (result.successful) {
-        msgDOM.textContent = "Route Created";
+        msgDOM.textContent = "";
     } else {
-        msgDOM.textContent = "Was not able to register";
+        msgDOM.textContent = "failure";
     } 
       let container = document.getElementById("routecard");
       container.innerHTML = "";
