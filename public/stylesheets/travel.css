@@ -7,6 +7,34 @@ header > nav {
     padding-bottom: 20%;
   
   }
+  main{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    
+  }
+  main > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+    
+    
+    width: 50%;
+    height: 100%;
+    padding-top: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 10%;
+  }
+  iframe{
+    width:100%;
+    height: 80%;
+  }
 
   a{
     
