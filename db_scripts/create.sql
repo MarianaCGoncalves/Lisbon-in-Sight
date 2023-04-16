@@ -28,7 +28,7 @@ create table rating(
 create table local(
     loc_id serial,
     loc_name varchar(60),
-    loc_desc varchar(120),
+    loc_desc varchar(1200),
     loc_x int not null,
     loc_y int not null,
     --loc_type in the future.
