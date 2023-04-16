@@ -17,7 +17,7 @@ function dbRoutestoRoutes(dbr)  {
 }
 
 class Route {
-    constructor(id, name, usr_id) {
+    constructor(id, name, usr_id, desc) {
         this.id = id;
         this.name = name;
         this.usr_id = usr_id;
