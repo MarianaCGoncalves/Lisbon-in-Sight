@@ -43,7 +43,7 @@ function populateRoutes(routes) {
       li.appendChild(sec);
       
       li.onclick = () => { 
-        console.log(":3");
+        console.log(route.id);
       };
       container.appendChild(li);
       

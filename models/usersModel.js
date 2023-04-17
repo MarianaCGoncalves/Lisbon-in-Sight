@@ -52,8 +52,8 @@ class User {
                     }]
                 };
             let encpass = await bcrypt.hash(user.pass,saltRounds);   
-            dbResult = await pool.query(`Insert into appuser (usr_name, usr_pass)
-                       values ($1,$2)`, [user.name, encpass]);
+            dbResult = await pool.query(`Insert into appuser (usr_name, usr_pass,usr_type)
+                       values ($1,$2,$3)`, [user.name, encpass, 1]);
             return { status: 200, result: {msg:"Registered! You can now log in."}} ;
         } catch (err) {
             console.log(err);

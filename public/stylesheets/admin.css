@@ -1,0 +1,83 @@
+
+
+body{margin:0px;
+    ;}
+    main{
+      height: 5%;
+    }
+    main > hr{
+      width: 100%;
+      border: 1.2px solid ;
+    }
+    
+    footer {     
+        width: 100%;
+        height: 100%;    
+      }
+
+      footer> section {
+        
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        list-style-type: none;
+        
+      }
+      iframe{
+    width:100%;
+    height: 80%;
+  }
+      a,h3,h4,h2,h1{
+        
+        color: rgba(27, 188, 233, 0.849);
+        text-decoration: none;
+        
+        
+      }
+      .routecontainer{
+    width: 90%;
+    height: 20%; 
+    background-color: rgb(249, 242, 52);
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+    
+}
+
+.routeparts{
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    font-size: 40%;
+}
+
+.routeleft{
+    background-image: url("../images/Home1.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+    width: 25%;
+  }
+
+  .routemiddle{
+    width: 65%;
+  }
+  .routeright{
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .cardtitle{
+    margin-top: -15%;
+    font-size: 150%;
+  }
+
+  .cardtext{
+    font-size: 125%;
+  }
