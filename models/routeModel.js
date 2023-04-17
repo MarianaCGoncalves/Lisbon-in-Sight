@@ -46,6 +46,21 @@ class Route {
         }  
     }
 
+    static async getAllWaitingRoutes() {
+        try {
+            let dbResult = await pool.query("Select * from route where rs_rou_id = rou_id and rs_st_id = st_id and st_id = 2");
+            let dbRoutes = dbResult.rows;
+            if (!dbRoutes.length) 
+                return { status: 404, result:{msg: "No route with that status found."} } ;
+            let dbRoute = dbRoutes[0];
+            return { status: 200, result: 
+                new Route(dbRoute.id,dbRoute.name, dbRoute.usr_id, dbRoute.desc)} ;
+        } catch (err) {
+            console.log(err);
+            return { status: 500, result: err };
+        }  
+    }
+
     static async getUserRoutes(usr_id) {
         try {
             let dbResult = await pool.query("Select * from route where rou_use_id = $1", [usr_id]);
