@@ -50,11 +50,11 @@ class Route {
         try {
             let dbResult = await pool.query("Select * from route where rs_rou_id = rou_id and rs_st_id = st_id and st_id = 2");
             let dbRoutes = dbResult.rows;
-            if (!dbRoutes.length) 
-                return { status: 404, result:{msg: "No route with that status found."} } ;
-            let dbRoute = dbRoutes[0];
-            return { status: 200, result: 
-                new Route(dbRoute.id,dbRoute.name, dbRoute.usr_id, dbRoute.desc)} ;
+            let routes = [];
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+            return { status: 200, result: routes}  
         } catch (err) {
             console.log(err);
             return { status: 500, result: err };
@@ -78,19 +78,27 @@ class Route {
 
     static async CreateRoute(userid , routename) {
         try {
-           /* let dbResult =
-                await pool.query("Select * from appuser where usr_name=$1", [user.name]);
-            let dbUsers = dbResult.rows;
-            if (dbUsers.length)
+            let alreadyExists =
+                await pool.query("Select * from route where rou_name=$1", [routename]);
+            let dbRoute = alreadyExists.rows;
+            if (dbRoute.length)
                 return {
                     status: 400, result: [{
                         location: "body", param: "name",
                         msg: "That name already exists"
                     }]
                 };
-                */
-            let dbResult = await pool.query(`Insert into route (rou_use_id, rou_name)
+            await pool.query(`Insert into route (rou_use_id, rou_name)
                        values ($1,$2)`, [userid, routename]);
+            let dbresult = await pool.query("Select * from route where rou_name=$1", [routename]);
+            let dbroute = dbresult.rows;
+            let routes = [];
+            for (let dbr of dbroute) {
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+            // cria o status da rota criada, este por default é 1 ou seja é uma rota pessoal
+            await pool.query(`Insert into routestatus (rs_rou_id, rs_st_id)
+                       values ($1,$2)`, [routes[0].id, 1]);   // status 1 = rota pessoal         
             return { status: 200, result: {msg:"Registered! You can now log in."}} ;
         } catch (err) {
             console.log(err);
