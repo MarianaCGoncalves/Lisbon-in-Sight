@@ -20,6 +20,19 @@ router.get('/id/:id', async function (req, res, next) {
     }
 });
 
+
+router.get('/admin/routes', async function (req, res, next) {
+    try{
+        console.log("Get Waiting aproval routes");
+        let result = await Route.getAllWaitingRoutes();
+        res.status(result.status).send(result.result);
+    }catch(err){
+        console.log(err)
+            res.status(500).send(err);
+        
+    }
+});
+
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
