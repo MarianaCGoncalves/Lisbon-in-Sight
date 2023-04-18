@@ -35,11 +35,12 @@ class Route {
         try {
             let dbResult = await pool.query("Select * from route where rou_id=$1", [id]);
             let dbRoutes = dbResult.rows;
-            if (!dbRoutes.length) 
-                return { status: 404, result:{msg: "No route found for that id."} } ;
-            let dbRoute = dbRoutes[0];
-            return { status: 200, result: 
-                new Route(dbRoute.id,dbRoute.name, dbRoute.usr_id)} ;
+            let routes = [];
+            for (let dbr of dbRoutes) {
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+
+            return { status: 200, result: routes[0]}  
         } catch (err) {
             console.log(err);
             return { status: 500, result: err };

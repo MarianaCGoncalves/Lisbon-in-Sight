@@ -7,7 +7,8 @@ const auth = require("../middleware/auth");
 const tokenSize = 64;
 
 
-router.get('/:id'), async function(req, res, next){
+
+router.get('/id/:id', async function (req, res, next) {
     try{
         console.log("Get route with id "+ req.params.id);
         let result = await Route.getById(req.params.id);
@@ -17,18 +18,14 @@ router.get('/:id'), async function(req, res, next){
             res.status(500).send(err);
         
     }
-}
+});
+
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
         let route = new Route();
         route.usr_id = req.user.id;
         route.name = req.body.routename;
-        console.log(req.body);
-        console.log(req.body.id);
-        console.log(req.body.routename);
-        console.log(route.usr_id);
-        console.log(route.name);
         let result = await Route.CreateRoute(req.user.id, req.body.routename);
         res.status(result.status).send(result.result);
     } catch (err) {
