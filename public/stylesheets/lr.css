@@ -1,7 +1,6 @@
 body {
     height: 800px;
     background-color: #08a9ba;
-    font: 24px "Lucida Grande", Lora, Arial, sans-serif;
 
 }
 
@@ -23,51 +22,6 @@ main{
 }
 
 
-main> form{
-    
-    margin-top: 20%;
-    font-size: 24px;
-    background-color: #08bdd2;
-    border: 2px solid #bbb;
-    box-sizing: border-box;
-    
-
-}
-
-main>form>p{
-    margin-left: 30%; /*margem do botao */
-    width: 400px;
-    height: 50px;
-}
-
-main>form>section{
-    margin-left: 25%; /*margem do log in! */
-    font-size: 15px;
-}
-
-main>form>p>input[type=submit]{
-
-    background-color: white;
-    color: black;
-    padding: 14px 20px;
-    cursor: pointer;
-    border-radius: 10px;
-    font-size: 100%;
-    
-}
-
-main>form>table>tbody>tr{
-    font-size: x-large;
-    color: white;
-}
-main>form>table{
-    margin-left: 12%;
-}
-main>form>table>tbody>td>input[type=text]{
-
-  
-  
-}
 
 a{
     

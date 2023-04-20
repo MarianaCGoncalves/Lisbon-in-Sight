@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <title>Lisbon in Sight | Login</title>
+  
+  <link rel="stylesheet" href="stylesheets/header.css">
+  <link rel="stylesheet" href="stylesheets/lr.css">
+  <link rel="stylesheet" href="stylesheets/test.css">
+  <script src="javascripts/utils/verifications.js"></script>
+  <script src="javascripts/requests/usersRequests.js"></script>
+  <script src="javascripts/login.js"></script>
+  
+</head>
+
+<body>
+  <main>
+    <section class="logResFrame">
+        <section class="imputs">
+            <section >
+                <h4 class="left">Name:</h4>
+                <input class="right" type="text" autocomplete="username" id="name" ></imput>
+            </section>
+            <section >
+                <h4 class="left">Password:</h4>
+                <input class="right" type="password" autocomplete="current-password" id="password"></imput>    
+            </section>
+        </section>
+        
+        <button class="loginButton" onclick="login()"  type="submit" value="Login">
+            <p class="loginText">Login</p>
+        </button>
+        <p id="msg" class="warning"></p>
+        <h1> Dont Have An Account? Create one
+
+        </h1>
+    </section>
+  </main>
+</body>
+
+</html>
