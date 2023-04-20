@@ -13,6 +13,7 @@ header{
     
   }
 main{
+    font-family: Nunito;
     min-height: 50px;
     display: flex;
     margin-bottom: 100%;
@@ -28,7 +29,8 @@ main> form{
     margin-top: 20%;
     font-size: 24px;
     background-color: #08bdd2;
-    border: 2px solid #bbb;
+    border: 0 solid #bbb;
+    border-radius: 0.5rem;
     box-sizing: border-box;
     
 
@@ -63,10 +65,10 @@ main>form>table>tbody>tr{
 main>form>table{
     margin-left: 12%;
 }
-main>form>table>tbody>td>input[type=text]{
 
-  
-  
+.txtbox {
+    border: none;
+    border-radius: 0.5rem;
 }
 
 a{

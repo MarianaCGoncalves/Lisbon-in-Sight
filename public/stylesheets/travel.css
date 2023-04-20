@@ -8,6 +8,7 @@ header > nav {
   
   }
   main{
+    font-family: Nunito;
     display: flex;
     flex-direction: row;
     justify-content: left;

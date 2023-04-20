@@ -4,6 +4,8 @@
   <title>Lisbon in Sight | Login</title>
   <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/lr.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/matchesRequests.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
@@ -35,14 +37,14 @@
   
   <main>
     <form action="javascript:login()">
-      <table >
+      <table>
         <tr>
           <td>Name:</td>
-          <td><input type="text" autocomplete="username" id="name"></td>
+          <td><input type="text" class="txtbox" autocomplete="username" id="name"></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="password" autocomplete="current-password" id="password"></td>
+          <td><input type="password" class="txtbox" autocomplete="current-password" id="password"></td>
         </tr>
       </table>
       <p id="msg" class="warning"></p>

@@ -1,9 +1,9 @@
 header{
+    font-family:Tinos;
     position:relative;
     display: flex;
     align-items: flex-start;
     width: 100%;
-    
     color: rgb(245, 245, 245);
   }
 

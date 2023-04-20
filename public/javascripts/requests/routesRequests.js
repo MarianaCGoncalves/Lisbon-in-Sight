@@ -22,6 +22,7 @@ async function requestCreate(name) {
 }
 
 
+
 async function requestUserRoutes() {
     try {
         const response = await fetch(`/api/routes/user/auth`);

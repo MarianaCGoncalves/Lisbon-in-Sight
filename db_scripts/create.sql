@@ -36,6 +36,7 @@ create table local(
     loc_id serial,
     loc_name varchar(60),
     loc_desc varchar(1200),
+    loc_type varchar(40),
     loc_coordinates point not null,
     primary key (loc_id)
 );
@@ -72,6 +73,7 @@ create table routestatus(
     rs_st_id int not null,
     primary key (rs_id)
 );
+
 
 alter table rating
 add constraint rating_fk_appuser

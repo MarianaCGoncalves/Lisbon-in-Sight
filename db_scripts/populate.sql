@@ -54,4 +54,3 @@ insert into localmedia(lm_med_id, lm_loc_id) values (3,3);
 
 
 insert into rating(rat_use_id, rat_rou_id, rat_comm, rat_score) values(1, 2, 'Recomendo', 4);
-
