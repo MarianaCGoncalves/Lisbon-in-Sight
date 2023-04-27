@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/usersModel");
+const RouteStatus = require("../models/routestatusModel");
 const utils = require("../config/utils");
 const auth = require("../middleware/auth");
 const tokenSize = 64;
@@ -74,6 +75,18 @@ router.post('/auth', async function (req, res, next) {
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
+    }
+});
+
+router.patch('/send_request/:id',auth.verifyAuth, async function (req, res, next) {
+    try{
+        console.log("requesting route "+ req.params.id + "for community approval");
+        let result = await RouteStatus.RequestAproval(req.user.id ,req.params.id);
+        res.status(result.status).send(result.result);
+    }catch(err){
+        console.log(err)
+            res.status(500).send(err);
+        
     }
 });
 
