@@ -25,9 +25,12 @@ main{
 
 
 a{
-    
+    font-size: 20px;
     color: rgb(245, 245, 245);
-    text-decoration: none;
+    text-decoration: none;  
     
-    
+  }
+
+  a:hover{
+    color: black;
   }

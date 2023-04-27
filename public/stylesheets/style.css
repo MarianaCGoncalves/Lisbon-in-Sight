@@ -51,7 +51,14 @@ main > article > section{
   align-content: center;
   
 }
-
+section > h2{
+  font-size: medium;
+  font-weight: normal;
+  margin-left: 5%;
+  margin-bottom: 15%;
+  margin-top: 10%;
+  margin-right: 5%;
+}
 section +.image{
   
 }

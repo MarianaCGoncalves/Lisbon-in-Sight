@@ -37,7 +37,7 @@ create table local(
     loc_name varchar(60),
     loc_desc varchar(1200),
     loc_type varchar(40),
-    loc_coordinates point not null,
+    loc_coordinates Point not null, 
     primary key (loc_id)
 );
 
