@@ -16,11 +16,11 @@ async function createRoute() {
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
         let res = await requestCreate(name);
-        console.log(res);
+
         if (res.successful) {
             msgDOM.textContent = "Route Created";
         } else {
-            msgDOM.textContent = "Was not able to register";
+            msgDOM.textContent = "Route already exists";
         }  
  } catch (err) {
     console.log(err);
