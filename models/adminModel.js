@@ -27,7 +27,7 @@ class Route {
     static async getAllWaitingRoutes() {
         try {
             //status 3 = a espera
-            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 3"); 
+            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus, route where rou_id = rs_rou_id and rs_st_id= 3"); 
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {

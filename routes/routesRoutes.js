@@ -90,7 +90,7 @@ router.get('/search_by/name/:name/:personal_search',auth.verifyAuth, async funct
 });
 
 //submit route for community approval
-router.patch('/request/:uid/:id',auth.verifyAuth, async function (req, res, next) {
+router.patch('/request/:id',auth.verifyAuth, async function (req, res, next) {
     try{
         console.log("requesting route "+ req.params.id + "for community approval");
         let result = await Route.AskForAproval(req.params.uid ,req.params.id);

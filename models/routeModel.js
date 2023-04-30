@@ -135,7 +135,7 @@ class Route {
     static async AskForAproval(userid , routeid) {
         try {
             let dbstatusresult = 
-                await pool.query("select * from routestatus where rou_use_id =$1 and rou_id =$2", [userid,routeid]);
+                await pool.query("select rs_id from routestatus, route where rou_use_id =$1 and rou_id =$2 and rou_id = rs_rou_id", [userid,routeid]);
             let dbroutestatus =dbstatusresult.rows;
             if (!dbroutestatus.length)
                 return {

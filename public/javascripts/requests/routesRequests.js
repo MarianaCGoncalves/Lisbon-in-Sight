@@ -81,9 +81,9 @@ async function requestRouteByName(name, personal_search) {
 }
 
 
-async function requestApproval(uid,id) {
+async function requestApproval(id) {
     try {
-        const response = await fetch(`/api/routes/request/${uid}/${id}`);
+        const response = await fetch(`/api/routes/request/${id}`);
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,
