@@ -11,10 +11,11 @@ function dbUserToUser(dbUser)  {
 }
 
 class User {
-    constructor(id, name, pass, token) {
+    constructor(id, name, pass, type, token) {
         this.id = id;
         this.name = name;
         this.pass = pass;
+        this.type = type;
         this.token = token;
     }
     export() {
