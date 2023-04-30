@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 const tokenSize = 64;
 
 
-router.get('/routes', async function (req, res, next) {
+router.get('/general', async function (req, res, next) {
     try{
         console.log("Get Waiting aproval routes");
         let result = await Route.getAllWaitingRoutes();

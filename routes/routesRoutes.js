@@ -52,7 +52,7 @@ router.get('/user/auth',auth.verifyAuth,  async function (req, res, next) {
     }
 });
 
-// Get routes of the authenticated user
+// Get approved routes 
 router.get('/general',  async function (req, res, next) {
     try {
         console.log("Get community routes");

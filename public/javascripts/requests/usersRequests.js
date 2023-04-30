@@ -79,22 +79,3 @@ async function requestProfile() {
         return {err: err};
     }
 }
-
-
-
-
-
-
-async function requestRouteByName(id) {
-    try {
-        const response = await fetch(`/api/users/send_request/${id}}`);
-        var result = await response.json();
-        return { successful: response.status == 200,
-                 unauthenticated: response.status == 401,
-                 routes: result};
-    } catch (err) {
-        // Treat 500 errors here
-        console.log(err);
-        return {err: err};
-    }
-}

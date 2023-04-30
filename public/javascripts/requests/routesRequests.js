@@ -23,7 +23,7 @@ async function requestCreate(name) {
 
 async function requestRouteById(id) {
     try {
-        const response = await fetch(`/api/routes/id/${id}}`);
+        const response = await fetch(`/api/routes/id/${id}`);
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,
@@ -35,9 +35,9 @@ async function requestRouteById(id) {
     }
 }
 
-async function requestWaitingRoutes() {
+async function requestApproval(id) {
     try {
-        const response = await fetch(`/api/routes/admin/routes`);
+        const response = await fetch(`/api/routes/request/${id}`);
         var result = await response.json();
         return { successful: response.status == 200,
                  unauthenticated: response.status == 401,
@@ -48,8 +48,6 @@ async function requestWaitingRoutes() {
         return {err: err};
     }
 }
-
-
 
 async function requestUserRoutes() {
     try {
