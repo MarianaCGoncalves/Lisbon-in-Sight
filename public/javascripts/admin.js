@@ -4,7 +4,7 @@ window.onload = async function () {
         if (result.err) {  throw result.err; }
         window.user = user;
         document.getElementById('user').textContent = "Hello "+window.user.name;
-        let routeRes = await requestUserRoutes();
+        let routeRes = await requestWaitingRoutes();
         if (!routeRes.successful) throw { msg: "Something went wrong" };
         populateRoutes(routeRes.routes);
      } catch (err) {

@@ -23,7 +23,7 @@ const adminRouter = require("./routes/adminRoutes");
 
 app.use("/api/users",usersRouter);
 app.use("/api/routes",routesRouter);
-app.use("/api/status",adminRouter);
+app.use("/api/admin",adminRouter);
 
 // when we don't find anything
 app.use((req, res, next) => {
