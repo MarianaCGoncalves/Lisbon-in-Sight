@@ -7,7 +7,6 @@ const auth = require("../middleware/auth");
 const tokenSize = 64;
 
 
-
 router.get('/id/:id', async function (req, res, next) {
     try{
         console.log("Get route with id "+ req.params.id);
@@ -20,19 +19,7 @@ router.get('/id/:id', async function (req, res, next) {
     }
 });
 
-
-router.get('/admin/routes', async function (req, res, next) {
-    try{
-        console.log("Get Waiting aproval routes");
-        let result = await Route.getAllWaitingRoutes();
-        res.status(result.status).send(result.result);
-    }catch(err){
-        console.log(err)
-            res.status(500).send(err);
-        
-    }
-});
-
+//create route
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
@@ -46,7 +33,6 @@ router.post('/auth',auth.verifyAuth, async function (req, res, next) {
         res.status(500).send(err);
     }
 });
-
 
 // Get routes of the authenticated user
 router.get('/user/auth',auth.verifyAuth,  async function (req, res, next) {
@@ -103,6 +89,19 @@ router.get('/search_by/name/:name/:personal_search',auth.verifyAuth, async funct
     }
 });
 
-;
+//submit route for community approval
+router.patch('/request/:id',auth.verifyAuth, async function (req, res, next) {
+    try{
+        console.log("requesting route "+ req.params.id + "for community approval");
+        let result = await Route.AskForAproval(req.user.id ,req.params.id);
+        res.status(result.status).send(result.result);
+    }catch(err){
+        console.log(err)
+            res.status(500).send(err);
+        
+    }
+});
+
+
 
 module.exports = router;
