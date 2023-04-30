@@ -1,6 +1,6 @@
 window.onload = async function () {
     try {
-        let result = await checkAuthenticated(true);
+        let result = await checkAdmin(true);
         if (result.err) {  throw result.err; }
         window.user = user;
         document.getElementById('user').textContent = "Hello "+window.user.name;

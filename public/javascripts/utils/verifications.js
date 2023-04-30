@@ -20,3 +20,18 @@ async function checkAuthenticated(verbose) {
         return {err:err};
     }
 }
+
+async function checkAdmin(verbose) {
+    try {
+        let result = await requestAdminProfile();
+        if (result.unauthenticated)
+            changePage("index.html","Not authenticated. Going to login page",verbose);
+        else if (!result.successful || result.err) 
+            throw err || "Not successful";
+        else window.user = result.user;
+        return {successful: true};
+    } catch (err) {
+        console.log(err);
+        return {err:err};
+    }
+}
