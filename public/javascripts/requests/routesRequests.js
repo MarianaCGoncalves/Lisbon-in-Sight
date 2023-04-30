@@ -35,19 +35,7 @@ async function requestRouteById(id) {
     }
 }
 
-async function requestApproval(id) {
-    try {
-        const response = await fetch(`/api/routes/request/${id}`);
-        var result = await response.json();
-        return { successful: response.status == 200,
-                 unauthenticated: response.status == 401,
-                 routes: result};
-    } catch (err) {
-        // Treat 500 errors here
-        console.log(err);
-        return {err: err};
-    }
-}
+
 
 async function requestUserRoutes() {
     try {
@@ -93,3 +81,16 @@ async function requestRouteByName(name, personal_search) {
 }
 
 
+async function requestApproval(uid,id) {
+    try {
+        const response = await fetch(`/api/routes/request/${uid}/${id}`);
+        var result = await response.json();
+        return { successful: response.status == 200,
+                 unauthenticated: response.status == 401,
+                 routes: result};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}
