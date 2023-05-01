@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="/stylesheets/admin.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <script src="./javascripts/utils/verifications.js"></script>
+  <script src="./javascripts/requests/adminRequests.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
-  <script src="./javascripts/requests/adminRequests.js"></script>
   <script src="./javascripts/admin.js"></script>
   
 </head>  
@@ -35,8 +35,8 @@
       </ul>           
         
     </header>
-    <nav>
-        <section>   
+
+       <!-- <section>   
             <h2 class="test"><span id="user">Hello ______</span></p>
 
         </section>
@@ -47,27 +47,18 @@
 
         <p id="msg" class="warning"></p>
         <p><input type="submit" value="Search" onclick="searchRoute()"></p>        
+        -->
 
-    </nav>
 
     <main>
-        
-        <hr>
+      <ul id="routecard">
+        <section>
+          <a id= "approve" onclick="ApproveOrReject()" class="button">Approve</a>
+          <a id= "reject" onclick="ApproveOrReject()" class="button">Reject</a>
+        </section>
+
+      </ul>
     </main>
-    
-  
-  <footer >
-    <section id="routecard"></section>
-    <section>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24966.187857681438!2d-8.907895088195792!3d38.53898943542518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1943b0980d1277%3A0x24f55f7b9907500f!2sLidl!5e0!3m2!1spt-PT!2spt!4v1679423547331!5m2!1spt-PT!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </section>
-
-
-   
-   
-       
-  </footer>
-
   
   
 </body>

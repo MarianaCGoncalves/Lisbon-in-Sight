@@ -64,38 +64,7 @@ function populateRoutes(routes) {
       
   }
 }
-/*    
-    <li>
-        <section class="routeleft">
-            
-        </section>
-        <section class="routeright">
-            <h3 class="title">Check out our curated routes</h3>
-            <h4 class="title">Check out our curated routes</h4>
-        </section>
-    </li>
-    
-    <li>
-        <section class="routeleft">
-            
-        </section>
-        <section class="routeright">
-            <h3 class="title">Check out our curated routes</h3>
-            <h4 class="title">Check out our curated routes</h4>
-        </section>
-    </li>
-    
-    <li>
-        <section class="routeleft">
-            
-        </section>
-        <section class="routeright">
-            <h3 class="title">Check out our curated routes</h3>
-            <h4 class="title">Check out our curated routes</h4>
-        </section>
-    </li>
 
-   */
 
 async function logout() {
     try {
@@ -134,8 +103,28 @@ async function searchRoute() {
   }
 }
 
+async function ApproveOrReject(){
 
+try{
+  let routes = document.getElementById("routecard"); 
+  let approve = document.getElementById("approve");
+  let reject = document.getElementById("reject");
 
+    for(let route of routes){
+      if(approve.onclick()){
+        let result = await requestDeliberateApproval(route.id ,true);
+        console.log(result);
+  }
+      else if(reject.onclick()){
+      let result = await requestDeliberateApproval(route.id ,false);
+
+      }
+    }
+  }catch(err){
+    console.log(err);
+    return{err:err};
+  }
+}
 
 
 function myFunction() {
