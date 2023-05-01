@@ -7,6 +7,7 @@ function dbUserToUser(dbUser)  {
     let user = new User();
     user.id = dbUser.usr_id;
     user.name = dbUser.usr_name;
+    user.type = dbUser.usr_type;
     return user;
 }
 
@@ -21,6 +22,7 @@ class User {
     export() {
         let user=new User();
         user.name = this.name;
+        user.type = this.type
         return user; 
     }
 

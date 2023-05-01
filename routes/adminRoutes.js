@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 const tokenSize = 64;
 
 
-router.get('/general', async function (req, res, next) {
+router.get('/general',auth.verifyAdmin, async function (req, res, next) {
     try{
         console.log("Get Waiting aproval routes");
         let result = await Route.getAllWaitingRoutes();
@@ -16,6 +16,25 @@ router.get('/general', async function (req, res, next) {
         console.log(err)
             res.status(500).send(err);
         
+    }
+});
+
+//Decline or approve routes for community standing
+router.get('/search_by/name/:routeid/:request_granted',auth.verifyAdmin, async function (req, res, next) {
+    try {
+        console.log("Get routes that contain a certains word in their name");
+        let result = await Route.DeliberateApproval(req.params.routeid, req.request_granted);
+        console.log("Get routes thrtains word in their name");
+        console.log(result.routes);
+        if (result.status != 200)
+            res.status(result.status).send(result.result);
+        else {
+            let routes = result.result.map((rt)=> rt.export());
+            res.status(200).send(routes);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
     }
 });
 

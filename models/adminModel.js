@@ -40,6 +40,33 @@ class Route {
         }  
     }
 
+    static async DeliberateApproval( routeid, request_granted) {
+        try {
+            let dbstatusresult = 
+                await pool.query("select rs_id from routestatus, route where rou_id =$1 and rou_id = rs_rou_id", [routeid]);
+            let dbroutestatus =dbstatusresult.rows;
+            if (!dbroutestatus.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "name",
+                        msg: "Unable to suggest this route for approvation"
+                    }]
+                };
+            let dbr = dbroutestatus[0];
+            if(request_granted == 'false'){
+               await pool.query(`update routestatus set rs_st_id = 4 where rs_id= $1`, [dbr.rs_id]);
+               return { status: 200, result: {msg:"Resquest sucessfuly declined"}};
+            }
+            else{
+               await pool.query(`update routestatus set rs_st_id = 2 where rs_id= $1`, [dbr.rs_id]);   
+               return { status: 200, result: {msg:"Resquest sucessfuly accepted"}};
+            }
+        } catch (err) {
+            console.log(err);
+            return { status: 500, result: err };
+        }
+    }
+
     
 
     

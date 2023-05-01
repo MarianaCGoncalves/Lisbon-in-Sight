@@ -23,6 +23,23 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     }
 });
 
+// Get information about the admin user (only the name)
+router.get('/admin/auth',auth.verifyAdmin,  async function (req, res, next) {
+    try {
+        console.log("Get authenticated user");
+        let result = await User.getById(req.user.id);
+        if (result.status != 200) 
+            res.status(result.status).send(result.result);
+        let user = new User();
+        // sendig only the name
+        user.name = result.result.name;
+        res.status(result.status).send(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
 router.post('', async function (req, res, next) {
     try {
         console.log("Register user ");

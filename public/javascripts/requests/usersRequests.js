@@ -79,3 +79,17 @@ async function requestProfile() {
         return {err: err};
     }
 }
+
+async function requestAdminProfile() {
+    try {
+        const response = await fetch(`/api/users/admin/auth`);
+        var result = await response.json();
+        return { successful: response.status == 200,
+                 unauthenticated: response.status == 401,
+                 user: result};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}
