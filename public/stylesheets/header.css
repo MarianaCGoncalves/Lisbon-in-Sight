@@ -1,41 +1,54 @@
+html{
+  width: 100%;
+}
+body{
+  margin: 0%;
+  height: 100%;
+}
 header{
-    font-family:Tinos;
-    position:relative;
-    display: flex;
-    align-items: flex-start;
+  width: 100%;
+  font-family:Tinos;
+  background-image: url("../images/Home1.jfif");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: rgb(245, 245, 245);
+}
+
+  
+  header > section {
+    justify-content: flex-start;
     width: 100%;
-    color: rgb(245, 245, 245);
-  }
-
-  
-  header > nav {
-    
-    
-    width: 60%;
     display: flex;
-    justify-content: space-around;
-    padding-top: 2.5%;
-  
+    margin: 1%;
   }
-
-  header ul{
-    width: 20%;
-    padding-top: 2.5%;
+  .topsection{
     display: flex;
+    align-items: center;
+    height: 20%;
+    justify-content: flex-start;
+    font-style: normal;
+    font-size: 2.5vw;
+    text-transform: capitalize;
+  }
+  .topsection > section{
+    margin: 1%;
+  }
+  .headerleft{
+    display: flex;
+    width: 25%;
     justify-content: space-around;
-    
   }
- 
-  
-  header section{
-    position:absolute;
-    bottom: 20px;
-    width:100%;
-
+  .headerleft > a {
+    margin: 5%;
+  } 
+  .headerRight{
+    display: flex;
+    width: 25%;
+    justify-content: flex-end;
   }
-
-  
-  
   
   
   
@@ -85,15 +98,20 @@ header{
   }
 
   
-  
+  a{
+    color: rgb(245, 245, 245);
+    text-decoration: none;  
+    
+  }
+
   a:hover {
-    color: rgb(247, 202, 0);
+    color: #FFDB58;
   }
   
   
 .dropdown {
   position: relative;
-
+  width: 20%;
   display: inline-block;
 }
 
