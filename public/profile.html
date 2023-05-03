@@ -2,9 +2,10 @@
 
 <head>
   <title>Lisbon in Sight</title>
-  <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/profile.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/routecard.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
@@ -35,33 +36,22 @@
         
     </header>
     <nav>
-        <section>   
-            <h2 class="test"><span id="user">Hello ______</span></p>
-
-        </section>
-        <p>Find a route</p>
+        <section>
+          <h2>Find a route: </h2>
           <tr>
-            <td><input type="text" autocomplete="username" id="name"></td>
+            <td><input class="input" type="text" autocomplete="username" id="name" placeholder="Route Name"></td>
           </tr>
 
         <p id="msg" class="warning"></p>
-        <p><input type="submit" value="Search" onclick="searchRoute()"></p>        
-
+        <p id="s"><button class="search" type="submit" onclick="searchRoute()"></p>
+            <p class="searchText">🔍</p>   
+        </section>
+        <h2>Results: </h2>
     </nav>
 
-
-    <main>
-        
-        <hr>
-    </main>
     
   
   <footer id="routecard">
-
-
-   
-   
-       
   </footer>
 
   
