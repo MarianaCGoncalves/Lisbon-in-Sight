@@ -6,16 +6,18 @@ header{
 
 
 
-.centersection{
+.bottomsection{
   width: 100%;
   height: 50%;
   align-items: center;
   justify-content: center;
+    
 }
 
 
 
-.bottomsection{
+.centersection{
   height: 10%;
+  margin-bottom: -4%;
 }
 

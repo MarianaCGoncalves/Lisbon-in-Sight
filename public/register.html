@@ -2,55 +2,59 @@
 
 <head>
   <title>Lisbon in Sight | Register</title>
-  <link rel="stylesheet" href="/stylesheets/header.css">
-  <link rel="stylesheet" href="/stylesheets/lr.css">
+  <link rel="stylesheet" href="stylesheets/header.css">
+  <link rel="stylesheet" href="stylesheets/lr.css">
+  <link rel="stylesheet" href="stylesheets/test.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/register.js"></script>
 </head>
 
-
 <body>
   <header>
-    <!--<h2 class="test"><span id="user">Hello ______</span></p>--> 
-    <ul class="headerleft">
-      <a href="travel.html">Travel</a>
-      <a href="routes.html">Routes</a>   
-    </ul>
+    <section class="topsection">
+      <section class="headerleft">
+        <a href="travel.html">Travel</a>
+        <a href="routes.html">Routes</a>   
+      </section>
         
-    <nav>
-      <a href= "home.html" class="title">Lisbon In Sight</b> 
-    </nav>
-      
-    <ul class="dropdown">
-      <a href="index.html" class="button">Login</a>
-    </ul>
-    
-    <section>
-      <h1 class="title">Register now!</h1></p>
+      <section class="headercenter">
+        <a href= "test.html" class="title">Lisbon In Sight</a> 
+      </section>
+
+      <section class="headerRight">
+        <a href="index.html" class="button">Login</a>
+      </section>
     </section>
 
-  </header>
+    <section class="centersection">
+      <h1 class="title">Register</h1>
+    </section>
 
-  <main>
-    <form action="javascript:register()">
-      <table>
-        <tr>
-          <td>Name:</td>
-          <td><input type="text" autocomplete="username" id="name"></td>
-        </tr>
-        <tr>
-          <td>Password:</td>
-          <td><input type="password" autocomplete="new-password"  id="password"></td>
-        </tr>
-      </table>
-      <p id="msg" class="warning"></p>
-      <p><input type="submit" value="Register"></p>
-      <section>
-        <a href="index.html">Have a account? Log in</a> 
+    <section class="bottomsection">
+      <section class="logResFrame">
+        <section class="imputs">
+          <section >
+              <h4 class="left">Name:</h4>
+              <input class="right" type="text" autocomplete="username" id="name" ></imput>
+          </section>
+          <section >
+              <h4 class="left">Password:</h4>
+              <input class="right" type="password" autocomplete="current-password" id="password"></imput>    
+          </section>
+        </section>
+        <button class="loginButton" onclick="register()"  type="submit" value="Register">
+          <p class="loginText">Register</p>
+        </button>
+        <p id="msg" class="warning"></p>
+        <a class="link" href="index.html">Login to an account</a>
       </section>
-    </form>
-  </main>
+    </section>
+    
+
+    
+
+  </header>
 </body>
 
 </html>

@@ -3,7 +3,6 @@
 <head>
   <title>Lisbon in Sight</title>
   <link rel="stylesheet" href="/stylesheets/header.css">
-  <link rel="stylesheet" href="/stylesheets/header_back_image.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <script src="./javascripts/utils/verifications.js"></script>
@@ -12,15 +11,31 @@
 </head>  
 <body>
   <header>  
-    <!--<h2 class="test"><span id="user">Hello ______</span></p>--> 
-    <ul class="headerleft">
-      <a href="travel.html">Travel</a>
-      <a href="routes.html">Routes</a>   
-    </ul>
-          
-    <nav>
-      <a href= "home.html" class="title">Lisbon In Sight</b> 
-    </nav>
+    <section class="topsection">
+      <section class="headerleft">
+        <a href="travel.html">Travel</a>
+        <a href="routes.html">Routes</a>   
+      </section>
+        
+      <section class="headercenter">
+        <a href= "test.html" class="title">Lisbon In Sight</a> 
+      </section>
+
+      <section class="headerRight">
+        <ul class="dropdown">
+          <a onclick="myFunction()" class="button">Settings</a>
+          <section id="myDropdown" class="dropdown-content">
+            <a href="profile.html">Profile</a>
+            <a onclick="logout()">logout</a>
+            <a href="admin.html">admin</a>
+          </section>
+        </ul>
+      </section>
+    </section>
+
+    <section class="centersection">
+      <h1 class="title">Explore Lisbon</h1>
+    </section>
         
     <ul class="dropdown">
       <a onclick="myFunction()" class="button">Settings</a>
@@ -30,10 +45,6 @@
         <a href="admin.html">admin</a>
       </section>
     </ul>
-
-    <section>
-      <h1 class="title">Explore Lisbon</h1></p>
-    </section>
 
   </header>
   
