@@ -51,13 +51,12 @@ nav>section{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 35%;
     background: #FFFFFF;
     border: 1.5px solid rgba(0, 0, 0, 0.68);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 35px;
     line-height: 3px;
-    padding-left: 15%;
+    
 }
 main{
   background-color: B0DAFF;

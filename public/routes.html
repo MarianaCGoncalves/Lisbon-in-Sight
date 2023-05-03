@@ -3,9 +3,10 @@
 <head>
   <title>Lisbon in Sight</title>
   <link rel="stylesheet" href="/stylesheets/header.css">
-  <link rel="stylesheet" href="/stylesheets/profile.css">
+  <link rel="stylesheet" href="/stylesheets/routes.css">
   <link rel="stylesheet" href="/stylesheets/routecard.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
@@ -41,14 +42,16 @@
             <h2 class="test"><span id="user">Hello ______</span></p>
 
         </section>
+
+        <section>
+          <h2>Find a route: </h2> 
+          <input class="input" type="text" autocomplete="username" id="name" placeholder="Search">
+          <p id="msg" class="warning"></p>
+          <p><button class="search" type="submit" value="Search" onclick="searchRoute()"></p> 
+            <p class="searchText">🔍</p>         
+
+        </section>
         
-        <p>Find a route</p>
-          <tr>
-            <td><input type="text" autocomplete="username" id="name"></td>
-          </tr>
-        <p id="msg" class="warning"></p>
-        <p><input type="submit" value="Search" onclick="searchRoute()"></p>       
-        <hr>
     </main>
     
   
