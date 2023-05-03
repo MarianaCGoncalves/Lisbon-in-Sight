@@ -1,10 +1,14 @@
 .routecontainer{
+    margin-top: 5%;
     width: 21%;
     height: 15%; 
-    background-color: rgb(249, 242, 52);
+    background-color:FEFF86 ;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 0.3px solid #000000;
+    border-radius: 5px;
+    
 }
 
 .routehalves{
