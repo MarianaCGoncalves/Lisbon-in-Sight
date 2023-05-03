@@ -3,6 +3,12 @@
     font-family: Nunito;
     background-color: B0DAFF;
     }
+    header a{
+      color:white;
+    }
+    header h1{
+      color:white;
+    }
 
     header{
       font-weight: bold;

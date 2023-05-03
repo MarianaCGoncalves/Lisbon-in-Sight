@@ -1,12 +1,4 @@
-header > nav {
-    
-    
-    width: 60%;
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 20%;
-  
-  }
+
   main{
     font-family: Nunito;
     display: flex;
