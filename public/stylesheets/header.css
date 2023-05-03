@@ -64,11 +64,6 @@ header{
     display: flex;
     justify-content: center;
   }
-
-  .centersection{
-    height: 10%;
-    margin-top: 23%;
-  }
   
   
   
@@ -115,6 +110,10 @@ header{
 
   a:hover {
     color: #FFDB58;
+  }
+  .middletittle{
+    height: 10%;
+    margin-top: 23%
   }
   
   
