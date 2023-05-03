@@ -1,0 +1,10 @@
+.topsection{
+    background-image: url("../images/Home1.jfif");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+  }
+
+  header{
+    height: 100%;
+  }
