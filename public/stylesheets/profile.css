@@ -1,5 +1,4 @@
-body{margin:0px;
-  font-family: Nunito;
+body{
   background-color: B0DAFF;
 ;}
 main{
@@ -8,13 +7,6 @@ main{
 main > hr{
   width: 100%;
   border: 1.2px solid ;
-}
-header{
-  font-weight: bold;
-  background-color: FEFF86;
-}
-header>nav{
-  background-color: FEFF86;
 }
 section>h2{
   

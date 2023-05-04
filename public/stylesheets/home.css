@@ -7,7 +7,11 @@ body {
 }
 
 header {
+  background-image: url("../images/Home1.jfif");
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 80%;
+  background-position: center center;
 }
 
 

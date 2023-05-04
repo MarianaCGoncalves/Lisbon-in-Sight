@@ -1,20 +1,6 @@
     body{
-    margin:0px;
-    font-family: Nunito;
     background-color: B0DAFF;
     }
-    header a{
-      color:white;
-    }
-    header h1{
-      color:white;
-    }
-
-    header{
-      font-weight: bold;
-      background-color: FEFF86;
-    }
-
     main>section{
       display: flex;
       background-color:B0DAFF ;
@@ -66,7 +52,7 @@
         list-style-type: none;
         
       }
-      a,h3,h4,h1{
+      footer a,h3,h4,h1{
         
         color: rgba(27, 188, 233, 0.849);
         text-decoration: none;
