@@ -50,7 +50,7 @@ create table localtype(
 
 create table type(
     type_id serial,
-    type_name varchar(30)
+    type_name varchar(30),
     primary key(type_id)
 );
 
