@@ -36,9 +36,22 @@ create table local(
     loc_id serial,
     loc_name varchar(60),
     loc_desc varchar(1200),
-    loc_type varchar(40),
-    loc_coordinates Point not null, 
+    loc_type int not null,
+    loc_coordinates geography(Point, 4326) not null, 
     primary key (loc_id)
+);
+
+create table localtype(
+    loc_type_id serial,
+    loc_l_id int not null,
+    loc_t_id int not null,
+    primary key(loc_type_id)
+);
+
+create table type(
+    type_id serial,
+    type_name varchar(30)
+    primary key(type_id)
 );
 
 create table routelocal(
@@ -118,4 +131,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 alter table routestatus
 add constraint routestatus_fk_status
 foreign key (rs_st_id) references status(st_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+alter table localtype
+add constraint localtype_fk_local
+foreign key (loc_l_id) references local(loc_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+alter table localtype
+add constraint localtype_fk_type
+foreign key (loc_t_id) references type(type_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
