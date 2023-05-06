@@ -44,19 +44,4 @@ class Local {
             return {status:500, result:err};
         }
     }
-    static async getMuseumsMap(){
-        try{
-            let dbResult = await pool.query("select inf_nome, inf_descri, ST_AsKML(geom::geography) from local_museus");
-            let dbResults = dbResult.rows;
-
-            let locals = [];
-
-            for(let loc of dbResults){
-                locals.pushdbLocaltoLocal(loc);
-            }
-            return
-        }catch(err){
-            return{status:500, result:err};
-        }
-    }
 }
