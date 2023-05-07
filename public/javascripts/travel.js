@@ -15,6 +15,7 @@ async function createRoute() {
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
+        let description = document.getElementById("description").value;
         let res = await requestCreate(name);
 
         if (res.successful) {

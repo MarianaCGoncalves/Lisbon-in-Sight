@@ -1,91 +1,88 @@
-html{
-  width: 100%;
-}
-body{
-  margin: 0%;
-  height: 100%;
-}
-header{
-  width: 100%;
-  font-family:Tinos;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  color: rgb(245, 245, 245);
-}
+    html{
+        width: 100%;
+    }
+    body{
+        margin: 0%;
+        height: 100%;
+        font-family: Nunito;
+    }
+        
+    header {
+        
+        font-family:Tinos;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: rgb(245, 245, 245);
+    }
+
+    header > section {
+        justify-content: flex-start;
+        width: 100%;
+        display: flex;
+    }
+
+    .topsection{
+        display: flex;
+        align-items: center;
+        height: 20%;
+        justify-content: flex-start;
+        font-style: normal;
+        font-size: 2.5vw; /* em*/
+        text-transform: capitalize;
+    }
+    .topsection > section{
+        margin: 1%;
+    }
+    .headerleft{
+        display: flex;
+        width: 25%;
+        justify-content: space-around;
+    }
+    .headerleft > a {
+        margin: 5%;
+    } 
+    .headercenter{
+        display: flex;
+        width: 50%;
+        justify-content: center;
+    }
+    .headercenter > a {
+        margin-top: -5%;
+    } 
+    .headerRight{
+        display: flex;
+        width: 25%;
+        justify-content: center;
+    }
+    .headerRight > a{
+        display: flex;
+        justify-content: center;
+    }
+
+      /*buttons*/
+    .button{
+        background-color: rgb(237, 232, 232);
+        color: rgb(0, 0, 0);
+        padding: 5% 10%;
+        text-align: center;
+        text-decoration: none;
+        margin: 10%; 
+        cursor: pointer;
+        border-radius: 25% 5%;
+        font-size: 100%;
+    }
 
   
-  header > section {
-    justify-content: flex-start;
-    width: 100%;
-    display: flex;
-  }
-
-  .topsection{
-    display: flex;
-    align-items: center;
-    height: 20%;
-    justify-content: flex-start;
-    font-style: normal;
-    font-size: 2.5vw; /* em*/
-    text-transform: capitalize;
-  }
-  .topsection > section{
-    margin: 1%;
-  }
-  .headerleft{
-    display: flex;
-    width: 25%;
-    justify-content: space-around;
-  }
-  .headerleft > a {
-    margin: 5%;
-  } 
-
-  .headercenter{
-    display: flex;
-    width: 50%;
-    justify-content: center;
-  }
-  .headercenter > a {
-    margin-top: -5%;
-  } 
-  .headerRight{
-    display: flex;
-    width: 25%;
-    justify-content: center;
-  }
-  .headerRight > a{
-    display: flex;
-    justify-content: center;
-  }
+    .button:hover{
+        color: rgb(0, 136, 247);
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+    }
   
-  
-  
-  /*buttons*/
-  .button{
-    background-color: rgb(237, 232, 232);
-    color: rgb(0, 0, 0);
-    padding: 5% 10%;
-    text-align: center;
-    text-decoration: none;
-    margin: 10%;
-  
-    cursor: pointer;
-    border-radius: 25% 5%;
-    font-size: 100%;
-  }
-
-  
-  .button:hover{
-    color: rgb(0, 136, 247);
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-  }
-  
-  .button-d{
-    padding: 12px 28px;
-    background-color: rgb(0, 0, 0);
+    .button-d{
+        padding: 12px 28px;
+        background-color: rgb(0, 0, 0);
     border-radius: 10px;
     font-size: 120%;
   
@@ -120,7 +117,7 @@ header{
 
 .dropdown-content {
   display: none;
-  position: relative;
+  position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
   overflow: auto;
