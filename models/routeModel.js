@@ -63,7 +63,7 @@ class Route {
         }
     }
 
-    static async CreateRoute(userid , routename) {
+    static async CreateRoute(userid , routename, description) {
         try {
             let alreadyExists =
                 await pool.query("Select * from route where rou_name=$1", [routename]);
@@ -75,8 +75,8 @@ class Route {
                         msg: "That name already exists"
                     }]
                 };
-            await pool.query(`Insert into route (rou_use_id, rou_name)
-                       values ($1,$2)`, [userid, routename]);
+            await pool.query(`Insert into route (rou_use_id, rou_name, rou_desc)
+                       values ($1,$2,$3)`, [userid, routename, description]);
             let dbresult = await pool.query("Select * from route where rou_name=$1", [routename]);
             let dbroute = dbresult.rows;
             let routes = [];

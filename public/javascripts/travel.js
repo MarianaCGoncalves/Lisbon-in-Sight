@@ -10,13 +10,12 @@ window.onload = async function () {
 
 async function createRoute() {
   try {
-   
     window.user = user;
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
         let description = document.getElementById("description").value;
-        let res = await requestCreate(name);
+        let res = await requestCreate(name, description);
 
         if (res.successful) {
             msgDOM.textContent = "Route Created";

@@ -1,4 +1,4 @@
-async function requestCreate(name) {
+async function requestCreate(name, description) {
     try {
         const response = await fetch(`/api/routes/auth`, 
         {
@@ -9,6 +9,7 @@ async function requestCreate(name) {
           method: "POST",
           body: JSON.stringify({
               routename: name,
+              routedesc: description,
           })
         });
         // We are not checking for errors (considering the GUI is only allowing correct choices)

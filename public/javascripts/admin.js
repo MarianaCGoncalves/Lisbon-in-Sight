@@ -48,18 +48,20 @@ function populateRoutes(routes) {
       let check1 = document.createElement("h3");
       check1.setAttribute("class", "title");
       check1.textContent = "accept";
+      check1.onclick = async () => { 
+        await requestDeliberateApproval(route.id ,true);
+      };
       sec.appendChild(check1);
 
       let check2 = document.createElement("h4");
       check2.setAttribute("class", "title");
       check2.textContent = "decline";
+      check2.onclick = async () => { 
+        await requestDeliberateApproval(route.id ,false);
+      };
       sec.appendChild(check2);
 
       li.appendChild(sec);
-      
-      li.onclick = () => { 
-        console.log(route.id);
-      };
       container.appendChild(li);
       
   }

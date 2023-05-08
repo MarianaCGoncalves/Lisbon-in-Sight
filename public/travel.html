@@ -2,6 +2,7 @@
 
 <head>
   <title>Lisbon in Sight</title>
+  <link rel="stylesheet" href="/stylesheets/body.css">
   <link rel="stylesheet" href="/stylesheets/croppedimageheader.css">
   <link rel="stylesheet" href="/stylesheets/header.css">
   <link rel="stylesheet" href="/stylesheets/travel.css">
@@ -41,14 +42,24 @@
       <section>
 
         <p>Create a new route</p>
-        <tr>
-          <td><input type="text" autocomplete="username" id="name"></td>
-          <td><input type="text" id="description"></td>
-          
-        </tr>
-
-        <p id="msg" class="warning"></p>
-        <p><input type="submit" value="Create" onclick="createRoute()"></p>    
+        <section class="imputs">
+          <section class="first" >
+              <h4 class="left">Name:</h4>
+              <input class="right name_url" type="text" autocomplete="username" id="name" ></imput>
+          </section>
+          <section >
+              <h4 class="left">Description:</h4>
+              <textarea class="right description" type="text" autocomplete="current-password" id="description"></textarea>    
+          </section>
+          <section >
+            <h4 class="left">Image url:</h4>
+            <input class="right name_url" type="url" autocomplete="current-password" id="url"></imput>    
+        </section>
+        </section>
+        <button class="loginButton" type="submit" value="Create" onclick="createRoute()">
+          <p class="loginText">Create</p>
+        </button>
+        <p id="msg" class="warning"></p>  
       </section>
 
 

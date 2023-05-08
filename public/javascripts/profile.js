@@ -34,10 +34,11 @@ function populateRoutes(routes) {
       h3.setAttribute("class", "title");
       h3.textContent = route.name;
       sec.appendChild(h3);
+      
 
       let h4 = document.createElement("h4");
       h4.setAttribute("class", "title");
-      h4.textContent = "Check out our curated routes";
+      h4.textContent = route.desc;
       sec.appendChild(h4);
 
       li.appendChild(sec);

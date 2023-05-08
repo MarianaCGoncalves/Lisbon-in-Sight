@@ -2,9 +2,10 @@
 
 <head>
   <title>Admin</title>
+  <link rel="stylesheet" href="/stylesheets/body.css">
   <link rel="stylesheet" href="/stylesheets/admin.css">
   <link rel="stylesheet" href="/stylesheets/header.css">
-  <link rel="stylesheet" href="/stylesheets/profile.css">
+  <link rel="stylesheet" href="/stylesheets/croppedimageheader.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/adminRequests.js"></script>
@@ -14,27 +15,29 @@
   
 </head>  
 <body>
-  
-    <header>  
-      <!--<h2 class="test"><span id="user">Hello ______</span></p>--> 
-      <ul class="headerleft">
+  <header>  
+    <section class="topsection">
+      <section class="headerleft">
         <a href="travel.html">Travel</a>
         <a href="routes.html">Routes</a>   
-      </ul>
-          
-      <nav>
-        <a href= "home.html" class="title">Lisbon In Sight</b> 
-      </nav>
- 
-      <ul class="dropdown">
-        <a onclick="myFunction()" class="button">Settings</a>
-        <section id="myDropdown" class="dropdown-content">
-          <a href="profile.html">Profile</a>
-          <a onclick="logout()">logout</a>
-        </section>
-      </ul>           
+      </section>
         
-    </header>
+      <section class="headercenter">
+        <a href= "home.html" class="title">Lisbon In Sight</a> 
+      </section>
+
+      <section class="headerRight">
+        <ul class="dropdown">
+          <a onclick="myFunction()" class="button">Settings</a>
+          <section id="myDropdown" class="dropdown-content">
+            <a href="profile.html">Profile</a>
+            <a onclick="logout()">logout</a>
+            <a href="admin.html">admin</a>
+          </section>
+        </ul>
+      </section>
+    </section>    
+  </header>
 
        <!-- <section>   
             <h2 class="test"><span id="user">Hello ______</span></p>
@@ -51,11 +54,10 @@
 
 
     <main>
-      <ul id="routecard">
-        <section>
-          <a id= "approve" onclick="ApproveOrReject()" >Approve</a>
-          <a id= "reject" onclick="ApproveOrReject()" >Reject</a>
-        </section>
+      <section id="routecard">
+        
+      </section>
+      
 
       </ul>
     </main>

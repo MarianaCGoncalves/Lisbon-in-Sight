@@ -53,12 +53,13 @@ class Route {
                     }]
                 };
             let dbr = dbroutestatus[0];
+            console.log(dbr.rs_id)
             if(request_granted == 'false'){
-               await pool.query(`update routestatus set rs_st_id = 4 where rs_id= $1`, [dbr.rs_id]);
+               await pool.query("update routestatus set rs_st_id = 4 where rs_id= $1", [dbr.rs_id]);
                return { status: 200, result: {msg:"Resquest sucessfuly declined"}};
             }
             else{
-               await pool.query(`update routestatus set rs_st_id = 2 where rs_id= $1`, [dbr.rs_id]);   
+               await pool.query("update routestatus set rs_st_id = 2 where rs_id= $1", [dbr.rs_id]);   
                return { status: 200, result: {msg:"Resquest sucessfuly accepted"}};
             }
         } catch (err) {

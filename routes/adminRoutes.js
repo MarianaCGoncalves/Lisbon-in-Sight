@@ -20,10 +20,10 @@ router.get('/general',auth.verifyAdmin, async function (req, res, next) {
 });
 
 //Decline or approve routes for community standing
-router.get('/search_by/name/:routeid/:request_granted',auth.verifyAdmin, async function (req, res, next) {
+router.get('/request_by/name/:routeid/:request_granted',auth.verifyAdmin, async function (req, res, next) {
     try {
-        console.log("Get routes that contain a certains word in their name");
-        let result = await Route.DeliberateApproval(req.params.routeid, req.request_granted);
+        console.log("Reject or aprove a route_status request");
+        let result = await Route.DeliberateApproval(req.params.routeid, req.params.request_granted);
         console.log("Get routes thrtains word in their name");
         console.log(result.routes);
         if (result.status != 200)

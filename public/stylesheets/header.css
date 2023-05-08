@@ -1,14 +1,4 @@
-    html{
-        width: 100%;
-    }
-    body{
-        margin: 0%;
-        height: 100%;
-        font-family: Nunito;
-    }
-        
-    header {
-        
+    header {       
         font-family:Tinos;
         display: flex;
         align-items: center;

@@ -23,10 +23,7 @@ router.get('/id/:id', async function (req, res, next) {
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Create user route");
-        let route = new Route();
-        route.usr_id = req.user.id;
-        route.name = req.body.routename;
-        let result = await Route.CreateRoute(req.user.id, req.body.routename);
+        let result = await Route.CreateRoute(req.user.id, req.body.routename, req.body.routedesc);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
