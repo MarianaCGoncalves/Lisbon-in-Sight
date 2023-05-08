@@ -105,30 +105,6 @@ async function searchRoute() {
   }
 }
 
-async function ApproveOrReject(){
-
-try{
-  let routes = document.getElementById("routecard"); 
-  let approve = document.getElementById("approve");
-  let reject = document.getElementById("reject");
-
-    for(let route of routes){
-      if(approve.onclick()){
-        let result = await requestDeliberateApproval(route.id ,true);
-        console.log(result);
-  }
-      else if(reject.onclick()){
-      let result = await requestDeliberateApproval(route.id ,false);
-
-      }
-    }
-  }catch(err){
-    console.log(err);
-    return{err:err};
-  }
-}
-
-
 function myFunction() {
   
     let x = document.getElementById("myDropdown");
