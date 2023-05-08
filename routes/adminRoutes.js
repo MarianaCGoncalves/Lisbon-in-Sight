@@ -29,8 +29,8 @@ router.get('/request_by/name/:routeid/:request_granted',auth.verifyAdmin, async 
         if (result.status != 200)
             res.status(result.status).send(result.result);
         else {
-            let routes = result.result.map((rt)=> rt.export());
-            res.status(200).send(routes);
+            console.log(result);
+            res.status(200).send(result);
         }
     } catch (err) {
         console.log(err);

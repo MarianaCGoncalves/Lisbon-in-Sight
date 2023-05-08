@@ -50,6 +50,7 @@ function populateRoutes(routes) {
       check1.textContent = "accept";
       check1.onclick = async () => { 
         await requestDeliberateApproval(route.id ,true);
+        li.parentNode.removeChild(li);
       };
       sec.appendChild(check1);
 
@@ -58,6 +59,7 @@ function populateRoutes(routes) {
       check2.textContent = "decline";
       check2.onclick = async () => { 
         await requestDeliberateApproval(route.id ,false);
+        li.parentNode.removeChild(li);
       };
       sec.appendChild(check2);
 
