@@ -17,6 +17,7 @@ create table appuser (
 
 create table route(
     rou_id serial,
+    rou_url varchar(120),
     rou_use_id int not null,
     rou_name varchar(120),
     rou_desc varchar(300),
