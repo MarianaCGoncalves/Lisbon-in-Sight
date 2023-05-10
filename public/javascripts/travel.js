@@ -28,7 +28,16 @@ async function createRoute() {
 }
 }
 
+let map;
 
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 38.73074327445395, lng: -9.148878289348835},
+    zoom: 12,
+  });
+}
+
+window.initMap = initMap;
 
 
 
@@ -44,7 +53,22 @@ async function logout() {
     }
 }
 
+async function searchLocals(){
+  try{
+      let search = document.getElementById("search_local");
+      let result = await requestLocalByName(search);
+      console.log(result.locals);
 
+      if(result.successful){
+        msgDOM.textContent= "";
+      }
+      else{
+        msgDOM.textContent= "Failed";
+      }
+}catch(err){
+
+  }
+}
 
 
 function myFunction() {

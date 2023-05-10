@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/stylesheets/travel.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQEi3c0F553EnL7hWJbX13rM5bbPv5OcM&callback=initMap"></script>
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
@@ -40,8 +41,8 @@
   
   <main>
       <section>
+        <p class="titleRoute">Create a new route</p>
 
-        <p>Create a new route</p>
         <section class="imputs">
           <section class="first" >
               <h4 class="left">Name:</h4>
@@ -55,11 +56,6 @@
             <h4 class="left">Image url:</h4>
             <input class="right name_url" type="url" autocomplete="current-password" id="url"></imput>    
         </section>
-        <section>
-          <h4 class="left">Locals: </h4>
-          <input class="" type="search" autocomplete="current-password" id="search_local"></input>
-          <ol id="locals"></ol>
-        </section>
         </section>
         <button class="loginButton" type="submit" value="Create" onclick="createRoute()">
           <p class="loginText">Create</p>
@@ -70,10 +66,19 @@
 
 
       <section>
+        <section class="right">
+          <h4>Locals: </h4>
+          <input class="input" type="search" autocomplete="current-password" placeholder="Search Locals "></input>
+          <p class="lupa"><button class="search" type="submit" value="Search" onclick="searchLocal()"></p> 
+            <p class="searchText">🔍</p>
+          </section>
+          <ol id="locals"></ol>
         
-          <iframe width="600" height="450" style="border:0" loading="lazy" 
-          allowfullscreen src='https://www.google.com/maps/embed/v1/view?zoom=12&center=38.7223%2C-9.1393&key=AIzaSyDQEi3c0F553EnL7hWJbX13rM5bbPv5OcM'></iframe>     
-         </section> 
+        <section id="map" style="width: 400px; height: 350px;">
+
+        </section>
+          
+        </section> 
 
         
   </main>
