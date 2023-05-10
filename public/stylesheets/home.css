@@ -8,7 +8,7 @@ header {
 }
 
 main {
-  background-color: rgb(48, 180, 217);
+  background-image: linear-gradient(rgb(48, 180, 217),yellow) ;
   display: flex;
   flex-direction: column;
   align-items: center;
