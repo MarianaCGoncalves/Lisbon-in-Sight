@@ -1,5 +1,5 @@
 const express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 const router = express.Router();
 const Route = require("../models/routeModel");
 const utils = require("../config/utils");

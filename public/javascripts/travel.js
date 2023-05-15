@@ -1,11 +1,38 @@
+let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
+      let quant = 0;
 window.onload = async function () {
   try {
+      createSelect();
       let result = await checkAuthenticated(true);
       if (result.err) {  throw result.err; }
    } catch (err) {
       console.log(err);
      // alert("Something went wrong!")
   }
+}
+
+function createSelect () {
+    quant++;
+    let container = document.getElementById("types");
+    let select = document.createElement("select");
+    select.id = "type"+quant;
+    container.appendChild(select);
+    for(let i in types) {
+        let option = document.createElement("option");
+        option.textContent = types[i];
+        option.value = (parseInt(i)+1);
+        select.appendChild(option);
+    }
+    select.value="";
+    select.onchange = () => {createSelect();};
+} 
+
+async function criar() {
+    let values = [];
+    for (let i =1; i< quant; i++) {
+        values.push(document.getElementById("type"+i).value);
+    }    
+    alert (values);
 }
 
 async function createRoute() {
@@ -33,8 +60,13 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 38.73074327445395, lng: -9.148878289348835},
-    zoom: 12,
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    heading: 90,
+    tilt: 45
   });
+  map.data.addGeoJson(requestAllLocal());
+  map.setTilt(50);
 }
 
 window.initMap = initMap;
@@ -51,6 +83,13 @@ async function logout() {
         console.log(err);
        // alert("Something is not working");
     }
+}
+
+let autocompleteInput = document.getElementById("search");
+autocompleteInput.addEventListener("input", autocomplete);
+async function autocomplete(){
+console.log(autocompleteInput.value)
+
 }
 
 async function searchLocals(){
@@ -96,3 +135,5 @@ function myFunction() {
       }
     }
   }
+
+  

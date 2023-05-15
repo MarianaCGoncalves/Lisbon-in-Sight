@@ -27,9 +27,6 @@
     margin-bottom: 10%;
   }
 
-  .right{
-    
-  }
   iframe{
     width:100%;
     height: 80%;
@@ -38,6 +35,21 @@
   .titleRoute{
     font-size: 40px;
     font-weight: bold;
+  }
+  .autocomplete{
+    list-style: none;
+    padding: unset;
+    margin: unset;
+    position: absolute;
+  }
+  .autocomplete button{
+    border: unset;
+    background:unset;
+  }
+  .autocomplete li{
+    border: 1px solid;
+    border-top:unset;
+
   }
 .local{
     display: flex;

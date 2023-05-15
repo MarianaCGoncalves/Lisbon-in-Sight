@@ -20,10 +20,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRouter = require("./routes/usersRoutes");
 const routesRouter = require("./routes/routesRoutes");
 const adminRouter = require("./routes/adminRoutes");
+const localRouter = require("./routes/localRoutes");
 
 app.use("/api/users",usersRouter);
 app.use("/api/routes",routesRouter);
 app.use("/api/admin",adminRouter);
+app.use("/api/local",localRouter);
 
 // when we don't find anything
 app.use((req, res, next) => {
