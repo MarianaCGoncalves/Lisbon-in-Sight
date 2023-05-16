@@ -144,7 +144,7 @@ insert into localtype(loc_l_id, loc_t_id) values(34,7);
 insert into localtype(loc_l_id, loc_t_id) values(35,7);
 
 insert into localtype(loc_l_id, loc_t_id) values(36,8);
-insert into localtype(loc_l_id, loc_t_id) values(37,8);
+
 
 insert into media(med_url) values('https://offloadmedia.feverup.com/lisboasecreta.co/wp-content/uploads/2021/03/20043602/Jardim-da-Tapada-das-Necessidades-%40capilopes-1024x756.jpg');
 insert into media(med_url) values('https://www.jf-estrela.pt/images/freguesia/patrimonio/1/imagem_1.png');
