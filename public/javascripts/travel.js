@@ -59,27 +59,39 @@ let map;
 
 async function initMap() {
 
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 38.73074327445395, lng: -9.148878289348835},
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    heading: 90,
+    tilt: 45,
+    styles:[{"stylers": [{"visibility":"off"}]}]
+  });
+
   try{
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 38.73074327445395, lng: -9.148878289348835},
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.HYBRID,
-      heading: 90,
-      tilt: 45
-    });
     let result = await requestAllLocal();
     console.log(result);
-  
-  
-  map.setTilt(50);
-}
-catch(err){
-  console.log(err);
-  return;
+    map.data.addGeoJson(result.locals);
+
   }
+  catch(err){
+    console.log(err);
+    return;
+  }
+  map.setTilt(50);
+
+  var infowindow = new google.maps.InfoWindow();
+  map.data.addListener('click', function(event) {
+  var name = event.feature.getProperty("name");
+  var desc = event.feature.getProperty("desc");
+
+  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+"</div>");
+  infowindow.setPosition(event.feature.getGeometry().get());
+  infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+  infowindow.open(map);
+  });
 }
 window.initMap = initMap;
-
 
 
 async function logout() {
