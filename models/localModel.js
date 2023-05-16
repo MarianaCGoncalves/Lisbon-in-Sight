@@ -213,7 +213,16 @@ class Local {
                     }]
                 };
                 }
-
+                /*
+                let locals = [];
+                for(let loc of dbResults){
+                locals.push(dbLocaltoLocal(loc));
+                }
+                let int = (Math.random() * locals.length);
+                route.push(locals[int]);
+                */
+                let int = (Math.random() * dbResults.length);
+                route.push(dbLocaltoLocal(dbResults[int]));
             }
             
             
@@ -228,7 +237,7 @@ class Local {
                 "properties": {},
                 "geometry": {}
             }
-            for(let point of dbResults){
+            for(let point of route){
                 geojson_feature = {
                     "type": "Feature",
                     "properties": {},
