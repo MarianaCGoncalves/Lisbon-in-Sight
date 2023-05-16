@@ -36,9 +36,9 @@ router.get('/', async function(req, res, next){
     }
 });
 
-router.get('/type/:type', async function(req, res, next){
+router.get('/type/', async function(req, res, next){
     try{
-        let result = await Local.getByType(req.params.type);
+        let result = await Local.getByType(req.body.type);
         console.log("Get locals by type");
 
         if(result.status !=200)

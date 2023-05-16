@@ -13,13 +13,21 @@ async function requestLocalByName(name){
 }
 
 async function requestLocalByType(type){
-    try{
-        const response = await fetch(`/api/local/type/${type}`);
-        var result = await response.json();
-
-        return{successful: response.status==200,
-        unauthenticated: response.status==401,
-        locals:result};
+    try {
+        const response = await fetch(`/api/local/type/`, 
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+          method: "GET",
+          body: JSON.stringify({
+            type: type,
+          })
+        });
+        // We are not checking for errors (considering the GUI is only allowing correct choices)
+        // We only need to send if the user registered or not 
+        return { successful: response.status == 200};
     }catch(err){
         console.log(err);
         return{err:err};

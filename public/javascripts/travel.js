@@ -1,7 +1,11 @@
 let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
       let quant = 0;
+let filters1 = [];
+let filters2 = [1,2,3];
+let filters3 = [1,3];
 window.onload = async function () {
   try {
+    filters3.re
       createSelect();
       let result = await checkAuthenticated(true);
       if (result.err) {  throw result.err; }
@@ -25,6 +29,11 @@ function createSelect () {
     }
     select.value="";
     select.onchange = () => {createSelect();};
+} 
+
+function filters (n) {
+    filters.push(n);
+    filters.slice
 } 
 
 async function criar() {
