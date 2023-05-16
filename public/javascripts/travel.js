@@ -57,18 +57,27 @@ async function createRoute() {
 
 let map;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 38.73074327445395, lng: -9.148878289348835},
-    zoom: 15,
-    mapTypeId: google.maps.MapTypeId.HYBRID,
-    heading: 90,
-    tilt: 45
-  });
-  map.data.addGeoJson(requestAllLocal());
+async function initMap() {
+
+  try{
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 38.73074327445395, lng: -9.148878289348835},
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      heading: 90,
+      tilt: 45
+    });
+    let result = await requestAllLocal();
+    console.log(result);
+  
+  
   map.setTilt(50);
 }
-
+catch(err){
+  console.log(err);
+  return;
+  }
+}
 window.initMap = initMap;
 
 
@@ -85,12 +94,7 @@ async function logout() {
     }
 }
 
-let autocompleteInput = document.getElementById("search");
-autocompleteInput.addEventListener("input", autocomplete);
-async function autocomplete(){
-console.log(autocompleteInput.value)
 
-}
 
 async function searchLocals(){
   try{
