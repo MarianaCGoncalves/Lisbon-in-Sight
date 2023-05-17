@@ -195,16 +195,17 @@ class Local {
         }
     }
 
-    static async getAutoRoute(locTypeIds){
+    static async getAutoRoute(LocTypeIds){
         try{
             let dbResult;
+            let locTypeIds = JSON.parse(LocTypeIds);
             let route = [];
             let dbresu = [] ;
             for(let i=0; i < locTypeIds.length; i++) {
                 let value= locTypeIds[i];
                 console.log(locTypeIds[i]);
                 
-                dbResult = await pool.query("Select * from local where loc_type = $1",[value]);
+                dbResult = await pool.query("Select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1",[value]);
                 let dbResults = dbResult.rows;
                 if(!dbResults.length){
                 return {
@@ -226,8 +227,9 @@ class Local {
                 let int = Math.floor(Math.random() * dbResults.length);
                 
                 
-                console.log(dbresu);
+                
                 dbresu.push(dbResults[int]);
+                console.log(dbresu);
             }
             
             
