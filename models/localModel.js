@@ -149,7 +149,7 @@ class Local {
                 for(let i=1; i < locTypeIds.length; i++) {
                     sql += " or loc_type = $"+(i+1);
                 }
-                dbResult = await pool.query(sql,locTypeIds);
+                dbResult = await pool.query(sql,[locTypeIds]);
             }
             let dbResults = dbResult.rows;
             if(!dbResults.length){
@@ -197,13 +197,14 @@ class Local {
 
     static async getAutoRoute(locTypeIds){
         try{
-            let sql;
             let dbResult;
             let route = [];
-            
+            let dbresu = [] ;
             for(let i=0; i < locTypeIds.length; i++) {
-                sql = "Select * from local where loc_type = $"+(i);
-                dbResult = await pool.query(sql,locTypeIds);
+                let value= locTypeIds[i];
+                console.log(locTypeIds[i]);
+                
+                dbResult = await pool.query("Select * from local where loc_type = $1",[value]);
                 let dbResults = dbResult.rows;
                 if(!dbResults.length){
                 return {
@@ -221,8 +222,12 @@ class Local {
                 let int = (Math.random() * locals.length);
                 route.push(locals[int]);
                 */
-                let int = (Math.random() * dbResults.length);
-                route.push(dbLocaltoLocal(dbResults[int]));
+
+                let int = Math.floor(Math.random() * dbResults.length);
+                
+                
+                console.log(dbresu);
+                dbresu.push(dbResults[int]);
             }
             
             
@@ -237,7 +242,7 @@ class Local {
                 "properties": {},
                 "geometry": {}
             }
-            for(let point of route){
+            for(let point of dbresu){
                 geojson_feature = {
                     "type": "Feature",
                     "properties": {},

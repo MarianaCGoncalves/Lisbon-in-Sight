@@ -1,11 +1,10 @@
 let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
       let quant = 0;
-let filters1 = [];
-let filters2 = [1,2,3];
-let filters3 = [1,3];
+      let lil= [];
 window.onload = async function () {
   try {
-    filters3.re
+    let types=[1,2,3,4,5,6,7,8];
+    populatetypes(types);
       createSelect();
       let result = await checkAuthenticated(true);
       if (result.err) {  throw result.err; }
@@ -31,16 +30,15 @@ function createSelect () {
     select.onchange = () => {createSelect();};
 } 
 
-function filters (n) {
-    filters.push(n);
-    filters.slice
-} 
 
 async function criar() {
     let values = [];
+    debugger;
     for (let i =1; i< quant; i++) {
         values.push(document.getElementById("type"+i).value);
     }    
+    let result = await requestAutoroute(values);
+    console.log(result);
     alert (values);
 }
 
@@ -135,7 +133,7 @@ async function searchLocals(){
 }
 
 
-function myFunction() {
+  function myFunction() {
   
     let x = document.getElementById("myDropdown");
     console.log(x.style.display);
@@ -158,6 +156,55 @@ function myFunction() {
           openDropdown.classList.remove('show');
         }
       }
+    }
+  }
+
+  function populatetypes(types) {
+  
+    let container = document.getElementById("typescard");
+    for (let type of types) {
+        let click ="false";
+      
+        let li = document.createElement("li");
+        li.setAttribute("class","routecontainer");
+        let sec = document.createElement("section");
+        sec.setAttribute("class","checkboxcontainer");
+  
+        let checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+  
+        checkbox.onclick = () => { 
+          if(click == "false"){
+            lil.push(type)
+            console.log(type);
+            click= true;
+            console.log(lil);
+          }
+          else{
+            let index= types.indexOf(type);
+            console.log(index);
+            if (index> -1){
+            lil.splice(index,1);
+            }
+            console.log(lil);
+            click= "false";
+          }
+          
+        };
+  
+        sec.appendChild(checkbox);
+  
+        let h3 = document.createElement("h3");
+        h3.setAttribute("class", "title");
+        h3.textContent = type;
+        sec.appendChild(h3); 
+        
+        li.appendChild(sec);   
+        
+        
+  
+        container.appendChild(li);
+        
     }
   }
 
