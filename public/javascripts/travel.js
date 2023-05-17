@@ -79,7 +79,7 @@ async function initMap() {
     let result = await requestAllLocal();
     console.log(result);
     map.data.addGeoJson(result.locals);
-
+    
   }
   catch(err){
     console.log(err);
