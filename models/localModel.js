@@ -141,15 +141,18 @@ class Local {
         try{
             let sql;
             let dbResult;
-            if (locTypeIds.length == 0) {
+            let locs = locTypeIds.split(',');
+            let loc = locs[0]
+            if (locs[0] == 'a') {
                 sql = "select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local";
                 dbResult = await pool.query(sql);
             } else {
                 sql = `Select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1`;
-                for(let i=1; i < locTypeIds.length; i++) {
+                for(let i=1; i < locs.length; i++) {
+                    console.log(locs[2]);
                     sql += " or loc_type = $"+(i+1);
                 }
-                dbResult = await pool.query(sql,[locTypeIds]);
+                dbResult = await pool.query(sql,locs);
             }
             let dbResults = dbResult.rows;
             if(!dbResults.length){

@@ -222,17 +222,21 @@ async function searchLocals(){
             lil.push(type);
             console.log(type);
             click= true;
-            
+            console.log(lil);
             result = await requestLocalByType(lil);
             console.log(result);
             initMap(result);
           }
           else{
-            let index= types.indexOf(type);
+            let index= lil.indexOf(type);
             console.log(index);
             if (index> -1){
             lil.splice(index,1);
-            result = requestLocalByType(lil);
+            if(lil.length== 0){
+              lil.push("a");
+            }
+            result = await requestLocalByType(lil);
+            lil.splice('a',1);
             console.log(result);
             initMap(result);
             }
