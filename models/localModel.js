@@ -145,7 +145,7 @@ class Local {
                 sql = "select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local";
                 dbResult = await pool.query(sql);
             } else {
-                sql = `Select * from local where loc_type = $1`;
+                sql = `Select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1`;
                 for(let i=1; i < locTypeIds.length; i++) {
                     sql += " or loc_type = $"+(i+1);
                 }
