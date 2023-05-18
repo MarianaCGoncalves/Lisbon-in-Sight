@@ -142,7 +142,6 @@ class Local {
             let sql;
             let dbResult;
             let locs = locTypeIds.split(',');
-            let loc = locs[0]
             if (locs[0] == 'a') {
                 sql = "select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local";
                 dbResult = await pool.query(sql);
