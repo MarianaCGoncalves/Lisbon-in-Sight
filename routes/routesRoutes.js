@@ -67,8 +67,27 @@ router.get('/general',  async function (req, res, next) {
     }
 });
 
-//search routes by name (general or the user's)
-router.get('/search_by/name/:name/:personal_search',auth.verifyAuth, async function (req, res, next) {
+//search routes by name (general)
+router.get('/general/search/:name/:general_search', async function (req, res, next) {
+    try {
+        console.log("Get routes that contain a certains word in their name");
+        let result = await Route.getByName(req.params.name, null, req.params.general_search);
+        console.log("Get routes thrtains word in their name");
+        console.log(result.routes);
+        if (result.status != 200)
+            res.status(result.status).send(result.result);
+        else {
+            let routes = result.result.map((rt)=> rt.export());
+            res.status(200).send(routes);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+//search routes by name (user's) 
+router.get('/user/search/:name/:personal_search',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Get routes that contain a certains word in their name");
         let result = await Route.getByName(req.params.name, req.user.id, req.params.personal_search);

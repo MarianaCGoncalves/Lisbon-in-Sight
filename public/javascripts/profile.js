@@ -103,12 +103,12 @@ async function searchRoute() {
        let msgDOM = document.getElementById("msg");
        msgDOM.textContent = "";
       let name = document.getElementById("name").value;
-      let result = await requestRouteByName( name, true);
+      let result = await requestPersonalSearch( name, true);
       console.log(result.routes);
       if (result.successful) {
-        msgDOM.textContent = "Route Created";
+        msgDOM.textContent = "";
     } else {
-        msgDOM.textContent = "Was not able to register";
+      msgDOM.textContent = "failure";
     } 
       let container = document.getElementById("routecard");
       container.innerHTML = "";
