@@ -217,7 +217,6 @@ async function searchLocals(){
   
         checkbox.onclick = async () => { 
           let result;
-          debugger;
           if(click == "false"){
             lil.push(type);
             console.log(type);
