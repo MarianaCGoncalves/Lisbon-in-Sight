@@ -25,7 +25,7 @@ async function initMap(result) {
   directionsDisplay = new google.maps.DirectionsRenderer();
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 38.73074327445395, lng: -9.148878289348835},
-    zoom: 15,
+    zoom: 13,
     mapTypeId: google.maps.MapTypeId.HYBRID,
     heading: 90,
     tilt: 45,
@@ -65,18 +65,31 @@ window.initMap = initMap;
 function calcRoute(map) {
   console.log(points);
   debugger;
+  let waypts= [];
+  for (let i = 1; i < points.locals.features.length-1; i++) {
+    let lan = points.locals.features[i].geometry.coordinates[1];
+    let long =points.locals.features[i].geometry.coordinates[0];
+    let coordinats= "";
+    coordinats= lan + ', ' + long;
+    waypts.push({
+      location: coordinats,
+      stopover: true,
+    });
+  }
+  console.log(waypts);
   let last =points.locals.features.length -1;
   var start = new google.maps.LatLng(points.locals.features[0].geometry.coordinates[1],
     points.locals.features[0].geometry.coordinates[0]);
-  var end = new google.maps.LatLng(points.locals.features[1].geometry.coordinates[1],
-    points.locals.features[1].geometry.coordinates[0]);
-    /*
-      waypoints: waypts,
-      optimizeWaypoints: true,
-      */
+  var end = new google.maps.LatLng(points.locals.features[last].geometry.coordinates[1],
+    points.locals.features[last].geometry.coordinates[0]);
+    
+      
+      
   var request = {
     origin: start,
     destination: end,
+    waypoints: waypts,
+      optimizeWaypoints: true,
     travelMode: 'WALKING'
   };
 
@@ -114,7 +127,6 @@ async function criar() {
     let result = await requestAutoroute(JSON.stringify(values));
     initMap(result);
     points = result;
-    debugger;
     calcRoute(map);
     
 
