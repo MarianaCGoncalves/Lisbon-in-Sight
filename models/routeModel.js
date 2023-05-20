@@ -92,7 +92,19 @@ class Route {
             return { status: 500, result: err };
         }
     }
-
+    static async addLocaltoRoute(r_id, l_id){
+        try{
+            let dbResult = await pool.query("insert into routelocal(rl_rou_id, rl_loc_id) values($1, $2);",[r_id, l_id]);
+            let dbResults = dbResult.rows;
+            let routes = [];
+            for(let dbr of dbResults){
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+        }catch(err){
+            console.log(err);
+            return{status:500, result:err}
+        }
+    }
         // gets community routes
     static async getGeneralRoutes() {
         try {

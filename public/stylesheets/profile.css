@@ -1,5 +1,5 @@
 main{
-  height: 5%;
+   height: 5%;
 }
 main > hr{
   width: 100%;
@@ -15,7 +15,8 @@ h2{
   padding-left: 3%;
 }
 nav{
-  background-color: 00a8e8;
+  background-image: linear-gradient(rgb(0, 119, 182), rgb(48, 180, 217), rgb(72, 202, 228)) ;
+  
 
 }
 nav>section{
@@ -53,6 +54,7 @@ main>p{
   font-family: 'Nunito';
 }
 footer {
+  background-image: linear-gradient(rgb(72, 202, 228), rgb(173, 232, 244));
     width: 100%;
     height: 100%;
     display: flex;
