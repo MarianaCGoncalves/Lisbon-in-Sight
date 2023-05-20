@@ -79,14 +79,15 @@ class Route {
                        values ($1,$2,$3)`, [userid, routename, description]);
             let dbresult = await pool.query("Select * from route where rou_name=$1", [routename]);
             let dbroute = dbresult.rows;
-            let routes = [];
+            let route = [];
             for (let dbr of dbroute) {
-                routes.push(dbRoutestoRoutes(dbr));
+                route.push(dbRoutestoRoutes(dbr));
             }
             // cria o status da rota criada, este por default é 1 ou seja é uma rota pessoal
             await pool.query(`Insert into routestatus (rs_rou_id, rs_st_id)
-                       values ($1,$2)`, [routes[0].id, 1]);   // status 1 = rota pessoal         
-            return { status: 200, result: {msg:"Registered! You can now log in."}} ;
+                       values ($1,$2)`, [routes[0].id, 1]);   // status 1 = rota pessoal 
+                               
+            return { status: 200, result: route} ;
         } catch (err) {
             console.log(err);
             return { status: 500, result: err };
