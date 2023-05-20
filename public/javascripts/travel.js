@@ -59,7 +59,7 @@ let map;
 
 async function initMap() {
 
-  map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 38.73074327445395, lng: -9.148878289348835},
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.HYBRID,
