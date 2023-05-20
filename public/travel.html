@@ -13,7 +13,7 @@
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
   <script src="./javascripts/requests/localRequests.js"></script>
-  <script src="./javascripts/travel.js"></script>
+   <script src="./javascripts/travel.js"></script>
 </head>  
 <body>
   <header>  
@@ -56,8 +56,17 @@
           <section >
             <h4 class="left">Image url:</h4>
             <input class="right name_url" type="url" autocomplete="current-password" id="url"></imput>    
+          </section>
         </section>
+
+        <section class="autoroute">
+          <form action="javascript:criar()" >
+          <section id="types">    
+          </section>
+          <input type="submit" value="Criar">
+          </form>
         </section>
+
         <button class="loginButton" type="submit" value="Create" onclick="createRoute()">
           <p class="loginText">Create</p>
         </button>
@@ -75,14 +84,19 @@
             <p class="searchText">🔍</p>
         
           </section>
-
           <ul class="autocomplete" id="locals">
             <li>
               <button> Something </button>
             </li>
           </ul>
+
+          <section id="typescard">
+
+          </section>
+
+          
         </form>
-        <section id="map" style="width: 450px; height: 420px;">
+        <section id="map">
 
         </section>
           
@@ -90,15 +104,6 @@
 
         
   </main>
-
-  <footer>
-    <form action="javascript:criar()" >
-      <section id="types">
-          
-      </section>
-      <input type="submit" value="Criar">
-  </form>
-  </footer>
 
   
 </body>

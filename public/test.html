@@ -1,42 +1,103 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-  <title>Lisbon in Sight | Login</title>
-  
-  <link rel="stylesheet" href="stylesheets/test.css">
-  <link rel="stylesheet" href="stylesheets/lr.css">
-  <link rel="stylesheet" href="stylesheets/header.css">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
-  <script src="javascripts/utils/verifications.js"></script>
-  <script src="javascripts/requests/usersRequests.js"></script>
-  <script src="javascripts/login.js"></script>
-  
-</head>
-
 <body>
-  <main>
-    <section class="logResFrame">
-        <section class="imputs">
-            <section >
-                <h4 class="left">Name:</h4>
-                <input class="right" type="text" autocomplete="username" id="name" ></imput>
-            </section>
-            <section >
-                <h4 class="left">Password:</h4>
-                <input class="right" type="password" autocomplete="current-password" id="password"></imput>    
-            </section>
-        </section>
+
+<p>Display some text when the checkbox is checked:</p>
+
+
+<label for="myCheck">Checkbox:</label> 
+<input type="checkbox" class="myCheck" value="3" onclick="">
+<label for="myCheck">Checkbox:</label> 
+<input type="checkbox" class="myCheck" value="1" onclick="">
+<label for="myCheck">Checkbox:</label> 
+<input type="checkbox" class="myCheck" value="4" onclick="">
+<label for="myCheck">Checkbox:</label> 
+<input type="checkbox" class="myCheck" value="2" onclick="">
+<label for="myCheck">Checkbox:</label> 
+<input type="checkbox" class="myCheck" value="5" onclick="">
+<input type="button" onclick="myFunction()">
+
+<p id="text" style="display:none">Checkbox is CHECKED!</p>
+<main id="typescard">
+
+</main>
+
+<script>
+  let lil= [];
+  window.onload= async function () {
+    try {
+      let types=[1,2,3,4,5,6,7,8];
+      
+      
+      populatetypes(types)
+     } catch (err) {
+        console.log(err);
+       // alert("Something went wrong!")
+    }
+}
+
+function populatetypes(types) {
+  
+  let container = document.getElementById("typescard");
+  for (let type of types) {
+      let click ="false";
+    
+      let li = document.createElement("li");
+      li.setAttribute("class","routecontainer");
+
+      let checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+
+      checkbox.onclick = () => { 
+        if(click == "false"){
+          debugger;
+          lil.push(type)
+          console.log(type);
+          click= true;
+          console.log(lil);
+        }
+        else{
+          debugger;
+          let index= types.indexOf(type);
+          console.log(index);
+          if (index> -1){
+          lil.splice(index,1);
+          }
+          console.log(lil);
+          click= "false";
+        }
         
-        <button class="loginButton" onclick="login()"  type="submit" value="Login">
-            <p class="loginText">Login</p>
-        </button>
-        <p id="msg" class="warning"></p>
-        <p><a href="register.html">Create a new account</a></p>
+      };
 
-        </h1>
-    </section>
-  </main>
+      li.appendChild(checkbox);
+
+      let h3 = document.createElement("h3");
+      h3.setAttribute("class", "title");
+      h3.textContent = type;
+      li.appendChild(h3);   
+      
+      
+
+      container.appendChild(li);
+      
+  }
+}
+function myFunction() {
+  var checkBoxes = document.getElementsByClassName("myCheck");
+  var text = document.getElementById("text");
+  for(let checkBox of checkBoxes){
+  	if (checkBox.checked == true){
+  		text.textContent = checkBox.value;
+      console.log(checkBox.value);
+    	text.style.display = "block";
+  	} else {
+     text.style.display = "none";
+  	}
+  }
+
+  
+}
+</script>
+
 </body>
-
 </html>

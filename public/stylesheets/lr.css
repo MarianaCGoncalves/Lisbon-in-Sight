@@ -10,14 +10,21 @@ header {
 .bottomsection {
   width: 100%;
   height: 70%;
-  margin: 1%;
+  margin: 1.5%;
   align-items: flex-start;
   justify-content: center;
 }
 
 .centersection{
   height: 10%;
-  font-size: 1.3vw; 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  }
+
+  h2{
+    font-size: 3.5vw;
   }
 
 

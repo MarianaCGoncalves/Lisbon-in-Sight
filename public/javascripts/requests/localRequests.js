@@ -13,13 +13,27 @@ async function requestLocalByName(name){
 }
 
 async function requestLocalByType(type){
-    try{
+    try {
         const response = await fetch(`/api/local/type/${type}`);
         var result = await response.json();
+        return{ successful: response.status == 200,
+            unauthenticated: response.status == 401,
+            locals: result
+        };
+    }catch(err){
+        console.log(err);
+        return{err:err};
+    }
+}
 
-        return{successful: response.status==200,
-        unauthenticated: response.status==401,
-        locals:result};
+async function requestAutoroute(loctypeIds){
+    try {
+        const response = await fetch(`/api/local/auto/${loctypeIds}`);
+        var result = await response.json();
+        return{ successful: response.status == 200,
+            unauthenticated: response.status == 401,
+            locals: result
+        };
     }catch(err){
         console.log(err);
         return{err:err};
