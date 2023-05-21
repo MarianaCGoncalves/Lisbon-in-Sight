@@ -1,16 +1,14 @@
-let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
-      let quant = 0;
-      let lil= [];
+
 window.onload = async function () {
   try {
-    let types=[1,2,3,4,5,6,7,8];
-    populatetypes(types);
-      createSelect();
-      
-      let result = await checkAuthenticated(true);
+    var routename = sessionStorage.getItem("route_name");
+        var routeid = sessionStorage.getItem("route_id");
+        var route_desc = sessionStorage.getItem("route_desc");
+        document.getElementById("name").textContent = routename;
+        document.getElementById("description").textContent = route_desc;       
       let locals = await requestAllLocal();
       initMap(locals);
-      if (result.err) {  throw result.err; }
+
    } catch (err) {
       console.log(err);
      // alert("Something went wrong!")
@@ -168,26 +166,6 @@ async function logout() {
     }
 }
 
-
-
-async function searchLocals(){
-  try{
-      let search = document.getElementById("search_local");
-      let result = await requestLocalByName(search);
-      console.log(result.locals);
-
-      if(result.successful){
-        msgDOM.textContent= "";
-      }
-      else{
-        msgDOM.textContent= "Failed";
-      }
-}catch(err){
-
-  }
-}
-
-
   function myFunction() {
   
     let x = document.getElementById("myDropdown");
@@ -211,66 +189,6 @@ async function searchLocals(){
           openDropdown.classList.remove('show');
         }
       }
-    }
-  }
-
-  function populatetypes(types) {
-  
-    let container = document.getElementById("typescard");
-    for (let type of types) {
-        let click ="false";
-      
-        let li = document.createElement("li");
-        li.setAttribute("class","routecontainer");
-        let sec = document.createElement("section");
-        sec.setAttribute("class","checkboxcontainer");
-  
-        let checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-  
-        checkbox.onclick = async () => { 
-          let result;
-          if(click == "false"){
-            lil.push(type);
-            console.log(type);
-            click= true;
-            console.log(lil);
-            result = await requestLocalByType(lil);
-            console.log(result);
-            initMap(result);
-          }
-          else{
-            let index= lil.indexOf(type);
-            console.log(index);
-            if (index> -1){
-            lil.splice(index,1);
-            if(lil.length== 0){
-              lil.push("a");
-            }
-            result = await requestLocalByType(lil);
-            lil.splice('a',1);
-            console.log(result);
-            initMap(result);
-            }
-            console.log(lil);
-            click= "false";
-          }
-          
-        };
-  
-        sec.appendChild(checkbox);
-  
-        let h3 = document.createElement("h3");
-        h3.setAttribute("class", "title");
-        h3.textContent = type;
-        sec.appendChild(h3); 
-        
-        li.appendChild(sec);   
-        
-        
-  
-        container.appendChild(li);
-        
     }
   }
 

@@ -44,10 +44,12 @@ function populateRoutes(routes) {
       li.appendChild(sec);
       
       li.onclick = () => { 
-        console.log(route.id);
-      };
-      container.appendChild(li);
-      
+        sessionStorage.setItem("user_route_id", route.id);
+        sessionStorage.setItem("user_route_name", route.name);
+        sessionStorage.setItem("user_route_desc", route.desc);
+        console.log(route.desc);
+        container.appendChild(li);
+    }  
   }
 }
 /*    

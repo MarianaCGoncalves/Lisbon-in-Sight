@@ -1,0 +1,111 @@
+<html>
+
+<head>
+  <title>Lisbon in Sight</title>
+  <link rel="stylesheet" href="/stylesheets/body.css">
+  <link rel="stylesheet" href="/stylesheets/croppedimageheader.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/travel.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tinos" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQEi3c0F553EnL7hWJbX13rM5bbPv5OcM&callback=initMap"></script>
+  <script src="./javascripts/utils/verifications.js"></script>
+  <script src="./javascripts/requests/usersRequests.js"></script>
+  <script src="./javascripts/requests/routesRequests.js"></script>
+  <script src="./javascripts/requests/localRequests.js"></script>
+   <script src="./javascripts/travel.js"></script>
+</head>  
+<body>
+  <header>  
+    <section class="topsection">
+      <section class="headerleft">
+        <a href="travel.html">Travel</a>
+        <a href="routes.html">Routes</a>   
+      </section>
+        
+      <section class="headercenter">
+        <a href= "home.html" class="title">Lisbon In Sight</a> 
+      </section>
+
+      <section class="headerRight">
+        <ul class="dropdown">
+          <a onclick="myFunction()" class="button">Settings</a>
+          <section id="myDropdown" class="dropdown-content">
+            <a href="profile.html">Profile</a>
+            <a onclick="logout()">logout</a>
+            <a href="admin.html">admin</a>
+          </section>
+        </ul>
+      </section>
+    </section>    
+  </header>
+  
+  <main>
+      <section>
+        <p class="titleRoute">Create a new route</p>
+
+        <section class="imputs">
+          <section class="first" >
+              <h4 class="left">Name:</h4>
+              <input class="right name_url" type="text" autocomplete="username" id="name" ></imput>
+          </section>
+          <section >
+              <h4 class="left">Description:</h4>
+              <textarea class="right description" type="text" autocomplete="current-password" id="description"></textarea>    
+          </section>
+          <section >
+            <h4 class="left">Image url:</h4>
+            <input class="right name_url" type="url" autocomplete="current-password" id="url"></imput>    
+          </section>
+        </section>
+
+        
+
+        <button class="loginButton" type="submit" value="Create" onclick="createRoute()">
+          <p class="loginText">Create</p>
+        </button>
+        <p id="msg" class="warning"></p>  
+      </section>
+
+
+
+      <section>
+        <form autocomplete="off">
+        <section class="right">
+          <label for="search">Locals: </label>
+          <input class="input" type="text" id="search" autocomplete="current-password" placeholder="Search Locals "></input>
+          <p class="lupa"><button class="search" type="submit" value="Search" onclick="searchLocal()"></p> 
+            <p class="searchText">🔍</p>
+        
+          </section>
+          <ul class="autocomplete" id="locals">
+            <li>
+              <button> Something </button>
+            </li>
+          </ul>
+
+          <section id="typescard">
+
+          </section>
+
+          
+        </form>
+        <section id="map">
+
+        </section>
+        <section class="autoroute">
+          <form action="javascript:criar()" >
+          <section id="types">    
+          </section>
+          <input type="submit" value="Criar">
+          </form>
+        </section>
+        </section> 
+
+        
+  </main>
+
+  
+</body>
+
+</html>

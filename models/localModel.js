@@ -317,5 +317,59 @@ class Local {
             return{status:500, result:err};
         }
     }
+
+
+
+
+    static async getRouteLocals(r_id){
+        try{
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, loc_coordinates from routelocal ,local, route where rou_id = rl_rou_id and loc_id= rl_loc_id and rou_id =$1 order by rl_id;",[r_id]);
+            let dbResults = dbResult.rows;
+            let routes = [];
+            for(let dbr of dbResults){
+                routes.push(dbRoutestoRoutes(dbr));
+            }
+            if(!dbResults.length){
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "type",
+                        msg: "Unable to get locals by type"
+                    }]
+                };
+            }
+            
+            let geojson = {
+                "type": "FeatureCollection",
+                "features": [
+                ]
+            }
+            let geojson_feature = {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {}
+            }
+            for(let point of dbResults){
+                geojson_feature = {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {}
+                }
+
+                geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.name = point.loc_name;
+                geojson_feature.properties.desc = point.loc_desc;
+                geojson_feature.properties.type = point.type_name;
+                geojson.features.push(geojson_feature);
+            }
+
+        
+            let locals = geojson;
+            return{status:200, result:locals}
+            
+        }catch(err){
+            console.log(err);
+            return{status:500, result:err}
+        }
+    }
 }
 module.exports = Local;

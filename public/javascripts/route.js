@@ -39,7 +39,12 @@ function populateRoutes(routes) {
       li.appendChild(sec);
       
       li.onclick = () => { 
-        console.log(":3");
+      
+      sessionStorage.setItem("route_id", route.id);
+      sessionStorage.setItem("route_name", route.name);
+      sessionStorage.setItem("route_desc", route.desc);
+      window.location.pathname = "routemap.html";
+        console.log(route.desc);
       };
       container.appendChild(li);
       
