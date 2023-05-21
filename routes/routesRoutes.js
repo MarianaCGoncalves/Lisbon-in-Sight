@@ -31,6 +31,17 @@ router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     }
 });
 
+router.post('/auth/local/:id',auth.verifyAuth, async function (req, res, next) {
+    try {
+        console.log("Add local to route");
+        let result = await Route.addLocaltoRoute(req.route.id, req.params.id);
+        res.status(result.status).send(result.result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
 // Get routes of the authenticated user
 router.get('/user/auth',auth.verifyAuth,  async function (req, res, next) {
     try {

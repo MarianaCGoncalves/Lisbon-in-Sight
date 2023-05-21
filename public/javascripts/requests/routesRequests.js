@@ -107,3 +107,27 @@ async function requestApproval(id) {
         return {err: err};
     }
 }
+
+async function requestAddLocalToRoute(id) {
+    try {
+        const response = await fetch(`/api/routes/auth/local/${id}`, 
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+          method: "POST",
+          body: JSON.stringify({
+            r_id: r_id, 
+            l_id:l_id
+            
+          })
+        });
+        
+        return { successful: response.status == 200};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}
