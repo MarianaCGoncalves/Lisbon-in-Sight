@@ -68,5 +68,19 @@ router.get('/type/:type', async function(req, res, next){
             res.status(500).send(err);
     }
 });
+router.get('/:id/locals', async function(req, res, next){
+    try{
+        let result = await Local.getRouteLocals(req.params.id);
+        console.log("Get locals from route with id: "+id);
 
+        if(result.status !=200)
+        res.status(result.status).send(result.result);
+        else{
+            res.status(result.status).send(result.result);
+        }
+    }catch(err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
 module.exports = router;

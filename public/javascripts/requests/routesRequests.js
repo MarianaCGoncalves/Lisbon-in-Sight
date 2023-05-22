@@ -119,12 +119,25 @@ async function requestAddLocalToRoute(id) {
           method: "POST",
           body: JSON.stringify({
             r_id: r_id, 
-            l_id:l_id
             
           })
         });
         
         return { successful: response.status == 200};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}
+
+async function requestAllLocalsRoute(id) {
+    try {
+        const response = await fetch(`/api/routes/${id}/locals`);
+        var result = await response.json();
+        return { successful: response.status == 200,
+                 unauthenticated: response.status == 401,
+                 routes: result};
     } catch (err) {
         // Treat 500 errors here
         console.log(err);
