@@ -157,7 +157,16 @@ class Route {
                         msg: "Unable to suggest this route for approvation"
                     }]
                 };
-            let dbr = dbroutestatus[0];
+            let validroute = 
+                await pool.query("select rs_id from routestatus, route where rou_id =$1 and rou_id = rs_rou_id and ( rs_st_id = 4 or rs_st_id = 2)", [routeid]);        
+            if (validroute.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "name",
+                        msg: "Unable to suggest this route for approvation"
+                    }]
+                };
+            let dbr =dbroutestatus[0];
             await pool.query(`update routestatus set rs_st_id = 3 where rs_id= $1`, [dbr.rs_id]);   
             return { status: 200, result: {msg:"Resquest sucessfuly sent"}} ;
         } catch (err) {
