@@ -231,3 +231,19 @@
   overflow: hidden;
   margin: 2%;
 }
+
+
+.locationscard{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  
+}
+
+.locationsection{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}

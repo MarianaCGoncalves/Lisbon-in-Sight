@@ -1,10 +1,14 @@
 let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
       let quant = 0;
       let lil= [];
+      let locations=[];
+
+
 window.onload = async function () {
   try {
     let types=[1,2,3,4,5,6,7,8];
     populatetypes(types);
+
       createSelect();
       
       let result = await checkAuthenticated(true);
@@ -67,9 +71,9 @@ function calcRoute(map) {
   console.log(points);
 
   let waypts= [];
-  for (let i = 1; i < points.locals.features.length-1; i++) {
-    let lan = points.locals.features[i].geometry.coordinates[1];
-    let long =points.locals.features[i].geometry.coordinates[0];
+  for (let i = 1; i < points.length-1; i++) {
+    let lan = points[i].geometry.coordinates[1];
+    let long =points[i].geometry.coordinates[0];
     let coordinats= "";
     coordinats= lan + ', ' + long;
     waypts.push({
@@ -78,11 +82,11 @@ function calcRoute(map) {
     });
   }
   console.log(waypts);
-  let last =points.locals.features.length -1;
-  var start = new google.maps.LatLng(points.locals.features[0].geometry.coordinates[1],
-    points.locals.features[0].geometry.coordinates[0]);
-  var end = new google.maps.LatLng(points.locals.features[last].geometry.coordinates[1],
-    points.locals.features[last].geometry.coordinates[0]);
+  let last =points.length -1;
+  var start = new google.maps.LatLng(points[0].geometry.coordinates[1],
+    points[0].geometry.coordinates[0]);
+  var end = new google.maps.LatLng(points[last].geometry.coordinates[1],
+    points[last].geometry.coordinates[0]);
     
       
       
@@ -104,6 +108,7 @@ function calcRoute(map) {
 
 function createSelect () {
     quant++;
+
     let container = document.getElementById("types");
     let select = document.createElement("select");
     select.id = "type"+quant;
@@ -122,13 +127,21 @@ let points;
 
 async function criar() {
     let values = [];
+    
     for (let i =1; i< quant; i++) {
         values.push(document.getElementById("type"+i).value);
     }    
     let result = await requestAutoroute(JSON.stringify(values));
-    initMap(result);
-    points = result;
-    calcRoute(map);
+    for(let i = 0; i < result.locals.features.length; i++){
+       locations.push(result.locals.features[i]);
+    }
+ 
+    console.log(locations);
+
+    initMap(locations);
+    points = locations;
+    calcRoute(locations);
+    populatelocations(locations);
     
 
 }
@@ -273,5 +286,65 @@ async function searchLocals(){
         
     }
   }
-
   
+
+  function populatelocations(locations) {
+  
+    let container = document.getElementById("locationscard");
+    for (let location of locations) {      
+        let li = document.createElement("li");
+        li.setAttribute("class","locationcontainer");
+        let sec = document.createElement("section");
+        sec.setAttribute("class","locationsection");
+
+        let h3 = document.createElement("h3");
+        h3.setAttribute("class", "title");
+        h3.textContent = location.properties.name;        ;
+        sec.appendChild(h3); 
+
+        let checkbox = document.createElement("button");
+        checkbox.setAttribute("type", "sybmit");
+  
+        /*checkbox.onclick = async () => { 
+          let result;
+          if(click == "false"){
+            lil.push(type);
+            console.log(type);
+            click= true;
+            console.log(lil);
+            result = await requestLocalByType(lil);
+            console.log(result);
+            initMap(result);
+          }
+          else{
+            let index= lil.indexOf(type);
+            console.log(index);
+            if (index> -1){
+            lil.splice(index,1);
+            if(lil.length== 0){
+              lil.push("a");
+            }
+            result = await requestLocalByType(lil);
+            lil.splice('a',1);
+            console.log(result);
+            initMap(result);
+            }
+            console.log(lil);
+            click= "false";
+          }
+          
+        };*/
+  
+        sec.appendChild(checkbox);
+  
+        
+        
+        li.appendChild(sec);   
+        
+        
+  
+        container.appendChild(li);
+        
+    }
+  }
+    
