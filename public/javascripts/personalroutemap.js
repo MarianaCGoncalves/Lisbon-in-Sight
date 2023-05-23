@@ -1,12 +1,16 @@
 window.onload = async function () {
     try {
-      var routename = sessionStorage.getItem("route_name");
-          var routeid = sessionStorage.getItem("route_id");
-          var route_desc = sessionStorage.getItem("route_desc");
+
+      var routename = sessionStorage.getItem("user_route_name");
+        var routeid = sessionStorage.getItem("user_route_id");
+        var route_desc = sessionStorage.getItem("user_route_desc");
           document.getElementById("name").textContent = routename;
           document.getElementById("description").textContent = route_desc;       
-        let locals = await requestAllLocal();
-        initMap(locals);
+          let locals = await requestRouteLocals(routeid);
+          initMap(locals);
+          points = locals;
+          calcRoute(map);
+    
         let result = await checkAuthenticated(true);
         if (result.err) {  throw result.err; }
      } catch (err) {
@@ -63,7 +67,7 @@ window.onload = async function () {
   
   function calcRoute(map) {
     console.log(points);
-    debugger;
+    
     let waypts= [];
     for (let i = 1; i < points.locals.features.length-1; i++) {
       let lan = points.locals.features[i].geometry.coordinates[1];

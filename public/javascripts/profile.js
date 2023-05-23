@@ -2,10 +2,10 @@ window.onload = async function () {
     try {
         let result = await checkAuthenticated(true);
         if (result.err) {  throw result.err; }
-        
         //document.getElementById('user').textContent = "Hello "+window.user.name;
         let routeRes = await requestUserRoutes();
         if (!routeRes.successful) throw { msg: "Something went wrong" };
+
         populateRoutes(routeRes.routes);
      } catch (err) {
         console.log(err);
@@ -47,9 +47,11 @@ function populateRoutes(routes) {
         sessionStorage.setItem("user_route_id", route.id);
         sessionStorage.setItem("user_route_name", route.name);
         sessionStorage.setItem("user_route_desc", route.desc);
+        window.location.pathname = "personalroutemap.html";
         console.log(route.desc);
-        container.appendChild(li);
+        
     }  
+    container.appendChild(li);
   }
 }
 /*    

@@ -31,10 +31,11 @@ router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     }
 });
 
-router.post('/auth/local/:id',auth.verifyAuth, async function (req, res, next) {
+//add local route
+router.post('/auth/:r_id/local/:l_id',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Add local to route");
-        let result = await Route.addLocaltoRoute(req.route.id, req.params.id);
+        let result = await Route.addLocaltoRoute(req.params.r_id, req.params.l_id);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);

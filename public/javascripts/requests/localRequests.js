@@ -54,15 +54,11 @@ async function requestAllLocal(){
     }
 }
 
-async function requestAllLocalNames(){
+async function requestRouteLocals(id){
     try{
-        const response = await fetch(`/api/local/`);
+        const response = await fetch(`/api/local/${id}/locals`);
         var result = await response.json();
 
-        localNames = result.map((local) =>{
-            return local.loc_name;
-        });
-        console.log(localNames);
         return{successful: response.status==200,
             unauthenticated: response.status==401,
             locals:result};

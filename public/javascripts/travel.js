@@ -65,7 +65,7 @@ window.initMap = initMap;
 
 function calcRoute(map) {
   console.log(points);
-  debugger;
+
   let waypts= [];
   for (let i = 1; i < points.locals.features.length-1; i++) {
     let lan = points.locals.features[i].geometry.coordinates[1];
