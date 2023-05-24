@@ -1,4 +1,4 @@
-async function requestCreate(name, description) {
+async function requestCreate(name, description, locations) {
     try {
         const response = await fetch(`/api/routes/auth`, 
         {
@@ -10,6 +10,7 @@ async function requestCreate(name, description) {
           body: JSON.stringify({
               routename: name,
               routedesc: description,
+              locations: locations,
           })
         });
         // We are not checking for errors (considering the GUI is only allowing correct choices)
@@ -94,6 +95,9 @@ async function requestPersonalSearch(name, personal_search) {
     }
 }
 
+
+
+// set status to a espera
 async function requestApproval(id) {
     try {
         const response = await fetch(`/api/routes/request/${id}`);
@@ -108,9 +112,9 @@ async function requestApproval(id) {
     }
 }
 
-async function requestAddLocalToRoute(id) {
+async function requestAddLocalToRoute(r_id, l_id) {
     try {
-        const response = await fetch(`/api/routes/auth/local/${id}`, 
+        const response = await fetch(`/api/routes/${r_id}/auth/local/${l_id}`, 
         {
             headers: {
                 'Accept': 'application/json',
@@ -118,7 +122,8 @@ async function requestAddLocalToRoute(id) {
             },
           method: "POST",
           body: JSON.stringify({
-            r_id: r_id, 
+            r_id: r_id,
+            l_id:l_id, 
             
           })
         });

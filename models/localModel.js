@@ -21,6 +21,7 @@ class Local {
 
     export(){
         let local = new Local();
+        local.id = this.id;
         local.name = this.name;
         local.desc = this.desc;
         local.coordinates= this.coordinates;
@@ -43,7 +44,7 @@ class Local {
     }
     static async getByName(name){
         try{
-            let dbResult = await pool.query("select loc_name, loc_desc, st_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id and loc_name LIKE $1", ["%"+name+"%"]);
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id and loc_name LIKE $1", ["%"+name+"%"]);
             let dbResults = dbResult.rows;
 
             if(!dbResults.length){
@@ -73,6 +74,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;
@@ -91,7 +93,7 @@ class Local {
 
     static async getAll(){
         try{
-            let dbResult = await pool.query("select loc_name, loc_desc, ST_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id");
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, ST_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id");
             let dbResults = dbResult.rows;
             
             
@@ -121,6 +123,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;
@@ -143,10 +146,10 @@ class Local {
             let dbResult;
             let locs = locTypeIds.split(',');
             if (locs[0] == 'a') {
-                sql = "select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local";
+                sql = "select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates) from local";
                 dbResult = await pool.query(sql);
             } else {
-                sql = `Select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1`;
+                sql = `Select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1`;
                 for(let i=1; i < locs.length; i++) {
                     console.log(locs[2]);
                     sql += " or loc_type = $"+(i+1);
@@ -181,6 +184,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;
@@ -207,7 +211,7 @@ class Local {
                 let value= locTypeIds[i];
                 console.log(locTypeIds[i]);
                 
-                dbResult = await pool.query("Select loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1",[value]);
+                dbResult = await pool.query("Select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates) from local where loc_type = $1",[value]);
                 let dbResults = dbResult.rows;
                 if(!dbResults.length){
                 return {
@@ -254,6 +258,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;
@@ -272,7 +277,7 @@ class Local {
 
     static async getAllWithinRadius(){
         try{
-            let dbResult = await pool.query("select loc_name, loc_desc, ST_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id");
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, ST_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id");
             let dbResults = dbResult.rows;
             
             
@@ -302,6 +307,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;
@@ -323,7 +329,7 @@ class Local {
 
     static async getRouteLocals(r_id){
         try{
-            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, loc_coordinates from routelocal ,local, route where rou_id = rl_rou_id and loc_id= rl_loc_id and rou_id =$1 order by rl_id;",[r_id]);
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc,  ST_asGeojson(loc_coordinates) from routelocal ,local, route where rou_id = rl_rou_id and loc_id= rl_loc_id and rou_id =$1 order by rl_id;",[r_id]);
             let dbResults = dbResult.rows;
             
         
@@ -354,6 +360,7 @@ class Local {
                 }
 
                 geojson_feature.geometry = JSON.parse(point.st_asgeojson);
+                geojson_feature.properties.id = point.loc_id;
                 geojson_feature.properties.name = point.loc_name;
                 geojson_feature.properties.desc = point.loc_desc;
                 geojson_feature.properties.type = point.type_name;

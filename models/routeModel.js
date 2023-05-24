@@ -63,7 +63,7 @@ class Route {
         }
     }
 
-    static async CreateRoute(userid , routename, description) {
+    static async CreateRoute(userid , routename, description, location) {
         try {
             let alreadyExists =
                 await pool.query("Select * from route where rou_name=$1", [routename]);
@@ -85,7 +85,11 @@ class Route {
             }
             // cria o status da rota criada, este por default é 1 ou seja é uma rota pessoal
             await pool.query(`Insert into routestatus (rs_rou_id, rs_st_id)
-                       values ($1,$2)`, [routes[0].id, 1]);   // status 1 = rota pessoal 
+                       values ($1,$2)`, [route[0].id, 1]);   // status 1 = rota pessoal 
+            for(let i=0; i < location.length; i++) {
+                await pool.query("insert into routelocal(rl_rou_id, rl_loc_id) values($1, $2);",[route[0].id, location[i].properties.id]);
+            }
+            
                                
             return { status: 200, result: route} ;
         } catch (err) {
@@ -157,7 +161,16 @@ class Route {
                         msg: "Unable to suggest this route for approvation"
                     }]
                 };
-            let dbr = dbroutestatus[0];
+            let validroute = 
+                await pool.query("select rs_id from routestatus, route where rou_id =$1 and rou_id = rs_rou_id and ( rs_st_id = 4 or rs_st_id = 2)", [routeid]);        
+            if (validroute.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "name",
+                        msg: "Unable to suggest this route for approvation"
+                    }]
+                };
+            let dbr =dbroutestatus[0];
             await pool.query(`update routestatus set rs_st_id = 3 where rs_id= $1`, [dbr.rs_id]);   
             return { status: 200, result: {msg:"Resquest sucessfuly sent"}} ;
         } catch (err) {

@@ -1,10 +1,14 @@
 let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
       let quant = 0;
       let lil= [];
+      let locations=[];
+
+
 window.onload = async function () {
   try {
     let types=[1,2,3,4,5,6,7,8];
     populatetypes(types);
+
       createSelect();
       
       let result = await checkAuthenticated(true);
@@ -50,7 +54,7 @@ async function initMap(result) {
   var name = event.feature.getProperty("name");
   var desc = event.feature.getProperty("desc");
 
-  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+"</div>");
+  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+" <br>  <button onclick='clickme()'> + </button> </div>");
   infowindow.setPosition(event.feature.getGeometry().get());
   infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
   infowindow.open(map);
@@ -63,13 +67,16 @@ async function initMap(result) {
 }
 window.initMap = initMap;
 
+function clickme(){
+  alert('oio');
+}
 function calcRoute(map) {
   console.log(points);
-  debugger;
+
   let waypts= [];
-  for (let i = 1; i < points.locals.features.length-1; i++) {
-    let lan = points.locals.features[i].geometry.coordinates[1];
-    let long =points.locals.features[i].geometry.coordinates[0];
+  for (let i = 1; i < points.length-1; i++) {
+    let lan = points[i].geometry.coordinates[1];
+    let long =points[i].geometry.coordinates[0];
     let coordinats= "";
     coordinats= lan + ', ' + long;
     waypts.push({
@@ -78,11 +85,11 @@ function calcRoute(map) {
     });
   }
   console.log(waypts);
-  let last =points.locals.features.length -1;
-  var start = new google.maps.LatLng(points.locals.features[0].geometry.coordinates[1],
-    points.locals.features[0].geometry.coordinates[0]);
-  var end = new google.maps.LatLng(points.locals.features[last].geometry.coordinates[1],
-    points.locals.features[last].geometry.coordinates[0]);
+  let last =points.length -1;
+  var start = new google.maps.LatLng(points[0].geometry.coordinates[1],
+    points[0].geometry.coordinates[0]);
+  var end = new google.maps.LatLng(points[last].geometry.coordinates[1],
+    points[last].geometry.coordinates[0]);
     
       
       
@@ -95,6 +102,7 @@ function calcRoute(map) {
   };
 
   directionsService.route(request, function(result, status) {
+    console.log(result);
     if (status == 'OK') {
       directionsDisplay.setDirections(result);
   }});
@@ -104,6 +112,7 @@ function calcRoute(map) {
 
 function createSelect () {
     quant++;
+
     let container = document.getElementById("types");
     let select = document.createElement("select");
     select.id = "type"+quant;
@@ -122,25 +131,34 @@ let points;
 
 async function criar() {
     let values = [];
+    
     for (let i =1; i< quant; i++) {
         values.push(document.getElementById("type"+i).value);
     }    
     let result = await requestAutoroute(JSON.stringify(values));
-    initMap(result);
-    points = result;
-    calcRoute(map);
+    for(let i = 0; i < result.locals.features.length; i++){
+       locations.push(result.locals.features[i]);
+    }
+ 
+    console.log(locations);
+
+    initMap(locations);
+    points = locations;
+    calcRoute(result);
+    populatelocations(locations);
     
 
 }
 
 async function createRoute() {
   try {
+    debugger;
     window.user = user;
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
         let description = document.getElementById("description").value;
-        let res = await requestCreate(name, description);
+        let res = await requestCreate(name, description, locations);
 
         if (res.successful) {
             msgDOM.textContent = "Route Created";
@@ -273,5 +291,52 @@ async function searchLocals(){
         
     }
   }
-
   
+
+  function populatelocations(locations) {
+  debugger;
+    let container = document.getElementById("locationscard");
+
+    if(locations.length == 0)
+    {
+      container.innerHTML="";
+    }
+
+    while(container.firstChild){
+      container.removeChild(container.firstChild);
+    }
+    for (let location of locations) {      
+        let li = document.createElement("li");
+        li.setAttribute("class","locationcontainer");
+        let sec = document.createElement("section");
+        sec.setAttribute("class","locationsection");
+
+        let h3 = document.createElement("h3");
+        h3.setAttribute("class", "title");
+        h3.textContent = location.properties.name;        ;
+        sec.appendChild(h3); 
+
+        let checkbox = document.createElement("button");
+        checkbox.setAttribute("type", "sybmit");
+       checkbox.onclick = () => { 
+            let index= locations.indexOf(location);
+            if (index> -1){
+              locations.splice(index,1);
+            console.log(locations);
+            initMap(locations);
+            if(locations.length ==0){
+             populatelocations(locations);
+            }
+            calcRoute(map);
+           
+            }
+            console.log(lil );
+            click= "false";
+      }
+        sec.appendChild(checkbox);
+        li.appendChild(sec);    
+        container.appendChild(li);
+        
+    }
+  }
+    

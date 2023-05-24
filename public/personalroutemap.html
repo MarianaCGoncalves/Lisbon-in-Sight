@@ -13,7 +13,7 @@
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/requests/routesRequests.js"></script>
   <script src="./javascripts/requests/localRequests.js"></script>
-   <script src="./javascripts/travel.js"></script>
+   <script src="./javascripts/personalroutemap.js"></script>
 </head>  
 <body>
   <header>  
@@ -42,69 +42,31 @@
   
   <main>
       <section>
-        <p class="titleRoute">Create a new route</p>
+        <p class="titleRoute">You are currently looking at route: <span id="name"> </span> </p>
 
         <section class="imputs">
-          <section class="first" >
-              <h4 class="left">Name:</h4>
-              <input class="right name_url" type="text" autocomplete="username" id="name" ></imput>
-          </section>
           <section >
-              <h4 class="left">Description:</h4>
-              <textarea class="right description" type="text" autocomplete="current-password" id="description"></textarea>    
-          </section>
-          <section >
-            <h4 class="left">Image url:</h4>
-            <input class="right name_url" type="url" autocomplete="current-password" id="url"></imput>    
+              <h4 class="left">Description: <span id="description"> </span></h4>    
           </section>
         </section>
-
-        
-
-        <button class="loginButton" type="submit" value="Create" onclick="createRoute()">
-          <p class="loginText">Create</p>
-        </button>
-        <p id="msg" class="warning"></p>  
       </section>
 
 
 
-      <section>
-        <form autocomplete="off">
-        <section class="right">
-          <label for="search">Locals: </label>
-          <input class="input" type="text" id="search" autocomplete="current-password" placeholder="Search Locals "></input>
-          <p class="lupa"><button class="search" type="submit" value="Search" onclick="searchLocal()"></p> 
-            <p class="searchText">🔍</p>
-        
-          </section>
-          <ul class="autocomplete" id="locals">
-            <li>
-              <button> Something </button>
-            </li>
-          </ul>
-
+        <section>
           <section id="typescard">
-
           </section>
 
-          
-        </form>
-        <section id="map">
-
-        </section>
-        <section class="autoroute">
-          <form action="javascript:criar()" >
-          <section id="types">    
+          <section id="map">
           </section>
-          <input type="submit" value="Criar">
-          </form>
-        </section>
+          <button class="loginButton" type="submit" value="share" onclick="askApproval()">
+            <p class="loginText">Share</p>
+          </button>
+          <p id="idmsg" class="warning"></p> 
         </section> 
 
         
   </main>
-
   
 </body>
 

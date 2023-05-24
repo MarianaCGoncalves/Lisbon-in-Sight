@@ -2,12 +2,15 @@
 window.onload = async function () {
   try {
     var routename = sessionStorage.getItem("route_name");
-        var routeid = sessionStorage.getItem("route_id");
-        var route_desc = sessionStorage.getItem("route_desc");
+          var routeid = sessionStorage.getItem("route_id");
+          var route_desc = sessionStorage.getItem("route_desc");
+    
         document.getElementById("name").textContent = routename;
         document.getElementById("description").textContent = route_desc;       
-      let locals = await requestAllLocal();
+      let locals = await requestRouteLocals(routeid);
       initMap(locals);
+      points = locals;
+      calcRoute(map);
 
    } catch (err) {
       console.log(err);
@@ -63,7 +66,6 @@ window.initMap = initMap;
 
 function calcRoute(map) {
   console.log(points);
-  debugger;
   let waypts= [];
   for (let i = 1; i < points.locals.features.length-1; i++) {
     let lan = points.locals.features[i].geometry.coordinates[1];
@@ -95,6 +97,9 @@ function calcRoute(map) {
   directionsService.route(request, function(result, status) {
     if (status == 'OK') {
       directionsDisplay.setDirections(result);
+      new google.maps.DirectionsRenderer({
+        suppressMarkers: true,
+      });
   }});
 
 }

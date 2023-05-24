@@ -1,12 +1,20 @@
+var routename;
+var routeid;
+var route_desc;
+
 window.onload = async function () {
     try {
-      var routename = sessionStorage.getItem("route_name");
-          var routeid = sessionStorage.getItem("route_id");
-          var route_desc = sessionStorage.getItem("route_desc");
+      
+       routename = sessionStorage.getItem("user_route_name");
+         routeid = sessionStorage.getItem("user_route_id");
+         route_desc = sessionStorage.getItem("user_route_desc");
           document.getElementById("name").textContent = routename;
           document.getElementById("description").textContent = route_desc;       
-        let locals = await requestAllLocal();
-        initMap(locals);
+          let locals = await requestRouteLocals(routeid);
+          initMap(locals);
+          points = locals;
+          calcRoute(map);
+    
         let result = await checkAuthenticated(true);
         if (result.err) {  throw result.err; }
      } catch (err) {
@@ -63,7 +71,7 @@ window.onload = async function () {
   
   function calcRoute(map) {
     console.log(points);
-    debugger;
+    
     let waypts= [];
     for (let i = 1; i < points.locals.features.length-1; i++) {
       let lan = points.locals.features[i].geometry.coordinates[1];
@@ -144,6 +152,26 @@ window.onload = async function () {
               msgDOM.textContent = "Route Created";
           } else {
               msgDOM.textContent = "Route already exists";
+          }  
+   } catch (err) {
+      console.log(err);
+     alert("Something went wrong!")
+  }
+  }
+
+  async function askApproval() {
+    try {
+      debugger;
+      window.user = user;
+      let msgDOM = document.getElementById("idmsg");
+      msgDOM.textContent = "";
+ 
+          let res = await requestApproval( routeid);
+  
+          if (res.successful) {
+              msgDOM.textContent = "Please wait while your route is under review";
+          } else {
+              msgDOM.textContent = "Sorry we were unable to request your route for approval";
           }  
    } catch (err) {
       console.log(err);

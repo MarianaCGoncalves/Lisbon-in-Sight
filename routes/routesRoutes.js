@@ -22,8 +22,12 @@ router.get('/id/:id', async function (req, res, next) {
 //create route
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
+
+        if(!req.body.routename || !req.body.routedesc || !req.body.locations.length ){
+            res.status(400).send({msg:"please"});
+        }
         console.log("Create user route");
-        let result = await Route.CreateRoute(req.user.id, req.body.routename, req.body.routedesc);
+        let result = await Route.CreateRoute(req.user.id, req.body.routename, req.body.routedesc, req.body.locations);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
@@ -31,10 +35,11 @@ router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     }
 });
 
-router.post('/auth/local/:id',auth.verifyAuth, async function (req, res, next) {
+//add local route
+router.post('/auth/:r_id/local/:l_id',auth.verifyAuth, async function (req, res, next) {
     try {
         console.log("Add local to route");
-        let result = await Route.addLocaltoRoute(req.route.id, req.params.id);
+        let result = await Route.addLocaltoRoute(req.params.r_id, req.params.l_id);
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
@@ -117,10 +122,11 @@ router.get('/user/search/:name/:personal_search',auth.verifyAuth, async function
 });
 
 //submit route for community approval
-router.patch('/request/:id',auth.verifyAuth, async function (req, res, next) {
+router.get('/request/:id',auth.verifyAuth, async function (req, res, next) {
     try{
         console.log("requesting route "+ req.params.id + "for community approval");
-        let result = await Route.AskForAproval(req.params.uid ,req.params.id);
+        let result = await Route.AskForAproval(req.user.id ,req.params.id);
+        console.log(result);
         res.status(result.status).send(result.result);
     }catch(err){
         console.log(err)
