@@ -1,4 +1,4 @@
-async function requestCreate(name, description) {
+async function requestCreate(name, description, locations) {
     try {
         const response = await fetch(`/api/routes/auth`, 
         {
@@ -10,6 +10,7 @@ async function requestCreate(name, description) {
           body: JSON.stringify({
               routename: name,
               routedesc: description,
+              locations: locations,
           })
         });
         // We are not checking for errors (considering the GUI is only allowing correct choices)
@@ -94,6 +95,9 @@ async function requestPersonalSearch(name, personal_search) {
     }
 }
 
+
+
+// set status to a espera
 async function requestApproval(id) {
     try {
         const response = await fetch(`/api/routes/request/${id}`);

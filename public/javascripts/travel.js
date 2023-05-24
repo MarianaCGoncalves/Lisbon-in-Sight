@@ -54,7 +54,7 @@ async function initMap(result) {
   var name = event.feature.getProperty("name");
   var desc = event.feature.getProperty("desc");
 
-  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+"</div>");
+  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+" <br>  <button onclick='clickme()'> + </button> </div>");
   infowindow.setPosition(event.feature.getGeometry().get());
   infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
   infowindow.open(map);
@@ -67,6 +67,9 @@ async function initMap(result) {
 }
 window.initMap = initMap;
 
+function clickme(){
+  alert('oio');
+}
 function calcRoute(map) {
   console.log(points);
 
@@ -99,6 +102,7 @@ function calcRoute(map) {
   };
 
   directionsService.route(request, function(result, status) {
+    console.log(result);
     if (status == 'OK') {
       directionsDisplay.setDirections(result);
   }});
@@ -140,7 +144,7 @@ async function criar() {
 
     initMap(locations);
     points = locations;
-    calcRoute(locations);
+    calcRoute(result);
     populatelocations(locations);
     
 
@@ -148,12 +152,13 @@ async function criar() {
 
 async function createRoute() {
   try {
+    debugger;
     window.user = user;
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
         let name = document.getElementById("name").value;
         let description = document.getElementById("description").value;
-        let res = await requestCreate(name, description);
+        let res = await requestCreate(name, description, locations);
 
         if (res.successful) {
             msgDOM.textContent = "Route Created";
@@ -289,8 +294,17 @@ async function searchLocals(){
   
 
   function populatelocations(locations) {
-  
+  debugger;
     let container = document.getElementById("locationscard");
+
+    if(locations.length == 0)
+    {
+      container.innerHTML="";
+    }
+
+    while(container.firstChild){
+      container.removeChild(container.firstChild);
+    }
     for (let location of locations) {      
         let li = document.createElement("li");
         li.setAttribute("class","locationcontainer");
@@ -304,45 +318,23 @@ async function searchLocals(){
 
         let checkbox = document.createElement("button");
         checkbox.setAttribute("type", "sybmit");
-  
-        /*checkbox.onclick = async () => { 
-          let result;
-          if(click == "false"){
-            lil.push(type);
-            console.log(type);
-            click= true;
-            console.log(lil);
-            result = await requestLocalByType(lil);
-            console.log(result);
-            initMap(result);
-          }
-          else{
-            let index= lil.indexOf(type);
-            console.log(index);
+       checkbox.onclick = () => { 
+            let index= locations.indexOf(location);
             if (index> -1){
-            lil.splice(index,1);
-            if(lil.length== 0){
-              lil.push("a");
+              locations.splice(index,1);
+            console.log(locations);
+            initMap(locations);
+            if(locations.length ==0){
+             populatelocations(locations);
             }
-            result = await requestLocalByType(lil);
-            lil.splice('a',1);
-            console.log(result);
-            initMap(result);
+            calcRoute(map);
+           
             }
-            console.log(lil);
+            console.log(lil );
             click= "false";
-          }
-          
-        };*/
-  
+      }
         sec.appendChild(checkbox);
-  
-        
-        
-        li.appendChild(sec);   
-        
-        
-  
+        li.appendChild(sec);    
         container.appendChild(li);
         
     }
