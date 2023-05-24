@@ -20,7 +20,7 @@ window.onload = async function () {
       initMap(allPoints);
       if (result.err) {  throw result.err; }
    } catch (err) {
-      console.log(err);
+      console.log(err); 
      // alert("Something went wrong!")
   }
 }

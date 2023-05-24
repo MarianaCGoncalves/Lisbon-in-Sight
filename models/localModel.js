@@ -331,6 +331,8 @@ class Local {
         try{
             let dbResult = await pool.query("select loc_id, loc_name, loc_desc,  ST_asGeojson(loc_coordinates) from routelocal ,local, route where rou_id = rl_rou_id and loc_id= rl_loc_id and rou_id =$1 order by rl_id;",[r_id]);
             let dbResults = dbResult.rows;
+            
+        
             if(!dbResults.length){
                 return {
                     status: 400, result: [{
