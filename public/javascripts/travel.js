@@ -12,7 +12,7 @@ window.onload = async function () {
       initMap(locals);
       if (result.err) {  throw result.err; }
    } catch (err) {
-      console.log(err);
+      console.log(err); 
      // alert("Something went wrong!")
   }
 }
