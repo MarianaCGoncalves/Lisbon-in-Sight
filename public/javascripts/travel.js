@@ -2,6 +2,7 @@ let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultur
       let quant = 0;
       let lil= [];
       let locations=[];
+      let allPoints=[];
 
 
 window.onload = async function () {
@@ -10,10 +11,13 @@ window.onload = async function () {
     populatetypes(types);
 
       createSelect();
-      
       let result = await checkAuthenticated(true);
       let locals = await requestAllLocal();
-      initMap(locals);
+      let templocals = await requestAllLocal();
+      allPoints= locals;
+      locations = templocals;
+      locations.locals.features= [];
+      initMap(allPoints);
       if (result.err) {  throw result.err; }
    } catch (err) {
       console.log(err);
@@ -25,6 +29,7 @@ window.onload = async function () {
 let map;
 let directionsDisplay;
 var directionsService;
+var eve;
 async function initMap(result) {
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -53,7 +58,8 @@ async function initMap(result) {
   map.data.addListener('click', function(event) {
   var name = event.feature.getProperty("name");
   var desc = event.feature.getProperty("desc");
-
+  eve = event.feature.h;
+  debugger;
   infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+" <br>  <button onclick='clickme()'> + </button> </div>");
   infowindow.setPosition(event.feature.getGeometry().get());
   infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
@@ -68,15 +74,17 @@ async function initMap(result) {
 window.initMap = initMap;
 
 function clickme(){
-  alert('oio');
+  debugger;
+  console.log(eve);
 }
-function calcRoute(map) {
-  console.log(points);
+function calcRoute(locations) {
+
+ 
 
   let waypts= [];
-  for (let i = 1; i < points.length-1; i++) {
-    let lan = points[i].geometry.coordinates[1];
-    let long =points[i].geometry.coordinates[0];
+  for (let i = 1; i < locations.locals.features.length-1; i++) {
+    let lan = locations.locals.features[i].geometry.coordinates[1];
+    let long =locations.locals.features[i].geometry.coordinates[0];
     let coordinats= "";
     coordinats= lan + ', ' + long;
     waypts.push({
@@ -85,11 +93,11 @@ function calcRoute(map) {
     });
   }
   console.log(waypts);
-  let last =points.length -1;
-  var start = new google.maps.LatLng(points[0].geometry.coordinates[1],
-    points[0].geometry.coordinates[0]);
-  var end = new google.maps.LatLng(points[last].geometry.coordinates[1],
-    points[last].geometry.coordinates[0]);
+  let last =locations.locals.features.length-1;
+  var start = new google.maps.LatLng(locations.locals.features[0].geometry.coordinates[1],
+    locations.locals.features[0].geometry.coordinates[0]);
+  var end = new google.maps.LatLng(locations.locals.features[last].geometry.coordinates[1],
+    locations.locals.features[last].geometry.coordinates[0]);
     
       
       
@@ -127,24 +135,25 @@ function createSelect () {
     select.onchange = () => {createSelect();};
 } 
 
-let points;
 
 async function criar() {
     let values = [];
-    
+    debugger;
     for (let i =1; i< quant; i++) {
         values.push(document.getElementById("type"+i).value);
     }    
     let result = await requestAutoroute(JSON.stringify(values));
-    for(let i = 0; i < result.locals.features.length; i++){
-       locations.push(result.locals.features[i]);
+    
+    for(i=0; i< result.locals.features.length; i++){
+      locations.locals.features.push(result.locals.features[i]);
+      let index= allPoints.locals.features.indexOf(locations.locals.features[i]);
+      if (index> -1){
+        allPoints.locals.features.splice(index,1);
+      }
     }
- 
-    console.log(locations);
 
-    initMap(locations);
-    points = locations;
-    calcRoute(result);
+    initMap(allPoints);
+    calcRoute(locations);
     populatelocations(locations);
     
 
@@ -206,32 +215,7 @@ async function searchLocals(){
 }
 
 
-  function myFunction() {
   
-    let x = document.getElementById("myDropdown");
-    console.log(x.style.display);
-    if(x.style.display === "none" || x.style.display === ""){
-      x.style.display ="block";
-    }else{
-      x.style.display ="none";
-    }
-
-  }
-  
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
-
   function populatetypes(types) {
   
     let container = document.getElementById("typescard");
@@ -294,10 +278,10 @@ async function searchLocals(){
   
 
   function populatelocations(locations) {
-  debugger;
+
     let container = document.getElementById("locationscard");
 
-    if(locations.length == 0)
+    if(locations.locals.features.length == 0)
     {
       container.innerHTML="";
     }
@@ -305,7 +289,7 @@ async function searchLocals(){
     while(container.firstChild){
       container.removeChild(container.firstChild);
     }
-    for (let location of locations) {      
+    for (let location of locations.locals.features) {      
         let li = document.createElement("li");
         li.setAttribute("class","locationcontainer");
         let sec = document.createElement("section");
@@ -319,19 +303,13 @@ async function searchLocals(){
         let checkbox = document.createElement("button");
         checkbox.setAttribute("type", "sybmit");
        checkbox.onclick = () => { 
-            let index= locations.indexOf(location);
+            let index= locations.locals.features.indexOf(location);
             if (index> -1){
-              locations.splice(index,1);
-            console.log(locations);
-            initMap(locations);
-            if(locations.length ==0){
-             populatelocations(locations);
+              locations.locals.features.splice(index,1);
+              console.log(locations.locals.features);
+              calcRoute(locations);
+              populatelocations(locations);           
             }
-            calcRoute(map);
-           
-            }
-            console.log(lil );
-            click= "false";
       }
         sec.appendChild(checkbox);
         li.appendChild(sec);    
@@ -339,4 +317,38 @@ async function searchLocals(){
         
     }
   }
-    
+
+
+
+
+
+
+
+
+
+
+    function myFunction() {
+  
+    let x = document.getElementById("myDropdown");
+    console.log(x.style.display);
+    if(x.style.display === "none" || x.style.display === ""){
+      x.style.display ="block";
+    }else{
+      x.style.display ="none";
+    }
+
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
