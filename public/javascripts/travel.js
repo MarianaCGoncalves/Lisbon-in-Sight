@@ -9,13 +9,14 @@ window.onload = async function () {
   try {
     let types = await requestAllTypes();
     populatetypes(types.types);
+    
 
       createSelect();
       let result = await checkAuthenticated(true);
       let locals = await requestAllLocal();
       let templocals = await requestAllLocal();
       allPoints= locals;
-      locations = templocals;
+      locations = JSON.parse(JSON.stringify(locals));
       locations.locals.features= [];
       initMap(allPoints);
       if (result.err) {  throw result.err; }
@@ -59,8 +60,8 @@ async function initMap(result) {
   var name = event.feature.getProperty("name");
   var desc = event.feature.getProperty("desc");
   eve = event.feature.h;
-  debugger;
-  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+" <br>  <button onclick='clickme()'> + </button> </div>");
+
+  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+" <br>  <button onclick='clickme(eve)'> + </button> </div>");
   infowindow.setPosition(event.feature.getGeometry().get());
   infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
   infowindow.open(map);
@@ -73,9 +74,21 @@ async function initMap(result) {
 }
 window.initMap = initMap;
 
-function clickme(){
-  debugger;
+function clickme(eve){
+
   console.log(eve);
+  for (let i = 0; i < allPoints.locals.features.length; i++){
+    if(allPoints.locals.features[i].properties.id == eve.id){
+      locations.locals.features.push(allPoints.locals.features[i]);
+      allPoints.locals.features.splice(i,1);
+      initMap(allPoints);
+      calcRoute(locations);
+      populatelocations(locations);
+      return; 
+    } 
+  }
+   
+
 }
 function calcRoute(locations) {
 
@@ -94,6 +107,10 @@ function calcRoute(locations) {
   }
   console.log(waypts);
   let last =locations.locals.features.length-1;
+  if(locations.locals.features.length ==0 ){
+    last =0
+  }
+
   var start = new google.maps.LatLng(locations.locals.features[0].geometry.coordinates[1],
     locations.locals.features[0].geometry.coordinates[0]);
   var end = new google.maps.LatLng(locations.locals.features[last].geometry.coordinates[1],
@@ -146,18 +163,16 @@ async function criar() {
     
     for(i=0; i< result.locals.features.length; i++){
       locations.locals.features.push(result.locals.features[i]);
-      let index= allPoints.locals.features.indexOf(locations.locals.features[i]);
-      if (index> -1){
-        allPoints.locals.features.splice(index,1);
-      }
-    }
-
+      for (let l = 0; l < allPoints.locals.features.length; l++){
+        if(allPoints.locals.features[l].properties.id == locations.locals.features[i].properties.id){
+          allPoints.locals.features.splice(l,1);
+        }
+      }           
+    } 
     initMap(allPoints);
     calcRoute(locations);
     populatelocations(locations);
-    
-
-}
+  }
 
 async function createRoute() {
   try {
@@ -197,10 +212,12 @@ async function logout() {
 
 
 
-async function searchLocals(){
+async function searchLocal(){
   try{
-      let search = document.getElementById("search_local");
-      let result = await requestLocalByName(search);
+    debugger;
+      let search = document.getElementById("search");
+      let result = await requestLocalByName(search.value);
+      
       console.log(result.locals);
 
       if(result.successful){
@@ -282,7 +299,7 @@ async function searchLocals(){
   
 
   function populatelocations(locations) {
-
+    
     let container = document.getElementById("locationscard");
 
     if(locations.locals.features.length == 0)
@@ -307,10 +324,13 @@ async function searchLocals(){
         let checkbox = document.createElement("button");
         checkbox.setAttribute("type", "sybmit");
        checkbox.onclick = () => { 
+        debugger;
             let index= locations.locals.features.indexOf(location);
             if (index> -1){
+              allPoints.locals.features.push(location);
               locations.locals.features.splice(index,1);
               console.log(locations.locals.features);
+              initMap(allPoints);
               calcRoute(locations);
               populatelocations(locations);           
             }

@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 router.get('/search/:name', async function(req, res, next){
 
     try{
-        let result = await Local.getbyNameSearchBar(req.params.name);
+        let result = await Local.getByName(req.params.name);
         console.log("Get locals by name");
         if(result.status != 200 )
             res.status(result.status).send(result.result);

@@ -30,7 +30,7 @@ class Local {
 
     static async getbyNameSearchBar(name){
         try{
-            let dbResult = await pool.query("select loc_name from local where loc_name LIKE $1", [name]);
+            let dbResult = await pool.query("select loc_name from local where loc_name  ILIKE $1 ", ["%"+name+"%"]);
             let dbResults = dbResult.rows;
             let locals = [];
             for(let loc of dbResults){
