@@ -331,8 +331,8 @@ async function searchLocal(){
               locations.locals.features.splice(index,1);
               console.log(locations.locals.features);
               initMap(allPoints);
-              calcRoute(locations);
-              populatelocations(locations);           
+              populatelocations(locations);
+              calcRoute(locations);     
             }
       }
         sec.appendChild(checkbox);
