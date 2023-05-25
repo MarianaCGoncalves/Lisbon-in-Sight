@@ -6,7 +6,7 @@ let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultur
 
 window.onload = async function () {
   try {
-    let types=[1,2,3,4,5,6,7,8];
+    let types = await requestAllTypes();
     populatetypes(types);
 
       createSelect();
