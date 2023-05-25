@@ -86,8 +86,8 @@ class Route {
             // cria o status da rota criada, este por default é 1 ou seja é uma rota pessoal
             await pool.query(`Insert into routestatus (rs_rou_id, rs_st_id)
                        values ($1,$2)`, [route[0].id, 1]);   // status 1 = rota pessoal 
-            for(let i=0; i < location.length; i++) {
-                await pool.query("insert into routelocal(rl_rou_id, rl_loc_id) values($1, $2);",[route[0].id, location[i].properties.id]);
+            for(let i=0; i < location.locals.features.length; i++) {
+                await pool.query("insert into routelocal(rl_rou_id, rl_loc_id) values($1, $2);",[route[0].id, location.locals.features[i].properties.id]);
             }
             
                                

@@ -23,7 +23,7 @@ router.get('/id/:id', async function (req, res, next) {
 router.post('/auth',auth.verifyAuth, async function (req, res, next) {
     try {
 
-        if(!req.body.routename || !req.body.routedesc || !req.body.locations.length ){
+        if(!req.body.routename || !req.body.routedesc || !req.body.locations.locals.features.length ){
             res.status(400).send({msg:"please"});
         }
         console.log("Create user route");

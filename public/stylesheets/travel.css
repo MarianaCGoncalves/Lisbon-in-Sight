@@ -10,21 +10,32 @@
     
   }
 
+  
+
 
   main > section{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
- 
-    
-    
-    width: 50%;
     height: 100%;
-    padding-top: 5%;
-    margin-left: 1%;
     margin-right: 4%;
     margin-bottom: 10%;
+  }
+
+  .imputsection{
+    width: 45%;
+  }
+
+  .mapsection{
+    width: 55%;
+  }
+
+  main > section> p {
+    align-self: center;
+  }
+  main > section> button {
+    align-self: center; 
   }
 
   iframe{
