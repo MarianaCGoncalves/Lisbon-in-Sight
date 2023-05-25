@@ -113,7 +113,7 @@ class Route {
         // gets community routes
     static async getGeneralRoutes() {
         try {
-            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 ");
+            let dbResult = await pool.query("select rou_id ,rou_use_id , rou_name, rou_desc from routestatus , route where rou_id = rs_rou_id and rs_st_id= 2 ");
             let dbRoutes = dbResult.rows;
             let routes = [];
             for (let dbr of dbRoutes) {
