@@ -18,12 +18,13 @@ class Type {
     export(){
         let type = new Type();
         type.name = this.name;
+        type.id = this.id;
         return type;
     }
 
     static async getAll(){
         try {
-            let dbResult = await pool.query("select * from type");
+            let dbResult = await pool.query("select * from type order by type_id");
             let dbTypes = dbResult.rows;
             let types = [];
             for (let dbt of dbTypes) {

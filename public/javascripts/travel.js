@@ -8,7 +8,7 @@ let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultur
 window.onload = async function () {
   try {
     let types = await requestAllTypes();
-    populatetypes(types);
+    populatetypes(types.types);
 
       createSelect();
       let result = await checkAuthenticated(true);
@@ -233,7 +233,7 @@ async function searchLocals(){
         checkbox.onclick = async () => { 
           let result;
           if(click == "false"){
-            lil.push(type);
+            lil.push(type.id);
             console.log(type);
             click= true;
             console.log(lil);
@@ -242,15 +242,19 @@ async function searchLocals(){
             initMap(result);
           }
           else{
-            let index= lil.indexOf(type);
+            debugger;
+            let index= lil.indexOf(type.id);
             console.log(index);
             if (index> -1){
             lil.splice(index,1);
             if(lil.length== 0){
               lil.push("a");
+              result = await requestLocalByType(lil);
+              lil.splice('a',1);
+              initMap(result);
+              return;
             }
             result = await requestLocalByType(lil);
-            lil.splice('a',1);
             console.log(result);
             initMap(result);
             }
@@ -264,7 +268,7 @@ async function searchLocals(){
   
         let h3 = document.createElement("h3");
         h3.setAttribute("class", "title");
-        h3.textContent = type;
+        h3.textContent = type.name;
         sec.appendChild(h3); 
         
         li.appendChild(sec);   
