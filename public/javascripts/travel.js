@@ -284,7 +284,7 @@ async function searchLocal(){
         sec.appendChild(checkbox);
   
         let h3 = document.createElement("h3");
-        h3.setAttribute("class", "title");
+        h3.setAttribute("class", "typetext");
         h3.textContent = type.name;
         sec.appendChild(h3); 
         
