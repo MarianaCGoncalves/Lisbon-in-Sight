@@ -1,4 +1,4 @@
-let types = ["Museu", "Jardim", "Teatro", "Monumento", "Igreja", "Arte", "Cultura", "Biblioteca"];
+let types = ["Museum", "Garden", "Theater", "Monument", "Church", "Art Galery", "Cultural Landmark", "Library"];
       let quant = 0;
       let lil= [];
       let locations=[];
@@ -322,7 +322,9 @@ async function searchLocal(){
         sec.appendChild(h3); 
 
         let checkbox = document.createElement("button");
-        checkbox.setAttribute("type", "sybmit");
+        checkbox.setAttribute("type", "sybmit");    
+        checkbox.setAttribute("class","locationremove");
+        checkbox.textContent= "-"
        checkbox.onclick = () => { 
         debugger;
             let index= locations.locals.features.indexOf(location);
