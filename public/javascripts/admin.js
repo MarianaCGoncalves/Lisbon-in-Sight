@@ -22,6 +22,7 @@ function populateRoutes(routes) {
     console.log(route);
       let li = document.createElement("li");
       li.setAttribute("class","routecontainer");
+      li.setAttribute("id","adminroutecontainer");
 
       let sec = document.createElement("section");
       sec.setAttribute("class", "routeparts routeleft");
@@ -37,7 +38,7 @@ function populateRoutes(routes) {
 
       let h4 = document.createElement("h4");
       h4.setAttribute("class", "title");
-      h4.textContent = "Check out our curated routes";
+      h4.textContent = route.desc;
       sec.appendChild(h4);
 
       li.appendChild(sec);

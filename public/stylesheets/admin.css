@@ -10,7 +10,7 @@
 
       main> section {
         
-        width: 150%;
+        width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -29,14 +29,10 @@
         
         
       }
-      .routecontainer{
-    width: 90%;
-    height: 20%; 
-    background-color: rgb(249, 242, 52);
-    display: flex;
-    flex-direction: row;
-    margin: 5%;
-    
+      #adminroutecontainer{
+    width: 45%;
+   
+  
 }
 
 .routeparts{
