@@ -149,6 +149,13 @@
   align-items: center;
   justify-content: flex-start;
 }
+.mapdisplay{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .search{
   display: flex;
   align-items: center;
