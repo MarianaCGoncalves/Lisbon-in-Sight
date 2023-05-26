@@ -3,7 +3,7 @@ const router = express.Router();
 const Local = require("../models/localModel");
 const utils = require("../config/utils");
 const auth = require("../middleware/auth");
-
+//
 router.get('/search/:name', async function(req, res, next){
 
     try{
@@ -19,7 +19,7 @@ router.get('/search/:name', async function(req, res, next){
                 res.status(500).send(err);
     }
 });
-
+//
 router.get('/', async function(req, res, next){
     try{
         let result = await Local.getAll();
@@ -35,7 +35,7 @@ router.get('/', async function(req, res, next){
         res.status(500).send(err);
     }
 });
-
+//
 router.get('/auto/:loctypeIds', async function(req, res, next){
     try{
 
@@ -52,7 +52,7 @@ router.get('/auto/:loctypeIds', async function(req, res, next){
         res.status(500).send(err);
     }
 });
-
+//
 router.get('/type/:type', async function(req, res, next){
     try{
         let result = await Local.getByType(req.params.type);

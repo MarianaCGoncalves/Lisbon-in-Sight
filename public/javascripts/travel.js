@@ -125,7 +125,7 @@ function calcRoute(locations) {
       optimizeWaypoints: true,
     travelMode: 'WALKING'
   };
-
+ 
   directionsService.route(request, function(result, status) {
     console.log(result);
     if (status == 'OK') {
@@ -155,7 +155,7 @@ function createSelect () {
 
 async function criar() {
     let values = [];
-    debugger;
+  
     for (let i =1; i< quant; i++) {
         values.push(document.getElementById("type"+i).value);
     }    
@@ -176,7 +176,7 @@ async function criar() {
 
 async function createRoute() {
   try {
-    debugger;
+  
     window.user = user;
     let msgDOM = document.getElementById("msg");
     msgDOM.textContent = "";
@@ -214,9 +214,10 @@ async function logout() {
 
 async function searchLocal(){
   try{
-    debugger;
+
       let search = document.getElementById("search");
       let result = await requestLocalByName(search.value);
+      initMap(result);
       
       console.log(result.locals);
 
@@ -259,7 +260,7 @@ async function searchLocal(){
             initMap(result);
           }
           else{
-            debugger;
+        
             let index= lil.indexOf(type.id);
             console.log(index);
             if (index> -1){
@@ -326,7 +327,7 @@ async function searchLocal(){
         checkbox.setAttribute("class","locationremove");
         checkbox.textContent= "-"
        checkbox.onclick = () => { 
-        debugger;
+       
             let index= locations.locals.features.indexOf(location);
             if (index> -1){
               allPoints.locals.features.push(location);

@@ -9,8 +9,7 @@ window.onload = async function () {
         document.getElementById("description").textContent = route_desc;       
       let locals = await requestRouteLocals(routeid);
       initMap(locals);
-      points = locals;
-      calcRoute(map);
+      calcRoute(locals);
 
    } catch (err) {
       console.log(err);
@@ -20,90 +19,93 @@ window.onload = async function () {
 
 
 let map;
-let directionsDisplay;
-var directionsService;
-async function initMap(result) {
-  directionsService = new google.maps.DirectionsService();
-  directionsDisplay = new google.maps.DirectionsRenderer();
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 38.73074327445395, lng: -9.148878289348835},
-    zoom: 13,
-    mapTypeId: google.maps.MapTypeId.HYBRID,
-    heading: 90,
-    tilt: 45,
-    styles:[{"stylers": [{"visibility":"off"}]}]
-  });
- 
-  try{
-    console.log(result);
-    map.data.addGeoJson(result.locals);
-
-    
-  }
-  catch(err){
-    console.log(err);
-    return;
-  }
-  map.setTilt(50);
-
-  var infowindow = new google.maps.InfoWindow();
-  map.data.addListener('click', function(event) {
-  var name = event.feature.getProperty("name");
-  var desc = event.feature.getProperty("desc");
-
-  infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+"</div>");
-  infowindow.setPosition(event.feature.getGeometry().get());
-  infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
-  infowindow.open(map);
-  });
-  
-
-  directionsDisplay.setMap(map);
-
-  google.maps.event.addDomListener(window, "load", initMap);
-}
-window.initMap = initMap;
-
-function calcRoute(map) {
-  console.log(points);
-  let waypts= [];
-  for (let i = 1; i < points.locals.features.length-1; i++) {
-    let lan = points.locals.features[i].geometry.coordinates[1];
-    let long =points.locals.features[i].geometry.coordinates[0];
-    let coordinats= "";
-    coordinats= lan + ', ' + long;
-    waypts.push({
-      location: coordinats,
-      stopover: true,
+  let directionsDisplay;
+  var directionsService;
+  async function initMap(result) {
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 38.73074327445395, lng: -9.148878289348835},
+      zoom: 13,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      heading: 90,
+      tilt: 45,
+      styles:[{"stylers": [{"visibility":"off"}]}]
     });
-  }
-  console.log(waypts);
-  let last =points.locals.features.length -1;
-  var start = new google.maps.LatLng(points.locals.features[0].geometry.coordinates[1],
-    points.locals.features[0].geometry.coordinates[0]);
-  var end = new google.maps.LatLng(points.locals.features[last].geometry.coordinates[1],
-    points.locals.features[last].geometry.coordinates[0]);
+   
+    try{
+      console.log(result);
+      map.data.addGeoJson(result.locals);
+  
+      
+    }
+    catch(err){
+      console.log(err);
+      return;
+    }
+    map.setTilt(50);
+  
+    var infowindow = new google.maps.InfoWindow();
+    map.data.addListener('click', function(event) {
+    var name = event.feature.getProperty("name");
+    var desc = event.feature.getProperty("desc");
+  
+    infowindow.setContent("<div style='width:150px; text-align: center;'>"+name+" <br> "+desc+"</div>");
+    infowindow.setPosition(event.feature.getGeometry().get());
+    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+    infowindow.open(map);
+    });
     
-      
-      
-  var request = {
-    origin: start,
-    destination: end,
-    waypoints: waypts,
-      optimizeWaypoints: true,
-    travelMode: 'WALKING'
-  };
+  
+    directionsDisplay.setMap(map);
+  
+    google.maps.event.addDomListener(window, "load", initMap);
+  }
+  window.initMap = initMap;
+  
+  function calcRoute(locations) {
 
-  directionsService.route(request, function(result, status) {
-    if (status == 'OK') {
-      directionsDisplay.setDirections(result);
-      new google.maps.DirectionsRenderer({
-        suppressMarkers: true,
+ 
+
+    let waypts= [];
+    for (let i = 1; i < locations.locals.features.length-1; i++) {
+      let lan = locations.locals.features[i].geometry.coordinates[1];
+      let long =locations.locals.features[i].geometry.coordinates[0];
+      let coordinats= "";
+      coordinats= lan + ', ' + long;
+      waypts.push({
+        location: coordinats,
+        stopover: true,
       });
-  }});
-
-}
-
+    }
+    console.log(waypts);
+    let last =locations.locals.features.length-1;
+    if(locations.locals.features.length ==0 ){
+      last =0
+    }
+  
+    var start = new google.maps.LatLng(locations.locals.features[0].geometry.coordinates[1],
+      locations.locals.features[0].geometry.coordinates[0]);
+    var end = new google.maps.LatLng(locations.locals.features[last].geometry.coordinates[1],
+      locations.locals.features[last].geometry.coordinates[0]);
+      
+        
+        
+    var request = {
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+        optimizeWaypoints: true,
+      travelMode: 'WALKING'
+    };
+   
+    directionsService.route(request, function(result, status) {
+      console.log(result);
+      if (status == 'OK') {
+        directionsDisplay.setDirections(result);
+    }});
+  
+  }
 
 function createSelect () {
     quant++;

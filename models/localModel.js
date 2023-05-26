@@ -44,7 +44,7 @@ class Local {
     }
     static async getByName(name){
         try{
-            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id and loc_name LIKE $1", ["%"+name+"%"]);
+            let dbResult = await pool.query("select loc_id, loc_name, loc_desc, st_asGeojson(loc_coordinates), type_name from local, localtype, type where loc_type=loc_l_id and loc_t_id=type_id and loc_name ILIKE $1", ["%"+name+"%"]);
             let dbResults = dbResult.rows;
 
             if(!dbResults.length){

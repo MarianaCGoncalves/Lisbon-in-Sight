@@ -5,7 +5,7 @@ const utils = require("../config/utils");
 const auth = require("../middleware/auth");
 const tokenSize = 64;
 
-
+//
 // Get information about the authenticated user (only the name)
 router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     try {
@@ -39,7 +39,7 @@ router.get('/admin/auth',auth.verifyAdmin,  async function (req, res, next) {
         res.status(500).send(err);
     }
 });
-
+//
 router.post('', async function (req, res, next) {
     try {
         console.log("Register user ");
@@ -68,6 +68,7 @@ router.delete('/auth', auth.verifyAuth, async function (req, res, next) {
     }
 });
 
+//
 router.post('/auth', async function (req, res, next) {
     try {
         console.log("Login user ");

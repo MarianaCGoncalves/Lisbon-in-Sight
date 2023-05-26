@@ -12,8 +12,7 @@ window.onload = async function () {
           document.getElementById("description").textContent = route_desc;       
           let locals = await requestRouteLocals(routeid);
           initMap(locals);
-          points = locals;
-          calcRoute(map);
+          calcRoute(locals);
     
         let result = await checkAuthenticated(true);
         if (result.err) {  throw result.err; }
@@ -69,13 +68,14 @@ window.onload = async function () {
   }
   window.initMap = initMap;
   
-  function calcRoute(map) {
-    console.log(points);
-    
+  function calcRoute(locations) {
+
+ 
+
     let waypts= [];
-    for (let i = 1; i < points.locals.features.length-1; i++) {
-      let lan = points.locals.features[i].geometry.coordinates[1];
-      let long =points.locals.features[i].geometry.coordinates[0];
+    for (let i = 1; i < locations.locals.features.length-1; i++) {
+      let lan = locations.locals.features[i].geometry.coordinates[1];
+      let long =locations.locals.features[i].geometry.coordinates[0];
       let coordinats= "";
       coordinats= lan + ', ' + long;
       waypts.push({
@@ -84,11 +84,15 @@ window.onload = async function () {
       });
     }
     console.log(waypts);
-    let last =points.locals.features.length -1;
-    var start = new google.maps.LatLng(points.locals.features[0].geometry.coordinates[1],
-      points.locals.features[0].geometry.coordinates[0]);
-    var end = new google.maps.LatLng(points.locals.features[last].geometry.coordinates[1],
-      points.locals.features[last].geometry.coordinates[0]);
+    let last =locations.locals.features.length-1;
+    if(locations.locals.features.length ==0 ){
+      last =0
+    }
+  
+    var start = new google.maps.LatLng(locations.locals.features[0].geometry.coordinates[1],
+      locations.locals.features[0].geometry.coordinates[0]);
+    var end = new google.maps.LatLng(locations.locals.features[last].geometry.coordinates[1],
+      locations.locals.features[last].geometry.coordinates[0]);
       
         
         
@@ -99,14 +103,14 @@ window.onload = async function () {
         optimizeWaypoints: true,
       travelMode: 'WALKING'
     };
-  
+   
     directionsService.route(request, function(result, status) {
+      console.log(result);
       if (status == 'OK') {
         directionsDisplay.setDirections(result);
     }});
   
   }
-  
   
   function createSelect () {
       quant++;
@@ -161,7 +165,7 @@ window.onload = async function () {
 
   async function askApproval() {
     try {
-      debugger;
+      
       window.user = user;
       let msgDOM = document.getElementById("idmsg");
       msgDOM.textContent = "";
