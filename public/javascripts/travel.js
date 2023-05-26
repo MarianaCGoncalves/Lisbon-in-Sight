@@ -214,10 +214,15 @@ async function logout() {
 
 async function searchLocal(){
   try{
-
       let search = document.getElementById("search");
+      if(search.value){
       let result = await requestLocalByName(search.value);
       initMap(result);
+      }else{
+        initMap(allPoints);
+      }
+      
+      calcRoute(locations);
       
       console.log(result.locals);
 
