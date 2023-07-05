@@ -124,6 +124,18 @@ async function searchRoute() {
   }
 }
 
+async function refresh() {
+  try {
+    let result = await requestUserRoutes();
+    let container = document.getElementById("routecard");
+    container.innerHTML = "";
+    populateRoutes(result.routes);
+  } catch (err) {
+      console.log(err);
+     // alert("Something is not working");
+  }
+}
+
 
 
 
